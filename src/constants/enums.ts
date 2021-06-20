@@ -1,4 +1,5 @@
 export enum ApiReducerKey {
   CATEGORIES = "categoriesApi",
-  USERS = "usersApi"
+  USERS = "usersApi",
+  WORKSHOPS = "workshopsApi"
 }
