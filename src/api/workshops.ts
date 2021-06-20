@@ -6,8 +6,8 @@ import { WorkshopsQuery } from "types/api"
 const workshopsApi = createApi({
   reducerPath: ApiReducerKey.WORKSHOPS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  endpoints: build => ({
-    getWorkshops: build.query({
+  endpoints: builder => ({
+    getWorkshops: builder.query({
       query: (query: WorkshopsQuery | null) => {
         if (!query) return WORKSHOPS_URL
 
@@ -15,7 +15,7 @@ const workshopsApi = createApi({
         return WORKSHOPS_URL + WORKSHOPS_PAGE + page + WORKSHOPS_LIMIT + limit
       }
     }),
-    getWorkshopById: build.query({ query: (id: number) => `${WORKSHOPS_URL}/${id}` })
+    getWorkshopById: builder.query({ query: (id: number) => `${WORKSHOPS_URL}/${id}` })
   })
 })
 

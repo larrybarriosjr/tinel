@@ -5,9 +5,9 @@ import { BASE_URL, USERS_URL } from "constants/env"
 const usersApi = createApi({
   reducerPath: ApiReducerKey.USERS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  endpoints: build => ({
-    getUsers: build.query({ query: () => USERS_URL }),
-    getUserById: build.query({ query: (id: number) => `${USERS_URL}/${id}` })
+  endpoints: builder => ({
+    getUsers: builder.query({ query: () => USERS_URL }),
+    getUserById: builder.query({ query: (id: number) => `${USERS_URL}/${id}` })
   })
 })
 
