@@ -1,3 +1,4 @@
+import { ReactComponent as EmptyCart } from "assets/icons/empty-cart.svg"
 import { ReactComponent as Logo } from "assets/logo.svg"
 import { Routes } from "constants/enums"
 import Row from "containers/Row"
@@ -9,10 +10,11 @@ type NavbarProps = React.ComponentPropsWithoutRef<"nav">
 const Navbar = ({ ...props }: NavbarProps) => {
   return (
     <nav className={styles.nav} {...props}>
-      <Row className={styles.row}>
+      <Row className={styles.nav_row}>
         <Link to={Routes.HOME} data-testid="logo-link">
           <Logo className={styles.logo} data-testid="logo" />
         </Link>
+        <EmptyCart data-testid="cart-icon" />
       </Row>
     </nav>
   )

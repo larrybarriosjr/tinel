@@ -39,7 +39,11 @@ describe("Layout", () => {
     expect(appLocation?.pathname).toBe(Routes.HOME)
   })
 
-  it.todo("renders the cart")
+  it("renders the cart", () => {
+    const cart = component.getByTestId("cart-icon")
+    expect(cart).toBeInTheDocument()
+  })
+
   it.todo("opens cart drawer when clicking the cart")
   it.todo("renders the item counter")
   it.todo("changes the item counter depending on workshops added")
