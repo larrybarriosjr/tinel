@@ -1,4 +1,4 @@
-import { cleanup, render, RenderResult } from "@testing-library/react"
+import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react"
 import { store } from "app/store"
 import { Routes } from "constants/enums"
 import { Provider } from "react-redux"
@@ -39,7 +39,7 @@ describe("Layout", () => {
   })
 
   it("redirects to homepage/workshop list when clicking the logo", () => {
-    component.getByTestId("logo-link").click()
+    fireEvent.click(component.getByTestId("logo-link"))
     expect(appLocation?.pathname).toBe(Routes.HOME)
   })
 
@@ -55,7 +55,7 @@ describe("Layout", () => {
   })
 
   it("opens cart drawer when clicking the cart", () => {
-    component.getByTestId("cart-button").click()
+    fireEvent.click(component.getByTestId("cart-button"))
     const sidebar = component.getByRole("complementary")
     expect(sidebar).toBeInTheDocument()
   })
@@ -66,12 +66,25 @@ describe("Layout", () => {
   })
 
   it("renders the item counter in the cart drawer", () => {
-    component.getByTestId("cart-button").click()
+    fireEvent.click(component.getByTestId("cart-button"))
     const counter = component.getByTestId("drawer-cart-counter")
     expect(counter).toBeInTheDocument()
     expect(counter).toHaveTextContent(/workshop/i)
   })
 
   it.todo("changes the item counter depending on workshops added")
-  it.todo("closes cart drawer when clicking the close button")
+
+  it("renders the close button in the cart drawer", () => {
+    fireEvent.click(component.getByTestId("cart-button"))
+    const close = component.getByTestId("drawer-close-icon")
+    expect(close).toBeInTheDocument()
+  })
+
+  it("closes cart drawer when clicking the close button", () => {
+    fireEvent.click(component.getByTestId("cart-button"))
+    fireEvent.click(component.getByTestId("drawer-close-button"))
+    const sidebar = component.getByRole("complementary")
+    fireEvent.transitionEnd(sidebar)
+    expect(sidebar).not.toBeInTheDocument()
+  })
 })

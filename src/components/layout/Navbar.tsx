@@ -1,4 +1,5 @@
-import { ReactComponent as EmptyCart } from "assets/icons/empty-cart.svg"
+import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
+import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
 import { ReactComponent as Logo } from "assets/logo.svg"
 import { FlatButton } from "components/common/button"
 import { Routes } from "constants/enums"
@@ -6,7 +7,7 @@ import Row from "containers/Row"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { showSidebar } from "states/presentation"
+import { hideSidebar, showSidebar } from "states/presentation"
 import Drawer from "./Drawer"
 import styles from "./Navbar.module.scss"
 
@@ -22,6 +23,15 @@ const Navbar = ({ ...props }: NavbarProps) => {
     setDrawerState(true)
   }
 
+  const handleHideDrawer = () => {
+    dispatch(hideSidebar())
+  }
+
+  const handleUnmountDrawer = () => {
+    if (sidebarDisplay) return
+    setDrawerState(false)
+  }
+
   return (
     <nav className={styles.nav} {...props}>
       <Row className={styles.nav_row}>
@@ -30,7 +40,7 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </Link>
         <Row className={styles.cart_row}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
-            <EmptyCart data-testid="navbar-cart-icon" />
+            <EmptyCartIcon data-testid="navbar-cart-icon" />
           </FlatButton>
           <h6 className={styles.counter} data-testid="navbar-cart-counter">
             Cart is Empty
@@ -38,13 +48,18 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </Row>
       </Row>
       {drawerState ? (
-        <Drawer open={sidebarDisplay}>
+        <Drawer open={sidebarDisplay} onTransitionEnd={handleUnmountDrawer}>
           <Row className={styles.drawer_row}>
             <Row>
-              <EmptyCart data-testid="drawer-cart-icon" />
+              <EmptyCartIcon data-testid="drawer-cart-icon" />
               <h5 className={styles.drawer_counter} data-testid="drawer-cart-counter">
                 0 Workshop
               </h5>
+            </Row>
+            <Row>
+              <FlatButton onClick={handleHideDrawer} data-testid="drawer-close-button">
+                <CloseIcon data-testid="drawer-close-icon" />
+              </FlatButton>
             </Row>
           </Row>
         </Drawer>
