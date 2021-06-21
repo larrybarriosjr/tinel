@@ -1,14 +1,16 @@
 import { cleanup, render, RenderResult } from "@testing-library/react"
+import Navbar from "./Navbar"
 
 let component: RenderResult
-beforeEach(() => {
-  component = render(<></>)
-})
-
+beforeEach(() => (component = render(<Navbar />)))
 afterEach(cleanup)
 
 describe("Layout", () => {
-  it.todo("always renders the sticky navbar at the top")
+  it("renders the navbar", () => {
+    const navbar = component.getByRole("navigation")
+    expect(navbar).toBeInTheDocument()
+  })
+
   it.todo("renders the logo")
   it.todo("redirects to homepage/workshop list when clicking the logo")
   it.todo("renders the cart")

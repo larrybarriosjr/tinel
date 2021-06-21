@@ -1,0 +1,12 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.nav {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  background-color: var(--light-yellow);
+  @include media($breakpoint-sm) {
+    height: 90px;
+  }
+}
