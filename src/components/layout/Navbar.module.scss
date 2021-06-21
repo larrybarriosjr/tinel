@@ -10,3 +10,17 @@
     height: 90px;
   }
 }
+
+.row {
+  height: 100%;
+  align-items: center;
+}
+
+.logo {
+  width: 90px;
+  height: 40px;
+  @include media($breakpoint-sm) {
+    width: 105px;
+    height: 47px;
+  }
+}

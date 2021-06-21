@@ -11,7 +11,11 @@ describe("Layout", () => {
     expect(navbar).toBeInTheDocument()
   })
 
-  it.todo("renders the logo")
+  it("renders the logo", () => {
+    const logo = component.getByTestId("logo")
+    expect(logo).toBeInTheDocument()
+  })
+
   it.todo("redirects to homepage/workshop list when clicking the logo")
   it.todo("renders the cart")
   it.todo("opens cart drawer when clicking the cart")
