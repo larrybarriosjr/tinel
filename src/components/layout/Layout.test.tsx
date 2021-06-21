@@ -5,29 +5,29 @@ import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import Navbar from "./Navbar"
 
-let component: RenderResult
-let appLocation: RouteProps["location"]
-
-beforeEach(() => {
-  component = render(
-    <Provider store={store}>
-      <MemoryRouter>
-        <Navbar />
-        <Route
-          path="*"
-          render={({ location }) => {
-            appLocation = location
-            return null
-          }}
-        />
-      </MemoryRouter>
-    </Provider>
-  )
-})
-
-afterEach(cleanup)
-
 describe("Layout", () => {
+  let component: RenderResult
+  let appLocation: RouteProps["location"]
+
+  beforeEach(() => {
+    component = render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Navbar />
+          <Route
+            path="*"
+            render={({ location }) => {
+              appLocation = location
+              return null
+            }}
+          />
+        </MemoryRouter>
+      </Provider>
+    )
+  })
+
+  afterEach(cleanup)
+
   it("renders the navbar", () => {
     const navbar = component.getByRole("navigation")
     expect(navbar).toBeInTheDocument()
@@ -43,9 +43,15 @@ describe("Layout", () => {
     expect(appLocation?.pathname).toBe(Routes.HOME)
   })
 
-  it("renders the cart", () => {
-    const cart = component.getByTestId("cart-icon")
+  it("renders the cart icon in the navbar", () => {
+    const cart = component.getByTestId("navbar-cart-icon")
     expect(cart).toBeInTheDocument()
+  })
+
+  it("renders the item counter in the navbar", () => {
+    const counter = component.getByTestId("navbar-cart-counter")
+    expect(counter).toBeInTheDocument()
+    expect(counter).toHaveTextContent(/cart/i)
   })
 
   it("opens cart drawer when clicking the cart", () => {
@@ -54,11 +60,18 @@ describe("Layout", () => {
     expect(sidebar).toBeInTheDocument()
   })
 
-  it("renders the item counter", () => {
-    const counter = component.getByTestId("cart-counter")
+  it("renders the cart icon in the cart drawer", () => {
+    const cart = component.getByTestId("drawer-cart-icon")
+    expect(cart).toBeInTheDocument()
+  })
+
+  it("renders the item counter in the cart drawer", () => {
+    component.getByTestId("cart-button").click()
+    const counter = component.getByTestId("drawer-cart-counter")
     expect(counter).toBeInTheDocument()
-    expect(counter).toHaveTextContent(/cart/i)
+    expect(counter).toHaveTextContent(/workshop/i)
   })
 
   it.todo("changes the item counter depending on workshops added")
+  it.todo("closes cart drawer when clicking the close button")
 })

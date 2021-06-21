@@ -30,14 +30,25 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </Link>
         <Row className={styles.cart_row}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
-          <EmptyCart data-testid="cart-icon" />
+            <EmptyCart data-testid="navbar-cart-icon" />
           </FlatButton>
-          <h6 className={styles.counter} data-testid="cart-counter">
+          <h6 className={styles.counter} data-testid="navbar-cart-counter">
             Cart is Empty
           </h6>
         </Row>
       </Row>
-      {drawerState ? <Drawer open={sidebarDisplay} /> : null}
+      {drawerState ? (
+        <Drawer open={sidebarDisplay}>
+          <Row className={styles.drawer_row}>
+            <Row>
+              <EmptyCart data-testid="drawer-cart-icon" />
+              <h5 className={styles.drawer_counter} data-testid="drawer-cart-counter">
+                0 Workshop
+              </h5>
+            </Row>
+          </Row>
+        </Drawer>
+      ) : null}
     </nav>
   )
 }

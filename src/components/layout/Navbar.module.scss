@@ -37,3 +37,14 @@
     margin-right: 198px;
   }
 }
+
+.drawer_row {
+  height: 60px;
+  @include media($breakpoint-sm) {
+    height: 90px;
+  }
+}
+
+.drawer_counter {
+  margin-left: 8px;
+}
