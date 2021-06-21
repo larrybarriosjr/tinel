@@ -1,5 +1,7 @@
 import { cleanup, render, RenderResult } from "@testing-library/react"
+import { store } from "app/store"
 import { Routes } from "constants/enums"
+import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import Navbar from "./Navbar"
 
@@ -8,16 +10,18 @@ let appLocation: RouteProps["location"]
 
 beforeEach(() => {
   component = render(
-    <MemoryRouter>
-      <Navbar />
-      <Route
-        path="*"
-        render={({ location }) => {
-          appLocation = location
-          return null
-        }}
-      />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter>
+        <Navbar />
+        <Route
+          path="*"
+          render={({ location }) => {
+            appLocation = location
+            return null
+          }}
+        />
+      </MemoryRouter>
+    </Provider>
   )
 })
 
@@ -44,7 +48,11 @@ describe("Layout", () => {
     expect(cart).toBeInTheDocument()
   })
 
-  it.todo("opens cart drawer when clicking the cart")
+  it("opens cart drawer when clicking the cart", () => {
+    component.getByTestId("cart-button").click()
+    const sidebar = component.getByRole("complementary")
+    expect(sidebar).toBeInTheDocument()
+  })
 
   it("renders the item counter", () => {
     const counter = component.getByTestId("cart-counter")
