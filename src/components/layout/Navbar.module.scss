@@ -24,3 +24,16 @@
     height: 47px;
   }
 }
+
+.cart_row {
+  margin: 0;
+}
+
+.counter {
+  display: none;
+  @include media($breakpoint-sm) {
+    display: inline;
+    margin-left: 8px;
+    margin-right: 198px;
+  }
+}

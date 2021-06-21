@@ -14,7 +14,12 @@ const Navbar = ({ ...props }: NavbarProps) => {
         <Link to={Routes.HOME} data-testid="logo-link">
           <Logo className={styles.logo} data-testid="logo" />
         </Link>
-        <EmptyCart data-testid="cart-icon" />
+        <Row className={styles.cart_row}>
+          <EmptyCart data-testid="cart-icon" />
+          <h6 className={styles.counter} data-testid="cart-counter">
+            Cart is Empty
+          </h6>
+        </Row>
       </Row>
     </nav>
   )

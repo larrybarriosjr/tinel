@@ -45,6 +45,12 @@ describe("Layout", () => {
   })
 
   it.todo("opens cart drawer when clicking the cart")
-  it.todo("renders the item counter")
+
+  it("renders the item counter", () => {
+    const counter = component.getByTestId("cart-counter")
+    expect(counter).toBeInTheDocument()
+    expect(counter).toHaveTextContent(/cart/i)
+  })
+
   it.todo("changes the item counter depending on workshops added")
 })
