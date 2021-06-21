@@ -20,5 +20,6 @@ export enum Color {
 
 export enum Routes {
   HOME = "/",
-  WORKSHOP = "/workshop"
+  WORKSHOP = "/workshop/",
+  WORKSHOP_PATH = "/workshop/:id"
 }
