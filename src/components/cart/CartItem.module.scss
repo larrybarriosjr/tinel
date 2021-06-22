@@ -20,3 +20,19 @@
   left: -20%;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+  margin: 20px 0;
+}
+
+.title_row {
+  gap: 6px;
+}
+
+.title {
+  color: var(--blue);
+}
+

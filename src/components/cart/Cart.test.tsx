@@ -76,7 +76,24 @@ describe("Cart", () => {
     })
   })
 
-  it.todo("renders the workshop titles")
+  it("renders the workshop titles", () => {
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    const titles = component.getAllByTestId("cart-item-title")
+    titles.forEach((title, idx) => {
+      expect(title).toBeInTheDocument()
+
+      if (idx + 1 === workshopItem1.id) {
+        expect(title).toHaveTextContent(workshopItem1.title)
+      }
+
+      if (idx + 1 === workshopItem2.id) {
+        expect(title).toHaveTextContent(workshopItem2.title)
+      }
+    })
+  })
+
   it.todo("renders the workshop ticket count dropdowns")
   it.todo("renders the workshop prices")
   it.todo("renders the cart total price")
