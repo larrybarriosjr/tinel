@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { hideSidebar, showSidebar } from "states/presentation"
+import { pluralize } from "utils/text-utils"
 import Drawer from "./Drawer"
 import styles from "./Navbar.module.scss"
 
@@ -16,6 +17,8 @@ type NavbarProps = React.ComponentPropsWithoutRef<"nav">
 const Navbar = ({ ...props }: NavbarProps) => {
   const dispatch = useAppDispatch()
   const sidebarDisplay = useAppSelector(state => state.presentationSlice.sidebarDisplay)
+  const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
+
   const [drawerState, setDrawerState] = useState(sidebarDisplay)
 
   const handleShowDrawer = () => {
@@ -43,7 +46,9 @@ const Navbar = ({ ...props }: NavbarProps) => {
             <EmptyCartIcon data-testid="navbar-cart-icon" />
           </FlatButton>
           <h6 className={styles.counter} data-testid="navbar-cart-counter">
-            Cart is Empty
+            {cartQuantity
+              ? `${cartQuantity} ${pluralize("Workshop", cartQuantity)} in Cart`
+              : "Cart is Empty"}
           </h6>
         </Row>
       </Row>
@@ -53,7 +58,7 @@ const Navbar = ({ ...props }: NavbarProps) => {
             <Row>
               <EmptyCartIcon data-testid="drawer-cart-icon" />
               <h5 className={styles.drawer_counter} data-testid="drawer-cart-counter">
-                0 Workshop
+                {cartQuantity} {pluralize("Workshop", cartQuantity)}
               </h5>
             </Row>
             <Row>
