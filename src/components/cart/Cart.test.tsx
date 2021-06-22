@@ -106,7 +106,16 @@ describe("Cart", () => {
     })
   })
 
-  it.todo("renders the workshop ticket count dropdowns")
+  it("renders the workshop ticket count dropdowns", () => {
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    const dropdowns = document.querySelectorAll("#cart-ticket-dropdown")
+    dropdowns.forEach(dropdown => {
+      expect(dropdown).toBeInTheDocument()
+    })
+  })
+
   it.todo("renders the workshop prices")
   it.todo("renders the cart total price")
   it.todo("renders the cart checkout button")

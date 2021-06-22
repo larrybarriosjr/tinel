@@ -11,7 +11,13 @@ const CartList = () => {
     <Row className={styles.row}>
       {cartQuantity
         ? cartItems.map(item => (
-            <CartItem key={item.id} id={item.id} title={item.title} imageUrl={item.imageUrl} />
+            <CartItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              imageUrl={item.imageUrl}
+              quantity={item.quantity}
+            />
           ))
         : null}
     </Row>

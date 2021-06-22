@@ -1,24 +1,37 @@
 import { ReactComponent as TrashIcon } from "assets/icons/trash.svg"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
+import DropdownInput from "components/common/input/DropdownInput"
 import Row from "containers/Row"
 import { useAppDispatch } from "hooks/redux"
-import { removeFromCart } from "states/cart"
+import { removeFromCart, updateWorkshopQuantity } from "states/cart"
+import { DropDownItemType } from "types/component"
 import styles from "./CartItem.module.scss"
 
 type CartItemProps = {
   id: number
   title: string
   imageUrl: string
+  quantity: number
 }
 
-const CartItem = ({ id, title, imageUrl }: CartItemProps) => {
+const CartItem = ({ id, title, imageUrl, quantity }: CartItemProps) => {
   const titleClasses = clsx([styles.title, "cart"])
 
   const dispatch = useAppDispatch()
 
+  const items = Array.from({ length: 11 }, (_, idx) => idx).map(id => ({
+    label: id.toString(),
+    value: id.toString()
+  }))
+
   const handleDelete = () => {
     dispatch(removeFromCart(id))
+  }
+
+  const handleSetQuantity = (value: DropDownItemType | null) => {
+    if (!value) return
+    dispatch(updateWorkshopQuantity({ id, quantity: parseInt(value.value) }))
   }
 
   return (
@@ -38,6 +51,14 @@ const CartItem = ({ id, title, imageUrl }: CartItemProps) => {
           >
             <TrashIcon />
           </FlatButton>
+        </Row>
+        <Row>
+          <DropdownInput
+            items={items}
+            value={items.find(item => quantity.toString() === item.value)}
+            onChange={handleSetQuantity}
+            id="cart-ticket-dropdown"
+          />
         </Row>
       </div>
     </div>
