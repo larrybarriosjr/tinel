@@ -40,6 +40,7 @@
 
 .drawer_row {
   height: 60px;
+  justify-content: space-between;
   @include media($breakpoint-sm) {
     height: 90px;
   }
