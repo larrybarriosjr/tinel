@@ -55,7 +55,7 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
             <TrashIcon />
           </FlatButton>
         </Row>
-        <Row>
+        <Row className={styles.price_row}>
           <DropdownInput
             items={items}
             value={items.find(item => quantity.toString() === item.value)}

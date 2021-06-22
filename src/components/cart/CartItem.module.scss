@@ -34,6 +34,17 @@
 
 .title {
   color: var(--blue);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  @supports (-webkit-line-clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 
 .delete_button {
@@ -41,11 +52,17 @@
   margin-left: auto;
 }
 
+.price_row {
+  margin-top: auto;
+}
+
 .price {
   margin-left: 10px;
+  white-space: nowrap;
 }
 
 .currency {
   margin-left: 3px;
   margin-top: 5px;
+  white-space: nowrap;
 }

@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
-import { useAppDispatch } from "hooks/redux"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { Provider } from "react-redux"
 import { Action } from "redux"
 import { ThunkDispatch } from "redux-thunk"
@@ -37,13 +37,14 @@ const workshopItem2: OrderProductsType = {
 describe("Cart", () => {
   let component: RenderResult
   let dispatch: ThunkDispatch<RootState, undefined, Action>
+  let totalPrice: number
 
   beforeEach(() => {
     const wrapper = ({ children }: { children: React.ReactChild }) => (
       <Provider store={store}>{children}</Provider>
     )
-    const { result } = renderHook(() => useAppDispatch(), { wrapper })
-    dispatch = result.current
+    const { result: appDispatch } = renderHook(() => useAppDispatch(), { wrapper })
+    dispatch = appDispatch.current
 
     component = render(
       <Provider store={store}>
@@ -134,7 +135,24 @@ describe("Cart", () => {
     })
   })
 
-  it.todo("renders the cart total price")
+  it("renders the cart total price", () => {
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    const wrapper = ({ children }: { children: React.ReactChild }) => (
+      <Provider store={store}>{children}</Provider>
+    )
+    const { result: appSelector } = renderHook(() => useAppSelector(state => state.cartSlice.cartTotal), {
+      wrapper
+    })
+    totalPrice = appSelector.current
+
+    const price = component.getByTestId("cart-total-price")
+    expect(price).toBeInTheDocument()
+
+    expect(price.textContent).toBe(totalPrice + ",00")
+  })
+
   it.todo("renders the cart checkout button")
 
   it("renders the cart icon in the cart drawer", () => {
