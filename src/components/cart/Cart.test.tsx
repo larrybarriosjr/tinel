@@ -85,11 +85,11 @@ describe("Cart", () => {
       expect(title).toBeInTheDocument()
 
       if (idx + 1 === workshopItem1.id) {
-        expect(title).toHaveTextContent(workshopItem1.title)
+        expect(title.textContent).toBe(workshopItem1.title)
       }
 
       if (idx + 1 === workshopItem2.id) {
-        expect(title).toHaveTextContent(workshopItem2.title)
+        expect(title.textContent).toBe(workshopItem2.title)
       }
     })
   })
@@ -116,7 +116,24 @@ describe("Cart", () => {
     })
   })
 
-  it.todo("renders the workshop prices")
+  it("renders the workshop prices", () => {
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    const prices = component.getAllByTestId("cart-item-price")
+    prices.forEach((price, idx) => {
+      expect(price).toBeInTheDocument()
+
+      if (idx + 1 === workshopItem1.id) {
+        expect(price.textContent).toBe(workshopItem1.price.toString() + ",00")
+      }
+
+      if (idx + 1 === workshopItem2.id) {
+        expect(price.textContent).toBe(workshopItem2.price.toString() + ",00")
+      }
+    })
+  })
+
   it.todo("renders the cart total price")
   it.todo("renders the cart checkout button")
 

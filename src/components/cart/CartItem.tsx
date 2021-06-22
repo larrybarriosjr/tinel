@@ -13,10 +13,13 @@ type CartItemProps = {
   title: string
   imageUrl: string
   quantity: number
+  price: number
 }
 
-const CartItem = ({ id, title, imageUrl, quantity }: CartItemProps) => {
+const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
   const titleClasses = clsx([styles.title, "cart"])
+  const currencyClasses = clsx([styles.currency, "cart"])
+  const priceClasses = clsx([styles.price, "cart"])
 
   const dispatch = useAppDispatch()
 
@@ -59,6 +62,10 @@ const CartItem = ({ id, title, imageUrl, quantity }: CartItemProps) => {
             onChange={handleSetQuantity}
             id="cart-ticket-dropdown"
           />
+          <h3 className={priceClasses} data-testid="cart-item-price">
+            {price.toString()},00
+          </h3>
+          <h6 className={currencyClasses}>EUR</h6>
         </Row>
       </div>
     </div>

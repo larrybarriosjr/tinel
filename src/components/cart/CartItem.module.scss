@@ -37,6 +37,15 @@
 }
 
 .delete_button {
-  align-self: start;
+  align-self: flex-start;
   margin-left: auto;
+}
+
+.price {
+  margin-left: 10px;
+}
+
+.currency {
+  margin-left: 3px;
+  margin-top: 5px;
 }

@@ -17,6 +17,7 @@ const CartList = () => {
               title={item.title}
               imageUrl={item.imageUrl}
               quantity={item.quantity}
+              price={item.price}
             />
           ))
         : null}
