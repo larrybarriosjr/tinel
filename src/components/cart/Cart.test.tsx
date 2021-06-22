@@ -48,7 +48,7 @@ describe("Cart", () => {
 
     component = render(
       <Provider store={store}>
-        <CartDrawer />
+        <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} />
       </Provider>
     )
   })
@@ -153,7 +153,16 @@ describe("Cart", () => {
     expect(price.textContent).toBe(totalPrice + ",00")
   })
 
-  it.todo("renders the cart checkout button")
+  it("renders the cart checkout button", () => {
+    let button = component.queryByTestId("cart-checkout-button")
+    expect(button).not.toBeInTheDocument()
+
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    button = component.getByTestId("cart-checkout-button")
+    expect(button).toBeInTheDocument()
+  })
 
   it("renders the cart icon in the cart drawer", () => {
     const cart = component.getByTestId("drawer-cart-icon")

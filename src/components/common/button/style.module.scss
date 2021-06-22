@@ -1,3 +1,22 @@
+.primary {
+  border: none;
+  border-radius: 6px;
+  height: 60px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  font-size: 18.4px;
+  line-height: 125%;
+  color: var(--darker-grey);
+  background: var(--yellow);
+  margin-left: 20px;
+  margin-right: 20px;
+  &.cart_drawer {
+    color: white;
+    background: var(--blue);
+  }
+}
+
 .flat {
   border: none;
   background: none;
