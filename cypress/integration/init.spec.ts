@@ -4,8 +4,13 @@ beforeEach(() => {
   cy.visit(Routes.HOME)
 })
 
-describe("Cypress", () => {
+describe("Sticky Navbar", () => {
   it("always renders the sticky navbar at the top", () => {
     cy.scrollTo("bottom").isWithinViewport("nav")
   })
+})
+
+describe("Cart Drawer", () => {
+  it.skip("renders the cart drawer in full width on small screens")
+  it.skip("renders the cart drawer in 380px width on big screens")
 })
