@@ -32,6 +32,9 @@ h4 {
   font-weight: 700;
   font-size: 18.9px;
   line-height: 125%;
+  &.cart {
+    font-size: 18.9px;
+  }
   @include media($breakpoint-sm) {
     font-size: 27px;
   }

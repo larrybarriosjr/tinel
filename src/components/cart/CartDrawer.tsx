@@ -6,6 +6,7 @@ import Row from "containers/Row"
 import { useAppSelector } from "hooks/redux"
 import { pluralize } from "utils/text-utils"
 import styles from "./CartDrawer.module.scss"
+import CartList from "./CartList"
 
 type CartDrawerProps = {
   open: boolean
@@ -31,6 +32,7 @@ const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
           </FlatButton>
         </Row>
       </Row>
+      <CartList />
     </Drawer>
   )
 }
