@@ -17,3 +17,9 @@ export enum Color {
   LIGHTER_GREY = "var(--lighter-grey)",
   DARKER_GREY = "var(--darker-grey)"
 }
+
+export enum Routes {
+  HOME = "/",
+  WORKSHOP = "/workshop/",
+  WORKSHOP_PATH = "/workshop/:id"
+}
