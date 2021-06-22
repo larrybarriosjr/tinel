@@ -79,42 +79,23 @@ describe("Layout", () => {
     expect(sidebar).toBeInTheDocument()
   })
 
-  it("renders the cart icon in the cart drawer", () => {
-    const cart = component.getByTestId("drawer-cart-icon")
-    expect(cart).toBeInTheDocument()
-  })
-
-  it("renders the item counter in the cart drawer", () => {
-    fireEvent.click(component.getByTestId("cart-button"))
-    const counter = component.getByTestId("drawer-cart-counter")
-    expect(counter).toBeInTheDocument()
-    expect(counter).toHaveTextContent(/workshop/i)
-  })
-
-  it("changes the item counter depending on workshops added", () => {
+  it("changes the navbar item counter depending on workshops added", () => {
     const wrapper = ({ children }: { children: React.ReactChild }) => (
       <Provider store={store}>{children}</Provider>
     )
     const { result } = renderHook(() => useAppDispatch(), { wrapper })
     const dispatch = result.current
 
-    const drawerCounter = component.getByTestId("drawer-cart-counter")
     const navbarCounter = component.getByTestId("navbar-cart-counter")
-
-    fireEvent.click(component.getByTestId("cart-button"))
-    expect(drawerCounter).toHaveTextContent(/0/i)
     expect(navbarCounter).toHaveTextContent(/empty/i)
 
     dispatch(addToCart(workshopItem))
-    expect(drawerCounter).toHaveTextContent(/1/i)
     expect(navbarCounter).toHaveTextContent(/1/i)
 
     dispatch(addToCart(workshopItem))
-    expect(drawerCounter).toHaveTextContent(/2/i)
     expect(navbarCounter).toHaveTextContent(/2/i)
 
     dispatch(removeFromCart(1))
-    expect(drawerCounter).toHaveTextContent(/0/i)
     expect(navbarCounter).toHaveTextContent(/empty/i)
   })
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { OrderProductsType } from "types/api"
-import { CartState } from "types/cart"
+import { CartState, UpdateWorkshopQuantityAction } from "types/cart"
 
 const initialState: CartState = {
   cartItems: [],
@@ -54,12 +54,27 @@ const cartSlice = createSlice({
 
       setCartTotal(state)
       setCartQuantity(state)
+    },
+    updateWorkshopQuantity: (state, action: PayloadAction<UpdateWorkshopQuantityAction>) => {
+      const existingItem = state.cartItems.find(item => action.payload.id === item.id)
+
+      if (existingItem) {
+        state.cartItems = state.cartItems.map(item => {
+          if (action.payload.id === item.id) {
+            item.quantity = action.payload.quantity
+          }
+          return item
+        })
+      }
+
+      setCartTotal(state)
+      setCartQuantity(state)
     }
   }
 })
 
 const { actions, reducer } = cartSlice
 
-export const { addToCart, removeFromCart } = actions
+export const { addToCart, removeFromCart, updateWorkshopQuantity } = actions
 export const { name: cartName } = cartSlice
 export default reducer

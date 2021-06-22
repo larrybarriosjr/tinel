@@ -1,3 +1,3 @@
 export interface PresentationState {
-  sidebarDisplay: boolean
+  drawerDisplay: boolean
 }

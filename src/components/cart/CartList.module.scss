@@ -1,0 +1,48 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.row {
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start;
+  @include media($breakpoint-sm) {
+    margin-top: 31px;
+  }
+}
+
+.total_row {
+  margin: 40px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.subtotal {
+  color: var(--light-grey);
+}
+
+.totalprice_row {
+  margin: 0;
+}
+
+.price {
+  white-space: nowrap;
+}
+
+.currency {
+  margin-left: 3px;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.empty_text {
+  width: 100%;
+  height: 100px;
+  margin-left: 0;
+  justify-content: center;
+}
+
+.checkout_button {
+  width: 100%;
+  margin-left: 0;
+}

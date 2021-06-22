@@ -5,3 +5,8 @@ export interface CartState {
   cartQuantity: number
   cartTotal: number
 }
+
+export interface UpdateWorkshopQuantityAction {
+  id: number
+  quantity: number
+}
