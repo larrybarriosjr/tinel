@@ -1,4 +1,4 @@
-import { cleanup, render, RenderResult } from "@testing-library/react"
+import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import { useAppDispatch } from "hooks/redux"
@@ -91,6 +91,18 @@ describe("Cart", () => {
       if (idx + 1 === workshopItem2.id) {
         expect(title).toHaveTextContent(workshopItem2.title)
       }
+    })
+  })
+
+  it("renders the workshop delete buttons", () => {
+    dispatch(addToCart(workshopItem1))
+    dispatch(addToCart(workshopItem2))
+
+    const buttons = component.getAllByTestId("cart-item-delete-button")
+    buttons.forEach(button => {
+      expect(button).toBeInTheDocument()
+      fireEvent.click(button)
+      expect(button).not.toBeInTheDocument()
     })
   })
 

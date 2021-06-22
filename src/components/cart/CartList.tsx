@@ -10,7 +10,9 @@ const CartList = () => {
   return (
     <Row className={styles.row}>
       {cartQuantity
-        ? cartItems.map(item => <CartItem key={item.id} title={item.title} imageUrl={item.imageUrl} />)
+        ? cartItems.map(item => (
+            <CartItem key={item.id} id={item.id} title={item.title} imageUrl={item.imageUrl} />
+          ))
         : null}
     </Row>
   )
