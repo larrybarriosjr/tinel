@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { PresentationState } from "types/presentation"
 
 const initialState: PresentationState = {
-  sidebarDisplay: false
+  drawerDisplay: false
 }
 
 const presentationSlice = createSlice({
@@ -10,10 +10,10 @@ const presentationSlice = createSlice({
   initialState,
   reducers: {
     showSidebar: state => {
-      state.sidebarDisplay = true
+      state.drawerDisplay = true
     },
     hideSidebar: state => {
-      state.sidebarDisplay = false
+      state.drawerDisplay = false
     }
   }
 })

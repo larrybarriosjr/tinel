@@ -27,6 +27,10 @@
 
 .cart_row {
   margin: 0;
+  @include media($breakpoint-sm) {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 .counter {
@@ -34,18 +38,5 @@
   @include media($breakpoint-sm) {
     display: inline;
     margin-left: 8px;
-    margin-right: 198px;
   }
-}
-
-.drawer_row {
-  height: 60px;
-  justify-content: space-between;
-  @include media($breakpoint-sm) {
-    height: 90px;
-  }
-}
-
-.drawer_counter {
-  margin-left: 8px;
 }

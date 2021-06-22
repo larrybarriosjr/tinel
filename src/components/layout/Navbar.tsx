@@ -1,6 +1,6 @@
-import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
 import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
 import { ReactComponent as Logo } from "assets/logo.svg"
+import CartDrawer from "components/cart/CartDrawer"
 import { FlatButton } from "components/common/button"
 import { Routes } from "constants/enums"
 import Row from "containers/Row"
@@ -9,21 +9,20 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { hideSidebar, showSidebar } from "states/presentation"
 import { pluralize } from "utils/text-utils"
-import Drawer from "./Drawer"
 import styles from "./Navbar.module.scss"
 
 type NavbarProps = React.ComponentPropsWithoutRef<"nav">
 
 const Navbar = ({ ...props }: NavbarProps) => {
   const dispatch = useAppDispatch()
-  const sidebarDisplay = useAppSelector(state => state.presentationSlice.sidebarDisplay)
+  const drawerDisplay = useAppSelector(state => state.presentationSlice.drawerDisplay)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
 
-  const [drawerState, setDrawerState] = useState(sidebarDisplay)
+  const [drawerMounted, setDrawerMounted] = useState(drawerDisplay)
 
   const handleShowDrawer = () => {
     dispatch(showSidebar())
-    setDrawerState(true)
+    setDrawerMounted(true)
   }
 
   const handleHideDrawer = () => {
@@ -31,8 +30,8 @@ const Navbar = ({ ...props }: NavbarProps) => {
   }
 
   const handleUnmountDrawer = () => {
-    if (sidebarDisplay) return
-    setDrawerState(false)
+    if (drawerDisplay) return
+    setDrawerMounted(false)
   }
 
   return (
@@ -52,22 +51,8 @@ const Navbar = ({ ...props }: NavbarProps) => {
           </h6>
         </Row>
       </Row>
-      {drawerState ? (
-        <Drawer open={sidebarDisplay} onTransitionEnd={handleUnmountDrawer}>
-          <Row className={styles.drawer_row}>
-            <Row>
-              <EmptyCartIcon data-testid="drawer-cart-icon" />
-              <h5 className={styles.drawer_counter} data-testid="drawer-cart-counter">
-                {cartQuantity} {pluralize("Workshop", cartQuantity)}
-              </h5>
-            </Row>
-            <Row>
-              <FlatButton onClick={handleHideDrawer} data-testid="drawer-close-button">
-                <CloseIcon data-testid="drawer-close-icon" />
-              </FlatButton>
-            </Row>
-          </Row>
-        </Drawer>
+      {drawerMounted ? (
+        <CartDrawer open={drawerDisplay} onClose={handleHideDrawer} onTransitionEnd={handleUnmountDrawer} />
       ) : null}
     </nav>
   )
