@@ -56,4 +56,14 @@ describe("Workshop List", () => {
       })
     })
   })
+
+  it("renders the workshop prices", () => {
+    cy.request(`${BASE_URL}${WORKSHOPS_URL}${WORKSHOPS_PAGE}1${WORKSHOPS_LIMIT}9`).then(response => {
+      const itemPrices = response.body.map((item: { price: number }) => item.price.toString() + ",00")
+      cy.get("[data-testid=workshop-price]").should($el => {
+        const prices = $el.toArray().map(el => el.textContent)
+        expect(prices).to.deep.equal(itemPrices)
+      })
+    })
+  })
 })

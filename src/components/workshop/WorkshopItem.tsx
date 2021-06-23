@@ -10,9 +10,10 @@ type WorkshopItemProps = {
   title: string
   category: string
   date: string
+  price: number
 }
 
-const WorkshopItem = ({ imageUrl, title, category, date }: WorkshopItemProps) => {
+const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemProps) => {
   return (
     <div className={styles.box}>
       <div className={styles.top_container}>
@@ -34,6 +35,12 @@ const WorkshopItem = ({ imageUrl, title, category, date }: WorkshopItemProps) =>
           <h4 className={styles.title} data-testid="workshop-title">
             {title}
           </h4>
+        </Row>
+        <Row>
+          <h3 className={styles.price} data-testid="workshop-price">
+            {price.toString()},00
+          </h3>
+          <h6 className={styles.currency}>EUR</h6>
         </Row>
       </Row>
     </div>

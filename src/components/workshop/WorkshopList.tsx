@@ -15,6 +15,7 @@ const WorkshopList = () => {
           title={item.title}
           category={item.category}
           date={item.date}
+          price={item.price}
         />
       ))}
     </Row>
