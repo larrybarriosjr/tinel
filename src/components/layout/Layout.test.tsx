@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { persistor, store } from "app/store"
 import { Routes } from "constants/enums"
@@ -23,11 +23,10 @@ const workshopItem: OrderProductsType = {
 }
 
 describe("Layout", () => {
-  let component: RenderResult
   let appLocation: RouteProps["location"]
 
   beforeEach(() => {
-    component = render(
+    render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <MemoryRouter>
@@ -45,37 +44,35 @@ describe("Layout", () => {
     )
   })
 
-  afterEach(cleanup)
-
   it("renders the navbar", () => {
-    const navbar = component.getByRole("navigation")
+    const navbar = screen.getByRole("navigation")
     expect(navbar).toBeInTheDocument()
   })
 
   it("renders the logo", () => {
-    const logo = component.getByTestId("logo")
+    const logo = screen.getByTestId("logo")
     expect(logo).toBeInTheDocument()
   })
 
   it("redirects to home page when clicking the logo", () => {
-    fireEvent.click(component.getByTestId("logo-link"))
+    fireEvent.click(screen.getByTestId("logo-link"))
     expect(appLocation?.pathname).toBe(Routes.HOME)
   })
 
   it("renders the cart icon in the navbar", () => {
-    const cart = component.getByTestId("navbar-cart-icon")
+    const cart = screen.getByTestId("navbar-cart-icon")
     expect(cart).toBeInTheDocument()
   })
 
   it("renders the item counter in the navbar", () => {
-    const counter = component.getByTestId("navbar-cart-counter")
+    const counter = screen.getByTestId("navbar-cart-counter")
     expect(counter).toBeInTheDocument()
     expect(counter).toHaveTextContent(/cart/i)
   })
 
   it("opens cart drawer when clicking the cart", () => {
-    fireEvent.click(component.getByTestId("cart-button"))
-    const sidebar = component.getByRole("complementary")
+    fireEvent.click(screen.getByTestId("cart-button"))
+    const sidebar = screen.getByRole("complementary")
     expect(sidebar).toBeInTheDocument()
   })
 
@@ -86,7 +83,7 @@ describe("Layout", () => {
     const { result } = renderHook(() => useAppDispatch(), { wrapper })
     const dispatch = result.current
 
-    const navbarCounter = component.getByTestId("navbar-cart-counter")
+    const navbarCounter = screen.getByTestId("navbar-cart-counter")
     expect(navbarCounter).toHaveTextContent(/empty/i)
 
     dispatch(addToCart(workshopItem))
@@ -100,15 +97,15 @@ describe("Layout", () => {
   })
 
   it("renders the close button in the cart drawer", () => {
-    fireEvent.click(component.getByTestId("cart-button"))
-    const close = component.getByTestId("drawer-close-icon")
+    fireEvent.click(screen.getByTestId("cart-button"))
+    const close = screen.getByTestId("drawer-close-icon")
     expect(close).toBeInTheDocument()
   })
 
   it("closes cart drawer when clicking the close button", () => {
-    fireEvent.click(component.getByTestId("cart-button"))
-    fireEvent.click(component.getByTestId("drawer-close-button"))
-    const sidebar = component.getByRole("complementary")
+    fireEvent.click(screen.getByTestId("cart-button"))
+    fireEvent.click(screen.getByTestId("drawer-close-button"))
+    const sidebar = screen.getByRole("complementary")
     fireEvent.transitionEnd(sidebar)
     expect(sidebar).not.toBeInTheDocument()
   })

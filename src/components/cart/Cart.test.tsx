@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
@@ -35,7 +35,6 @@ const workshopItem2: OrderProductsType = {
 }
 
 describe("Cart", () => {
-  let component: RenderResult
   let dispatch: ThunkDispatch<RootState, undefined, Action>
   let totalPrice: number
 
@@ -46,7 +45,7 @@ describe("Cart", () => {
     const { result: appDispatch } = renderHook(() => useAppDispatch(), { wrapper })
     dispatch = appDispatch.current
 
-    component = render(
+    render(
       <Provider store={store}>
         <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} />
       </Provider>
@@ -56,14 +55,13 @@ describe("Cart", () => {
   afterEach(() => {
     dispatch(removeFromCart(1))
     dispatch(removeFromCart(2))
-    cleanup()
   })
 
   it("renders the workshop images in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
-    const images = component.getAllByRole("img")
+    const images = screen.getAllByRole("img")
     images.forEach((image, idx) => {
       expect(image).toBeInTheDocument()
 
@@ -81,7 +79,7 @@ describe("Cart", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
-    const titles = component.getAllByTestId("cart-item-title")
+    const titles = screen.getAllByTestId("cart-item-title")
     titles.forEach((title, idx) => {
       expect(title).toBeInTheDocument()
 
@@ -99,7 +97,7 @@ describe("Cart", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
-    const buttons = component.getAllByTestId("cart-item-delete-button")
+    const buttons = screen.getAllByTestId("cart-item-delete-button")
     buttons.forEach(button => {
       expect(button).toBeInTheDocument()
       fireEvent.click(button)
@@ -121,7 +119,7 @@ describe("Cart", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
-    const prices = component.getAllByTestId("cart-item-price")
+    const prices = screen.getAllByTestId("cart-item-price")
     prices.forEach((price, idx) => {
       expect(price).toBeInTheDocument()
 
@@ -147,36 +145,36 @@ describe("Cart", () => {
     })
     totalPrice = appSelector.current
 
-    const price = component.getByTestId("cart-total-price")
+    const price = screen.getByTestId("cart-total-price")
     expect(price).toBeInTheDocument()
 
     expect(price.textContent).toBe(totalPrice + ",00")
   })
 
   it("renders the cart checkout button in the cart drawer", () => {
-    let button = component.queryByTestId("cart-checkout-button")
+    let button = screen.queryByTestId("cart-checkout-button")
     expect(button).not.toBeInTheDocument()
 
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
-    button = component.getByTestId("cart-checkout-button")
+    button = screen.getByTestId("cart-checkout-button")
     expect(button).toBeInTheDocument()
   })
 
   it("renders the cart icon in the cart drawer", () => {
-    const cart = component.getByTestId("drawer-cart-icon")
+    const cart = screen.getByTestId("drawer-cart-icon")
     expect(cart).toBeInTheDocument()
   })
 
   it("renders the item counter in the cart drawer", () => {
-    const counter = component.getByTestId("drawer-cart-counter")
+    const counter = screen.getByTestId("drawer-cart-counter")
     expect(counter).toBeInTheDocument()
     expect(counter).toHaveTextContent(/workshop/i)
   })
 
   it("changes the navbar item counter depending on workshops added", () => {
-    const drawerCounter = component.getByTestId("drawer-cart-counter")
+    const drawerCounter = screen.getByTestId("drawer-cart-counter")
     expect(drawerCounter).toHaveTextContent(/0/i)
 
     dispatch(addToCart(workshopItem1))
