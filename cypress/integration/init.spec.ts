@@ -22,3 +22,14 @@ describe("Cart Drawer", () => {
     cy.get("aside").invoke("innerWidth").should("eq", 380)
   })
 })
+
+describe("Workshop List", () => {
+  it("renders the workshop images", () => {
+    cy.request("http://localhost:3000/workshops?_page=1&_limit=9").then(response => {
+      const itemsSrcs = response.body.map((item: { imageUrl: string }) => item.imageUrl)
+      cy.get("img").should($el => {
+        const srcs = $el.toArray().map(el => el.src)
+        expect(srcs).to.deep.equal(itemsSrcs)
+      })
+    })
+  })

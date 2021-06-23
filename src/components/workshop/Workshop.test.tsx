@@ -1,22 +1,17 @@
-import { cleanup, render, RenderResult } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import { store } from "app/store"
 import HomePage from "pages/HomePage"
 import { Provider } from "react-redux"
 
 describe("Workshop", () => {
-  let component: RenderResult
-
   beforeEach(() => {
-    component = render(
+    render(
       <Provider store={store}>
         <HomePage />
       </Provider>
     )
   })
 
-  afterEach(cleanup)
-
-  it.todo("renders the workshop images")
   it.todo("renders the workshop category icons")
   it.todo("renders the workshop dates")
   it.todo("renders the workshop times")

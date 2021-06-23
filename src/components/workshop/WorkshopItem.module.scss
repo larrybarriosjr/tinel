@@ -1,0 +1,26 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 450px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--lighter-grey);
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.image_container {
+  position: relative;
+  overflow: hidden;
+  width: 320px;
+  height: 180px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.image {
+  position: absolute;
+  height: 100%;
+}
