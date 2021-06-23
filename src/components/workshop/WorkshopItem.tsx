@@ -1,5 +1,6 @@
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
+import PrimaryButton from "components/common/button/PrimaryButton"
 import Row from "containers/Row"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopCategory from "./WorkshopCategory"
@@ -41,6 +42,11 @@ const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemPr
             {price.toString()},00
           </h3>
           <h6 className={styles.currency}>EUR</h6>
+        </Row>
+        <Row className={styles.button_container}>
+          <PrimaryButton className={styles.button} data-testid="workshop-button">
+            Add to Cart
+          </PrimaryButton>
         </Row>
       </Row>
     </div>

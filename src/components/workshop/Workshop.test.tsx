@@ -12,7 +12,6 @@ describe("Workshop", () => {
     )
   })
 
-  it.todo("renders the add to cart buttons in the workshop items")
   it.todo("lists the workshop items in descending chronological order (recent to oldest)")
   it.todo("redirects to detail page when clicking the workshop image and title in the workshop items")
   it.todo("renders the cart drawer when clicking the add to cart button")

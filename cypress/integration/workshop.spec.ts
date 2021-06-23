@@ -2,11 +2,11 @@ import { Routes } from "constants/enums"
 import { displayDate, displayTime } from "utils/text-utils"
 import { BASE_URL, WORKSHOPS_LIMIT, WORKSHOPS_PAGE, WORKSHOPS_URL } from "../env"
 
-beforeEach(() => {
-  cy.visit(Routes.HOME)
-})
-
 describe("Workshop List", () => {
+  before(() => {
+    cy.visit(Routes.HOME)
+  })
+
   it("renders the workshop images", () => {
     cy.request(`${BASE_URL}${WORKSHOPS_URL}${WORKSHOPS_PAGE}1${WORKSHOPS_LIMIT}9`).then(response => {
       const itemsSrcs = response.body.map((item: { imageUrl: string }) => item.imageUrl)
@@ -63,6 +63,18 @@ describe("Workshop List", () => {
       cy.get("[data-testid=workshop-price]").should($el => {
         const prices = $el.toArray().map(el => el.textContent)
         expect(prices).to.deep.equal(itemPrices)
+      })
+    })
+  })
+
+  it("renders the add to cart buttons in the workshop items", () => {
+    cy.request(`${BASE_URL}${WORKSHOPS_URL}${WORKSHOPS_PAGE}1${WORKSHOPS_LIMIT}9`).then(response => {
+      const itemLength = response.body.length
+      cy.get("[data-testid=workshop-button]").should($el => {
+        const elLength = $el.toArray().length
+        const addToCart = $el.toArray().map(el => el.textContent)[0]
+        expect(elLength).to.equal(itemLength)
+        expect(addToCart).to.match(/add to cart/i)
       })
     })
   })
