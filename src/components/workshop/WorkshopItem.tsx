@@ -30,6 +30,11 @@ const WorkshopItem = ({ imageUrl, title, category, date }: WorkshopItemProps) =>
           <ClockIcon className={styles.datetime_icon} height="18" width="18" />
           <h6 data-testid="workshop-time">{displayTime(date)}</h6>
         </Row>
+        <Row>
+          <h4 className={styles.title} data-testid="workshop-title">
+            {title}
+          </h4>
+        </Row>
       </Row>
     </div>
   )

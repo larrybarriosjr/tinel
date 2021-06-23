@@ -46,4 +46,14 @@ describe("Workshop List", () => {
       })
     })
   })
+
+  it("renders the workshop titles", () => {
+    cy.request(`${BASE_URL}${WORKSHOPS_URL}${WORKSHOPS_PAGE}1${WORKSHOPS_LIMIT}9`).then(response => {
+      const itemTitles = response.body.map((item: { title: string }) => item.title)
+      cy.get("[data-testid=workshop-title]").should($el => {
+        const titles = $el.toArray().map(el => el.textContent)
+        expect(titles).to.deep.equal(itemTitles)
+      })
+    })
+  })
 })

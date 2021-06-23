@@ -12,7 +12,6 @@ describe("Workshop", () => {
     )
   })
 
-  it.todo("renders the workshop titles")
   it.todo("renders the workshop prices and currencies")
   it.todo("renders the add to cart buttons in the workshop items")
   it.todo("lists the workshop items in descending chronological order (recent to oldest)")
