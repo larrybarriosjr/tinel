@@ -9,7 +9,13 @@ const WorkshopList = () => {
   return (
     <Row className={styles.row}>
       {data?.map(item => (
-        <WorkshopItem key={item.id} imageUrl={item.imageUrl} title={item.title} category={item.category} />
+        <WorkshopItem
+          key={item.id}
+          imageUrl={item.imageUrl}
+          title={item.title}
+          category={item.category}
+          date={item.date}
+        />
       ))}
     </Row>
   )
