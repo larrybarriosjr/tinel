@@ -11,8 +11,14 @@
   }
 }
 
-.image_container {
+.top_container {
   position: relative;
+  width: 320px;
+  height: 180px;
+}
+
+.image_container {
+  position: absolute;
   overflow: hidden;
   width: 320px;
   height: 180px;
@@ -23,4 +29,11 @@
 .image {
   position: absolute;
   height: 100%;
+}
+
+.category {
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  z-index: 1;
 }

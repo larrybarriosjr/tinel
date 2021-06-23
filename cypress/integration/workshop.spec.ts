@@ -15,4 +15,14 @@ describe("Workshop List", () => {
       })
     })
   })
+
+  it("renders the workshop category icons", () => {
+    cy.request(`${BASE_URL}${WORKSHOPS_URL}${WORKSHOPS_PAGE}1${WORKSHOPS_LIMIT}9`).then(response => {
+      const itemsCategories = response.body.map((item: { category: string }) => item.category)
+      cy.get("[data-testid=category-icon] svg").should($el => {
+        const srcs = $el.toArray().map(el => el.getAttribute("name"))
+        expect(srcs).to.deep.equal(itemsCategories)
+      })
+    })
+  })
 })

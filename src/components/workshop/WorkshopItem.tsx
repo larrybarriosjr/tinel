@@ -1,3 +1,4 @@
+import WorkshopCategory from "./WorkshopCategory"
 import styles from "./WorkshopItem.module.scss"
 
 type WorkshopItemProps = {
@@ -9,9 +10,12 @@ type WorkshopItemProps = {
 const WorkshopItem = ({ imageUrl, title, category }: WorkshopItemProps) => {
   return (
     <div className={styles.box}>
-      <span className={styles.image_container}>
-        <img src={imageUrl} alt={title} className={styles.image} />
-      </span>
+      <div className={styles.top_container}>
+        <span className={styles.image_container}>
+          <img src={imageUrl} alt={title} className={styles.image} />
+        </span>
+        <WorkshopCategory data-testid="category-icon" category={category} className={styles.category} />
+      </div>
     </div>
   )
 }
