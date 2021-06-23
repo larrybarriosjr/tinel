@@ -59,7 +59,7 @@ describe("Cart", () => {
     cleanup()
   })
 
-  it("renders the workshop images", () => {
+  it("renders the workshop images in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -77,7 +77,7 @@ describe("Cart", () => {
     })
   })
 
-  it("renders the workshop titles", () => {
+  it("renders the workshop titles in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -95,7 +95,7 @@ describe("Cart", () => {
     })
   })
 
-  it("renders the workshop delete buttons", () => {
+  it("renders the workshop delete buttons in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -107,7 +107,7 @@ describe("Cart", () => {
     })
   })
 
-  it("renders the workshop ticket count dropdowns", () => {
+  it("renders the workshop ticket count dropdowns in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -117,7 +117,7 @@ describe("Cart", () => {
     })
   })
 
-  it("renders the workshop prices", () => {
+  it("renders the workshop prices in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -135,7 +135,7 @@ describe("Cart", () => {
     })
   })
 
-  it("renders the cart total price", () => {
+  it("renders the cart total price in the cart drawer", () => {
     dispatch(addToCart(workshopItem1))
     dispatch(addToCart(workshopItem2))
 
@@ -153,7 +153,7 @@ describe("Cart", () => {
     expect(price.textContent).toBe(totalPrice + ",00")
   })
 
-  it("renders the cart checkout button", () => {
+  it("renders the cart checkout button in the cart drawer", () => {
     let button = component.queryByTestId("cart-checkout-button")
     expect(button).not.toBeInTheDocument()
 

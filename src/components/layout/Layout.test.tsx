@@ -57,7 +57,7 @@ describe("Layout", () => {
     expect(logo).toBeInTheDocument()
   })
 
-  it("redirects to homepage/workshop list when clicking the logo", () => {
+  it("redirects to home page when clicking the logo", () => {
     fireEvent.click(component.getByTestId("logo-link"))
     expect(appLocation?.pathname).toBe(Routes.HOME)
   })
