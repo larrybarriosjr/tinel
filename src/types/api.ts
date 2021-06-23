@@ -1,3 +1,10 @@
+export type UserType = {
+  id: number
+  email: string
+  name: string
+  password: string
+}
+
 export type WorkshopsQuery = {
   page: number
   limit: number
@@ -14,11 +21,11 @@ export type WorkshopType = {
   userId: number
 }
 
-export type OrderProductsType = WorkshopType & {
+export type OrderType = WorkshopType & {
   quantity: number
 }
 
 export type CreateOrderBody = {
-  products: OrderProductsType[]
+  products: OrderType[]
   total: number
 }

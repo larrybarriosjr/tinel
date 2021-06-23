@@ -6,7 +6,7 @@ const categoriesApi = createApi({
   reducerPath: ApiReducerKey.CATEGORIES,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
-    getCategories: builder.query({ query: () => CATEGORIES_URL })
+    getCategories: builder.query<string[], null>({ query: () => CATEGORIES_URL })
   })
 })
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { OrderProductsType } from "types/api"
+import { OrderType } from "types/api"
 import { CartState, UpdateWorkshopQuantityAction } from "types/cart"
 
 const initialState: CartState = {
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<OrderProductsType>) => {
+    addToCart: (state, action: PayloadAction<OrderType>) => {
       const existingItem = state.cartItems.find(item => action.payload.id === item.id)
 
       if (!existingItem) {

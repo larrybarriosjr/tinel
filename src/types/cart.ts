@@ -1,7 +1,7 @@
-import { OrderProductsType } from "./api"
+import { OrderType } from "./api"
 
 export interface CartState {
-  cartItems: OrderProductsType[]
+  cartItems: OrderType[]
   cartQuantity: number
   cartTotal: number
 }
