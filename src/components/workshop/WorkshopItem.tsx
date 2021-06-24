@@ -2,6 +2,7 @@ import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
 import Row from "containers/Row"
+import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopCategory from "./WorkshopCategory"
 import styles from "./WorkshopItem.module.scss"
@@ -38,8 +39,7 @@ const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemPr
           </h4>
         </Row>
         <Row>
-          <h3 className={styles.price} data-testid="workshop-price">
-            {price.toString()},00
+            {monetize(price)}
           </h3>
           <h6 className={styles.currency}>EUR</h6>
         </Row>

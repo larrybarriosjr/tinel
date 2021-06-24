@@ -6,6 +6,7 @@ import Row from "containers/Row"
 import { useAppDispatch } from "hooks/redux"
 import { removeFromCart, updateWorkshopQuantity } from "states/cart"
 import { DropDownItemType } from "types/component"
+import { monetize } from "utils/number-utils"
 import styles from "./CartItem.module.scss"
 
 type CartItemProps = {
@@ -63,7 +64,7 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
             id="cart-ticket-dropdown"
           />
           <h3 className={priceClasses} data-testid="cart-item-price">
-            {price.toString()},00
+            {monetize(price)}
           </h3>
           <h6 className={currencyClasses}>EUR</h6>
         </Row>

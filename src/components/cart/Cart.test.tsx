@@ -6,11 +6,12 @@ import { Provider } from "react-redux"
 import { Action } from "redux"
 import { ThunkDispatch } from "redux-thunk"
 import { addToCart, removeFromCart } from "states/cart"
-import { OrderProductsType } from "types/api"
+import { OrderType } from "types/api"
 import { RootState } from "types/redux"
+import { monetize } from "utils/number-utils"
 import CartDrawer from "./CartDrawer"
 
-const workshopItem1: OrderProductsType = {
+const workshopItem1: OrderType = {
   category: "backend",
   date: "2020-01-26T13:51:50.417-07:00",
   desc: "The toughest part is probably to figure out which type of tests to write and how to test some specific logic in your app - but don't give up! Paula will present a few tips she learned along the way that will hopefully make your life easier. In this talk, you will hear about different test types and when to use them, real examples based on PHPUnit and Postman, followed by some tools for checking the test quality",
@@ -22,7 +23,7 @@ const workshopItem1: OrderProductsType = {
   quantity: 1
 }
 
-const workshopItem2: OrderProductsType = {
+const workshopItem2: OrderType = {
   category: "marketing",
   date: "2019-12-26T13:51:50.417-07:00",
   desc: "Aleksandar Ašković aka Kojot is one of the pioneers when it comes to regional YouTube expertise. His tech journey started at the age of 12 when he inserted the first coin into the arcade machine. In 1997 he becomes editor of the renowned Serbian magazine “Svet Kompjutera” and in 2001 he started his first TV show called Game Over. After that, it was time to become a bit serious so in 2019 KursorTV was born, a TV show that was covering mostly tech topics. In 2014 Aleksandar decided to make a switch in his career and dedicate his time to YouTube. During the last 5 years, he was focused on helping brands utilize this platform to a full extent. Kojot considers YouTube channel of “Sport Klub” the prime example of YouTube SEO power. Thanks to the great content and good optimization Sport Klub channel reached[masked] subscribers in under 18 months.",
@@ -124,11 +125,11 @@ describe("Cart", () => {
       expect(price).toBeInTheDocument()
 
       if (idx + 1 === workshopItem1.id) {
-        expect(price.textContent).toBe(workshopItem1.price.toString() + ",00")
+        expect(price.textContent).toBe(monetize(workshopItem1.price))
       }
 
       if (idx + 1 === workshopItem2.id) {
-        expect(price.textContent).toBe(workshopItem2.price.toString() + ",00")
+        expect(price.textContent).toBe(monetize(workshopItem2.price))
       }
     })
   })
@@ -148,7 +149,7 @@ describe("Cart", () => {
     const price = screen.getByTestId("cart-total-price")
     expect(price).toBeInTheDocument()
 
-    expect(price.textContent).toBe(totalPrice + ",00")
+    expect(price.textContent).toBe(monetize(totalPrice))
   })
 
   it("renders the cart checkout button in the cart drawer", () => {

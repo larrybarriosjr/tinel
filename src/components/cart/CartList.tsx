@@ -2,6 +2,7 @@ import PrimaryButton from "components/common/button/PrimaryButton"
 import Row from "containers/Row"
 import { useAppSelector } from "hooks/redux"
 import { Fragment } from "react"
+import { monetize } from "utils/number-utils"
 import CartItem from "./CartItem"
 import styles from "./CartList.module.scss"
 
@@ -30,7 +31,7 @@ const CartList = () => {
             <h6 className={styles.subtotal}>SUBTOTAL</h6>
             <Row className={styles.totalprice_row}>
               <h2 className={styles.price} data-testid="cart-total-price">
-                {cartTotal},00
+                {monetize(cartTotal)}
               </h2>
               <h4 className={styles.currency}>EUR</h4>
             </Row>
