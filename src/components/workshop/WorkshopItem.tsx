@@ -65,7 +65,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             className={styles.item__button_text}
             aria-label="workshop-button"
           >
-            Add to Cart
+            <p className="bold">Add to Cart</p>
           </PrimaryButton>
         </Flex>
       </Flex>

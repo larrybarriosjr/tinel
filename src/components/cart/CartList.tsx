@@ -48,7 +48,7 @@ const CartList = () => {
       {cartQuantity ? (
         <Flex className={styles.list__checkout_button_container}>
           <PrimaryButton className={buttonClasses} data-testid="cart-checkout-button">
-            Checkout
+            <h5>Checkout</h5>
           </PrimaryButton>
         </Flex>
       ) : null}
