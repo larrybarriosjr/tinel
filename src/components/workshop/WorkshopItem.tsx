@@ -7,6 +7,7 @@ import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
 import { Link } from "react-router-dom"
 import { addToCart } from "states/cart"
+import { mountDrawer, showSidebar } from "states/presentation"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
@@ -23,6 +24,8 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
   const dispatch = useAppDispatch()
 
   const handleAddToCart = () => {
+    dispatch(showSidebar())
+    dispatch(mountDrawer())
     dispatch(addToCart(item))
   }
 

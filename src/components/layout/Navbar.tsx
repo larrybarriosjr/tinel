@@ -5,9 +5,8 @@ import { FlatButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
-import { useState } from "react"
 import { Link } from "react-router-dom"
-import { hideSidebar, showSidebar } from "states/presentation"
+import { hideSidebar, mountDrawer, showSidebar, unmountDrawer } from "states/presentation"
 import { pluralize } from "utils/text-utils"
 import styles from "./Layout.module.scss"
 
@@ -16,13 +15,12 @@ type NavbarProps = React.ComponentPropsWithoutRef<"nav">
 const Navbar = ({ ...props }: NavbarProps) => {
   const dispatch = useAppDispatch()
   const drawerDisplay = useAppSelector(state => state.presentationSlice.drawerDisplay)
+  const drawerMounted = useAppSelector(state => state.presentationSlice.drawerMounted)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
-
-  const [drawerMounted, setDrawerMounted] = useState(drawerDisplay)
 
   const handleShowDrawer = () => {
     dispatch(showSidebar())
-    setDrawerMounted(true)
+    dispatch(mountDrawer())
   }
 
   const handleHideDrawer = () => {
@@ -31,7 +29,7 @@ const Navbar = ({ ...props }: NavbarProps) => {
 
   const handleUnmountDrawer = () => {
     if (drawerDisplay) return
-    setDrawerMounted(false)
+    dispatch(unmountDrawer())
   }
 
   return (

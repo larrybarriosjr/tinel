@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { store } from "app/store"
+import Navbar from "components/layout/Navbar"
 import dayjs from "dayjs"
 import workshops from "mocks/workshops.json"
 import { Provider } from "react-redux"
@@ -15,6 +16,7 @@ describe("Workshop", () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
+          <Navbar />
           <WorkshopList items={workshops} />
           <Route
             path="*"
@@ -119,7 +121,7 @@ describe("Workshop", () => {
   it("redirects to detail page when clicking the workshop image in the workshop items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-image-link" })
     links.forEach(link => {
-      link.click()
+      fireEvent.click(link)
       expect(appLocation?.pathname).toBe(link.getAttribute("href"))
     })
   })
@@ -127,12 +129,40 @@ describe("Workshop", () => {
   it("redirects to detail page when clicking the workshop title in the workshop items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-title-link" })
     links.forEach(link => {
-      link.click()
+      fireEvent.click(link)
       expect(appLocation?.pathname).toBe(link.getAttribute("href"))
     })
   })
 
-  it.todo("renders the cart drawer when clicking the add to cart button")
+  it("renders the cart drawer when clicking the add to cart button", () => {
+    const buttonTexts = screen.getAllByRole("button", { name: "workshop-button-text" })
+    const buttonIcons = screen.getAllByRole("button", { name: "workshop-button-icon" })
+
+    buttonTexts.forEach(button => {
+      fireEvent.click(button)
+
+      const sidebar = screen.getByRole("complementary")
+      const closeButton = screen.getByTestId("drawer-close-button")
+
+      expect(sidebar).toBeInTheDocument()
+      fireEvent.click(closeButton)
+      fireEvent.transitionEnd(sidebar)
+      expect(sidebar).not.toBeInTheDocument()
+    })
+
+    buttonIcons.forEach(button => {
+      fireEvent.click(button)
+
+      const sidebar = screen.getByRole("complementary")
+      const closeButton = screen.getByTestId("drawer-close-button")
+
+      expect(sidebar).toBeInTheDocument()
+      fireEvent.click(closeButton)
+      fireEvent.transitionEnd(sidebar)
+      expect(sidebar).not.toBeInTheDocument()
+    })
+  })
+
   it.todo("changes the item counter when clicking the add to cart button")
   it.todo("lists 9 or less workshop items at the start")
   it.todo("renders the load more button")

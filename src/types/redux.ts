@@ -20,4 +20,5 @@ export interface UpdateWorkshopQuantityAction {
 // Presentation Types
 export interface PresentationState {
   drawerDisplay: boolean
+  drawerMounted: boolean
 }
