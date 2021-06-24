@@ -3,15 +3,27 @@ import { store } from "app/store"
 import dayjs from "dayjs"
 import workshops from "mocks/workshops.json"
 import { Provider } from "react-redux"
+import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopList from "./WorkshopList"
 
 describe("Workshop", () => {
+  let appLocation: RouteProps["location"]
+
   beforeEach(() => {
     render(
       <Provider store={store}>
-        <WorkshopList items={workshops} />
+        <MemoryRouter>
+          <WorkshopList items={workshops} />
+          <Route
+            path="*"
+            render={({ location }) => {
+              appLocation = location
+              return null
+            }}
+          />
+        </MemoryRouter>
       </Provider>
     )
   })
@@ -104,7 +116,22 @@ describe("Workshop", () => {
     expect(dates).toStrictEqual(sortedDates)
   })
 
-  it.todo("redirects to detail page when clicking the workshop image and title in the workshop items")
+  it("redirects to detail page when clicking the workshop image in the workshop items", () => {
+    const links = screen.getAllByRole("link", { name: "workshop-image-link" })
+    links.forEach(link => {
+      link.click()
+      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+    })
+  })
+
+  it("redirects to detail page when clicking the workshop title in the workshop items", () => {
+    const links = screen.getAllByRole("link", { name: "workshop-title-link" })
+    links.forEach(link => {
+      link.click()
+      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+    })
+  })
+
   it.todo("renders the cart drawer when clicking the add to cart button")
   it.todo("changes the item counter when clicking the add to cart button")
   it.todo("lists 9 or less workshop items at the start")

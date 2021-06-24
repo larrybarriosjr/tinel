@@ -3,7 +3,9 @@ import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
 import Flex from "components/container/Flex"
+import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
+import { Link } from "react-router-dom"
 import { addToCart } from "states/cart"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
@@ -28,7 +30,9 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
     <Flex className={styles.item__box}>
       <div className={styles.item__graphics_container}>
         <span className={styles.item__image_container}>
-          <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
+          <Link to={Routes.WORKSHOP + item.id} aria-label="workshop-image-link">
+            <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
+          </Link>
         </span>
         <WorkshopCategory category={category} className={styles.item__category} />
       </div>
@@ -42,9 +46,11 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
           <h6 aria-label="workshop-time">{displayTime(date)}</h6>
         </Flex>
         <Flex>
-          <h4 className={styles.item__title} aria-label="workshop-title">
-            {title}
-          </h4>
+          <Link to={Routes.WORKSHOP + item.id} aria-label="workshop-title-link">
+            <h4 className={styles.item__title} aria-label="workshop-title">
+              {title}
+            </h4>
+          </Link>
         </Flex>
         <Flex className={styles.item__price_container}>
           <h3 className={styles.item__price} aria-label="workshop-price">

@@ -133,11 +133,13 @@ pre {
  * ========================================================================== */
 
 /*
- * Remove the gray background on active links in IE 10.
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove underline in links.
  */
 
 a {
   background-color: transparent;
+  text-decoration: none;
 }
 
 /*
