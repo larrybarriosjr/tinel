@@ -1,10 +1,13 @@
 import { fireEvent, render, screen } from "@testing-library/react"
+import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import Navbar from "components/layout/Navbar"
 import dayjs from "dayjs"
+import { useAppDispatch } from "hooks/redux"
 import workshops from "mocks/workshops.json"
 import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
+import { clearCart } from "states/cart"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopList from "./WorkshopList"
@@ -155,15 +158,47 @@ describe("Workshop", () => {
 
       const sidebar = screen.getByRole("complementary")
       const closeButton = screen.getByTestId("drawer-close-button")
-
       expect(sidebar).toBeInTheDocument()
+
       fireEvent.click(closeButton)
       fireEvent.transitionEnd(sidebar)
       expect(sidebar).not.toBeInTheDocument()
     })
   })
 
-  it.todo("changes the item counter when clicking the add to cart button")
+  it("changes the item counter when clicking the add to cart button", () => {
+    const wrapper = ({ children }: { children: React.ReactChild }) => (
+      <Provider store={store}>{children}</Provider>
+    )
+    const { result } = renderHook(() => useAppDispatch(), { wrapper })
+    const dispatch = result.current
+
+    const buttonTexts = screen.getAllByRole("button", { name: "workshop-button-text" })
+    const buttonIcons = screen.getAllByRole("button", { name: "workshop-button-icon" })
+
+    buttonTexts.forEach(button => {
+      dispatch(clearCart())
+      fireEvent.click(button)
+
+      const navbarCounter = screen.getByTestId("navbar-cart-counter")
+      expect(navbarCounter).toHaveTextContent(/1/i)
+
+      fireEvent.click(button)
+      expect(navbarCounter).toHaveTextContent(/2/i)
+    })
+
+    buttonIcons.forEach(button => {
+      dispatch(clearCart())
+      fireEvent.click(button)
+
+      const navbarCounter = screen.getByTestId("navbar-cart-counter")
+      expect(navbarCounter).toHaveTextContent(/1/i)
+
+      fireEvent.click(button)
+      expect(navbarCounter).toHaveTextContent(/2/i)
+    })
+  })
+
   it.todo("lists 9 or less workshop items at the start")
   it.todo("renders the load more button")
   it.todo("lists another 9 or less workshop items when clicking the load more button")
