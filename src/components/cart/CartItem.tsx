@@ -39,11 +39,11 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
   }
 
   return (
-    <div className={styles.item__box}>
+    <Flex className={styles.item__box}>
       <span className={styles.item__image_container}>
         <img src={imageUrl} alt={title} className={styles.item__image} />
       </span>
-      <div className={styles.item__content_container}>
+      <Flex className={styles.item__content_container}>
         <Flex className={styles.item__title_container}>
           <h4 className={titleClasses} data-testid="cart-item-title">
             {title}
@@ -68,8 +68,8 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
           </h3>
           <h6 className={currencyClasses}>EUR</h6>
         </Flex>
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   )
 }
 

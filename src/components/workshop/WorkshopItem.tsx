@@ -25,7 +25,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
   }
 
   return (
-    <div className={styles.item__box}>
+    <Flex className={styles.item__box}>
       <div className={styles.item__graphics_container}>
         <span className={styles.item__image_container}>
           <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
@@ -69,7 +69,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
           </PrimaryButton>
         </Flex>
       </Flex>
-    </div>
+    </Flex>
   )
 }
 
