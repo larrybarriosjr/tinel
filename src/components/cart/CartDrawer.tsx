@@ -19,7 +19,7 @@ const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
 
   return (
     <Drawer open={open} onTransitionEnd={onTransitionEnd}>
-      <Row className={styles.drawer__row}>
+      <Row className={styles.drawer__header_row}>
         <Row>
           <EmptyCartIcon data-testid="drawer-cart-icon" />
           <h5 className={styles.drawer__counter} data-testid="drawer-cart-counter">
