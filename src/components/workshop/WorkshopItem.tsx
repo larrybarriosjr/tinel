@@ -1,5 +1,6 @@
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
+import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
 import Flex from "components/container/Flex"
 import { useAppDispatch } from "hooks/redux"
@@ -50,6 +51,15 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             {monetize(price)}
           </h3>
           <h6 className={styles.item__currency}>EUR</h6>
+          <PrimaryButton
+            onClick={handleAddToCart}
+            className={styles.item__button_icon}
+            aria-label="workshop-button"
+          >
+            <CartIcon height="32" width="32" />
+          </PrimaryButton>
+        </Flex>
+        <Flex className={styles.item__button_container}>
           <PrimaryButton
             onClick={handleAddToCart}
             className={styles.item__button_text}
