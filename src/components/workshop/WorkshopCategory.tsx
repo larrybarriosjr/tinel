@@ -30,7 +30,7 @@ const WorkshopCategory = ({ category, className, ...props }: WorkshopCategoryPro
 
   return (
     <span className={classes} {...props}>
-      <Icon name={category} className={styles.icon} />
+      <Icon role="img" aria-label="workshop-category" name={category} className={styles.icon} />
     </span>
   )
 }

@@ -20,31 +20,32 @@ const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemPr
     <div className={styles.box}>
       <div className={styles.top_container}>
         <span className={styles.image_container}>
-          <img src={imageUrl} alt={title} className={styles.image} />
+          <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.image} />
         </span>
-        <WorkshopCategory data-testid="category-icon" category={category} className={styles.category} />
+        <WorkshopCategory category={category} className={styles.category} />
       </div>
       <Row className={styles.details_row}>
         <Row className={styles.datetime_row}>
           <CalendarIcon className={styles.datetime_icon} height="18" width="18" />
-          <h6 className={styles.date} data-testid="workshop-date">
+          <h6 className={styles.date} aria-label="workshop-date">
             {displayDate(date)}
           </h6>
           <ClockIcon className={styles.datetime_icon} height="18" width="18" />
-          <h6 data-testid="workshop-time">{displayTime(date)}</h6>
+          <h6 aria-label="workshop-time">{displayTime(date)}</h6>
         </Row>
         <Row>
-          <h4 className={styles.title} data-testid="workshop-title">
+          <h4 className={styles.title} aria-label="workshop-title">
             {title}
           </h4>
         </Row>
         <Row>
+          <h3 className={styles.price} aria-label="workshop-price">
             {monetize(price)}
           </h3>
           <h6 className={styles.currency}>EUR</h6>
         </Row>
         <Row className={styles.button_container}>
-          <PrimaryButton className={styles.button} data-testid="workshop-button">
+          <PrimaryButton className={styles.button} aria-label="workshop-button">
             Add to Cart
           </PrimaryButton>
         </Row>

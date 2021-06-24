@@ -1,14 +1,17 @@
-import { useGetWorkshopsQuery } from "api/workshops"
 import Row from "containers/Row"
+import React from "react"
+import { WorkshopType } from "types/api"
 import WorkshopItem from "./WorkshopItem"
 import styles from "./WorkshopList.module.scss"
 
-const WorkshopList = () => {
-  const { data } = useGetWorkshopsQuery({ page: 1, limit: 9 })
+type WorkshopListProps = {
+  items: WorkshopType[]
+}
 
+const WorkshopList = ({ items }: WorkshopListProps) => {
   return (
     <Row className={styles.row}>
-      {data?.map(item => (
+      {items.map(item => (
         <WorkshopItem
           key={item.id}
           imageUrl={item.imageUrl}
