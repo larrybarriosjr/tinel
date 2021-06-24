@@ -4,7 +4,7 @@ import WorkshopList from "components/workshop/WorkshopList"
 import styles from "./Page.module.scss"
 
 const HomePage = () => {
-  const { data } = useGetWorkshopsQuery({ page: 1, limit: 9 })
+  const { data } = useGetWorkshopsQuery(9)
 
   if (!data) return null
 

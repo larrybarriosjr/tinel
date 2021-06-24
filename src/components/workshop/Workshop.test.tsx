@@ -76,7 +76,7 @@ describe("Workshop", () => {
   it("renders the workshop titles", () => {
     const titleTexts = screen
       .getAllByRole("heading", { name: "workshop-title" })
-      .map(icon => icon.textContent)
+      .map(title => title.textContent)
     const titles = workshops
       .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
       .map(workshop => workshop.title)
@@ -86,7 +86,7 @@ describe("Workshop", () => {
   it("renders the workshop prices", () => {
     const priceTexts = screen
       .getAllByRole("heading", { name: "workshop-price" })
-      .map(icon => icon.textContent)
+      .map(price => price.textContent)
     const prices = workshops
       .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
       .map(workshop => monetize(workshop.price))
@@ -199,7 +199,11 @@ describe("Workshop", () => {
     })
   })
 
-  it.todo("lists 9 or less workshop items at the start")
+  it("lists 9 or less workshop items at the start", () => {
+    const items = screen.getAllByRole("heading", { name: "workshop-title" }).slice(0, 9)
+    expect(items.length).toBeLessThanOrEqual(9)
+  })
+
   it.todo("renders the load more button")
   it.todo("lists another 9 or less workshop items when clicking the load more button")
 })

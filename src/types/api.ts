@@ -5,11 +5,6 @@ export type UserType = {
   password: string
 }
 
-export type WorkshopsQuery = {
-  page: number
-  limit: number
-}
-
 export type WorkshopType = {
   category: string
   date: string
