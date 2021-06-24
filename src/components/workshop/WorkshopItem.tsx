@@ -35,7 +35,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
       <Flex className={styles.item__details_container}>
         <Flex className={styles.item__datetime_container}>
           <CalendarIcon className={styles.item__datetime_icon} height="18" width="18" />
-          <h6 className={styles.item__date} aria-label="workshop-date">
+          <h6 className={styles.item__date} aria-label="workshop-date" aria-details={date}>
             {displayDate(date)}
           </h6>
           <ClockIcon className={styles.item__datetime_icon} height="18" width="18" />
@@ -54,7 +54,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
           <PrimaryButton
             onClick={handleAddToCart}
             className={styles.item__button_icon}
-            aria-label="workshop-button"
+            aria-label="workshop-button-icon"
           >
             <CartIcon height="32" width="32" />
           </PrimaryButton>
@@ -63,7 +63,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
           <PrimaryButton
             onClick={handleAddToCart}
             className={styles.item__button_text}
-            aria-label="workshop-button"
+            aria-label="workshop-button-text"
           >
             <p className="bold">Add to Cart</p>
           </PrimaryButton>
