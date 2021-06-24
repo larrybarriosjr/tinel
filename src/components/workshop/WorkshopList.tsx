@@ -12,14 +12,7 @@ const WorkshopList = ({ items }: WorkshopListProps) => {
   return (
     <Row className={styles.list__row}>
       {items.map(item => (
-        <WorkshopItem
-          key={item.id}
-          imageUrl={item.imageUrl}
-          title={item.title}
-          category={item.category}
-          date={item.date}
-          price={item.price}
-        />
+        <WorkshopItem key={item.id} item={item} />
       ))}
     </Row>
   )

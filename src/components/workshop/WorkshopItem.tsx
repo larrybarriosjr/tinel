@@ -2,20 +2,27 @@ import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
 import Row from "containers/Row"
+import { useAppDispatch } from "hooks/redux"
+import { addToCart } from "states/cart"
+import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import styles from "./Workshop.module.scss"
 import WorkshopCategory from "./WorkshopCategory"
 
 type WorkshopItemProps = {
-  imageUrl: string
-  title: string
-  category: string
-  date: string
-  price: number
+  item: WorkshopType
 }
 
-const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemProps) => {
+const WorkshopItem = ({ item }: WorkshopItemProps) => {
+  const { imageUrl, title, category, date, price } = item
+
+  const dispatch = useAppDispatch()
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(item))
+  }
+
   return (
     <div className={styles.item__box}>
       <div className={styles.item__top_container}>
@@ -45,7 +52,11 @@ const WorkshopItem = ({ imageUrl, title, category, date, price }: WorkshopItemPr
           <h6 className={styles.item__currency}>EUR</h6>
         </Row>
         <Row className={styles.item__button_container}>
-          <PrimaryButton className={styles.item__button} aria-label="workshop-button">
+          <PrimaryButton
+            onClick={handleAddToCart}
+            className={styles.item__button}
+            aria-label="workshop-button"
+          >
             Add to Cart
           </PrimaryButton>
         </Row>
