@@ -1,6 +1,7 @@
 import { useGetWorkshopsQuery } from "api/workshops"
+import Flex from "components/container/Flex"
 import WorkshopList from "components/workshop/WorkshopList"
-import Row from "containers/Row"
+import styles from "./Page.module.scss"
 
 const HomePage = () => {
   const { data } = useGetWorkshopsQuery({ page: 1, limit: 9 })
@@ -8,9 +9,9 @@ const HomePage = () => {
   if (!data) return null
 
   return (
-    <Row>
+    <Flex className={styles.home}>
       <WorkshopList items={data} />
-    </Row>
+    </Flex>
   )
 }
 

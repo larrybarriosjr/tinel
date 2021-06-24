@@ -1,5 +1,6 @@
+import clsx from "clsx"
 import PrimaryButton from "components/common/button/PrimaryButton"
-import Row from "containers/Row"
+import Flex from "components/container/Flex"
 import { useAppSelector } from "hooks/redux"
 import { Fragment } from "react"
 import { monetize } from "utils/number-utils"
@@ -11,8 +12,10 @@ const CartList = () => {
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
 
+  const buttonClasses = clsx([styles.list__checkout_button, "cart_drawer"])
+
   return (
-    <Row className={styles.list__row}>
+    <Flex className={styles.list__container}>
       {cartQuantity
         ? cartItems.map(item => (
             <CartItem
@@ -27,29 +30,29 @@ const CartList = () => {
         : null}
       {cartQuantity ? (
         <Fragment>
-          <Row className={styles.list__subtotal_row}>
+          <Flex className={styles.list__subtotal_container}>
             <h6 className={styles.list__subtotal}>SUBTOTAL</h6>
-            <Row className={styles.list__price_row}>
+            <Flex className={styles.list__price_container}>
               <h2 className={styles.list__price} data-testid="cart-total-price">
                 {monetize(cartTotal)}
               </h2>
               <h4 className={styles.list__currency}>EUR</h4>
-            </Row>
-          </Row>
+            </Flex>
+          </Flex>
         </Fragment>
       ) : (
-        <Row className={styles.list__empty_text}>
+        <Flex className={styles.list__empty_text}>
           <h4>Cart is Empty</h4>
-        </Row>
+        </Flex>
       )}
       {cartQuantity ? (
-        <Row className={styles.list__checkout_button}>
-          <PrimaryButton className="cart_drawer" data-testid="cart-checkout-button">
+        <Flex className={styles.list__checkout_button_container}>
+          <PrimaryButton className={buttonClasses} data-testid="cart-checkout-button">
             Checkout
           </PrimaryButton>
-        </Row>
+        </Flex>
       ) : null}
-    </Row>
+    </Flex>
   )
 }
 

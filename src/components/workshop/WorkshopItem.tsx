@@ -1,7 +1,7 @@
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
-import Row from "containers/Row"
+import Flex from "components/container/Flex"
 import { useAppDispatch } from "hooks/redux"
 import { addToCart } from "states/cart"
 import { WorkshopType } from "types/api"
@@ -25,42 +25,40 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
 
   return (
     <div className={styles.item__box}>
-      <div className={styles.item__top_container}>
+      <div className={styles.item__graphics_container}>
         <span className={styles.item__image_container}>
           <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
         </span>
         <WorkshopCategory category={category} className={styles.item__category} />
       </div>
-      <Row className={styles.item__details_row}>
-        <Row className={styles.item__datetime_row}>
+      <Flex className={styles.item__details_container}>
+        <Flex className={styles.item__datetime_container}>
           <CalendarIcon className={styles.item__datetime_icon} height="18" width="18" />
           <h6 className={styles.item__date} aria-label="workshop-date">
             {displayDate(date)}
           </h6>
           <ClockIcon className={styles.item__datetime_icon} height="18" width="18" />
           <h6 aria-label="workshop-time">{displayTime(date)}</h6>
-        </Row>
-        <Row>
+        </Flex>
+        <Flex>
           <h4 className={styles.item__title} aria-label="workshop-title">
             {title}
           </h4>
-        </Row>
-        <Row>
+        </Flex>
+        <Flex className={styles.item__price_container}>
           <h3 className={styles.item__price} aria-label="workshop-price">
             {monetize(price)}
           </h3>
           <h6 className={styles.item__currency}>EUR</h6>
-        </Row>
-        <Row className={styles.item__button_container}>
           <PrimaryButton
             onClick={handleAddToCart}
-            className={styles.item__button}
+            className={styles.item__button_text}
             aria-label="workshop-button"
           >
             Add to Cart
           </PrimaryButton>
-        </Row>
-      </Row>
+        </Flex>
+      </Flex>
     </div>
   )
 }

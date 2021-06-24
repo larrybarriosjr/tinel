@@ -2,7 +2,7 @@ import { ReactComponent as TrashIcon } from "assets/icons/trash.svg"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import DropdownInput from "components/common/input/DropdownInput"
-import Row from "containers/Row"
+import Flex from "components/container/Flex"
 import { useAppDispatch } from "hooks/redux"
 import { removeFromCart, updateWorkshopQuantity } from "states/cart"
 import { DropDownItemType } from "types/component"
@@ -43,8 +43,8 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
       <span className={styles.item__image_container}>
         <img src={imageUrl} alt={title} className={styles.item__image} />
       </span>
-      <div className={styles.item__content}>
-        <Row className={styles.item__title_row}>
+      <div className={styles.item__content_container}>
+        <Flex className={styles.item__title_container}>
           <h4 className={titleClasses} data-testid="cart-item-title">
             {title}
           </h4>
@@ -55,8 +55,8 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
           >
             <TrashIcon />
           </FlatButton>
-        </Row>
-        <Row className={styles.item__price_row}>
+        </Flex>
+        <Flex className={styles.item__price_container}>
           <DropdownInput
             items={items}
             value={items.find(item => quantity.toString() === item.value)}
@@ -67,7 +67,7 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
             {monetize(price)}
           </h3>
           <h6 className={currencyClasses}>EUR</h6>
-        </Row>
+        </Flex>
       </div>
     </div>
   )

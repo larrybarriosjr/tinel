@@ -1,4 +1,4 @@
-import Row from "containers/Row"
+import Flex from "components/container/Flex"
 import React from "react"
 import { WorkshopType } from "types/api"
 import styles from "./Workshop.module.scss"
@@ -10,11 +10,11 @@ type WorkshopListProps = {
 
 const WorkshopList = ({ items }: WorkshopListProps) => {
   return (
-    <Row className={styles.list__row}>
+    <Flex className={styles.list__container}>
       {items.map(item => (
         <WorkshopItem key={item.id} item={item} />
       ))}
-    </Row>
+    </Flex>
   )
 }
 

@@ -2,8 +2,8 @@ import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
 import { ReactComponent as Logo } from "assets/logo.svg"
 import CartDrawer from "components/cart/CartDrawer"
 import { FlatButton } from "components/common/button"
+import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
-import Row from "containers/Row"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -36,11 +36,11 @@ const Navbar = ({ ...props }: NavbarProps) => {
 
   return (
     <nav className={styles.nav} {...props}>
-      <Row className={styles.nav__row}>
+      <Flex className={styles.nav__container}>
         <Link to={Routes.HOME} data-testid="logo-link">
           <Logo className={styles.nav__logo} data-testid="logo" />
         </Link>
-        <Row className={styles.nav__cart_row}>
+        <Flex className={styles.nav__cart_container}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
             <EmptyCartIcon data-testid="navbar-cart-icon" />
           </FlatButton>
@@ -49,8 +49,8 @@ const Navbar = ({ ...props }: NavbarProps) => {
               ? `${cartQuantity} ${pluralize("Workshop", cartQuantity)} in Cart`
               : "Cart is Empty"}
           </h6>
-        </Row>
-      </Row>
+        </Flex>
+      </Flex>
       {drawerMounted ? (
         <CartDrawer open={drawerDisplay} onClose={handleHideDrawer} onTransitionEnd={handleUnmountDrawer} />
       ) : null}

@@ -1,8 +1,8 @@
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
 import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
 import { FlatButton } from "components/common/button"
+import Flex from "components/container/Flex"
 import Drawer from "components/layout/Drawer"
-import Row from "containers/Row"
 import { useAppSelector } from "hooks/redux"
 import { pluralize } from "utils/text-utils"
 import styles from "./Cart.module.scss"
@@ -19,19 +19,19 @@ const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
 
   return (
     <Drawer open={open} onTransitionEnd={onTransitionEnd}>
-      <Row className={styles.drawer__header_row}>
-        <Row>
+      <Flex className={styles.drawer__header_container}>
+        <Flex className={styles.drawer__cart_container}>
           <EmptyCartIcon data-testid="drawer-cart-icon" />
           <h5 className={styles.drawer__counter} data-testid="drawer-cart-counter">
             {cartQuantity} {pluralize("Workshop", cartQuantity)}
           </h5>
-        </Row>
-        <Row>
+        </Flex>
+        <Flex>
           <FlatButton onClick={onClose} data-testid="drawer-close-button">
             <CloseIcon data-testid="drawer-close-icon" />
           </FlatButton>
-        </Row>
-      </Row>
+        </Flex>
+      </Flex>
       <CartList />
     </Drawer>
   )

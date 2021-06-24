@@ -5,12 +5,15 @@
   position: sticky;
   top: 0;
   height: 60px;
+  z-index: 10;
+  padding: 0 20px;
   background-color: var(--light-yellow);
   @include media($breakpoint-sm) {
     height: 90px;
   }
-  &__row {
+  &__container {
     height: 100%;
+    align-items: center;
     justify-content: space-between;
   }
   &__logo {
@@ -21,11 +24,12 @@
       height: 47px;
     }
   }
-  &__cart_row {
+  &__cart_container {
     margin: 0;
     @include media($breakpoint-sm) {
       width: 100%;
       max-width: 320px;
+      align-items: center;
     }
   }
   &__cart_counter {
@@ -46,6 +50,7 @@
   overflow-y: auto;
   background: white;
   z-index: 10;
+  padding: 0 20px;
   box-shadow: var(--shadow-cart);
   transition: all 1s ease-in-out;
   &.open {

@@ -8,14 +8,10 @@ function App() {
   return (
     <Fragment>
       <Navbar />
-
       <Switch>
         <Route exact path={Routes.HOME} component={HomePage} />
         <Route path={Routes.WORKSHOP_PATH} />
       </Switch>
-
-      {/* FIXME: Remove later. This enables scrolling temporarily */}
-      <div style={{ height: "100vh" }} />
     </Fragment>
   )
 }
