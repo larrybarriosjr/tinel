@@ -1,8 +1,8 @@
 import Row from "containers/Row"
 import React from "react"
 import { WorkshopType } from "types/api"
+import styles from "./Workshop.module.scss"
 import WorkshopItem from "./WorkshopItem"
-import styles from "./WorkshopList.module.scss"
 
 type WorkshopListProps = {
   items: WorkshopType[]
@@ -10,7 +10,7 @@ type WorkshopListProps = {
 
 const WorkshopList = ({ items }: WorkshopListProps) => {
   return (
-    <Row className={styles.row}>
+    <Row className={styles.list__row}>
       {items.map(item => (
         <WorkshopItem
           key={item.id}

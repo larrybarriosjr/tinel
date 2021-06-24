@@ -25,7 +25,7 @@ export type OrderType = WorkshopType & {
   quantity: number
 }
 
-export type CreateOrderBody = {
+export type CreateOrderForm = {
   products: OrderType[]
   total: number
 }

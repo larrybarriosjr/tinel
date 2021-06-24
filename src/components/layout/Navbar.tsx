@@ -9,7 +9,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { hideSidebar, showSidebar } from "states/presentation"
 import { pluralize } from "utils/text-utils"
-import styles from "./Navbar.module.scss"
+import styles from "./Layout.module.scss"
 
 type NavbarProps = React.ComponentPropsWithoutRef<"nav">
 
@@ -36,15 +36,15 @@ const Navbar = ({ ...props }: NavbarProps) => {
 
   return (
     <nav className={styles.nav} {...props}>
-      <Row className={styles.nav_row}>
+      <Row className={styles.nav__row}>
         <Link to={Routes.HOME} data-testid="logo-link">
-          <Logo className={styles.logo} data-testid="logo" />
+          <Logo className={styles.nav__logo} data-testid="logo" />
         </Link>
-        <Row className={styles.cart_row}>
+        <Row className={styles.nav__cart_row}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
             <EmptyCartIcon data-testid="navbar-cart-icon" />
           </FlatButton>
-          <h6 className={styles.counter} data-testid="navbar-cart-counter">
+          <h6 className={styles.nav__cart_counter} data-testid="navbar-cart-counter">
             {cartQuantity
               ? `${cartQuantity} ${pluralize("Workshop", cartQuantity)} in Cart`
               : "Cart is Empty"}

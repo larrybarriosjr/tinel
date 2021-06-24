@@ -5,7 +5,7 @@ import Drawer from "components/layout/Drawer"
 import Row from "containers/Row"
 import { useAppSelector } from "hooks/redux"
 import { pluralize } from "utils/text-utils"
-import styles from "./CartDrawer.module.scss"
+import styles from "./Cart.module.scss"
 import CartList from "./CartList"
 
 type CartDrawerProps = {
@@ -19,10 +19,10 @@ const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
 
   return (
     <Drawer open={open} onTransitionEnd={onTransitionEnd}>
-      <Row className={styles.row}>
+      <Row className={styles.drawer__row}>
         <Row>
           <EmptyCartIcon data-testid="drawer-cart-icon" />
-          <h5 className={styles.counter} data-testid="drawer-cart-counter">
+          <h5 className={styles.drawer__counter} data-testid="drawer-cart-counter">
             {cartQuantity} {pluralize("Workshop", cartQuantity)}
           </h5>
         </Row>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { PresentationState } from "types/presentation"
+import { PresentationState } from "types/redux"
 
 const initialState: PresentationState = {
   drawerDisplay: false

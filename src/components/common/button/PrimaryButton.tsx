@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import styles from "./style.module.scss"
+import styles from "./Button.module.scss"
 
 type PrimaryButtonProps = React.ComponentPropsWithoutRef<"button">
 

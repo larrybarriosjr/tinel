@@ -1,0 +1,118 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.drawer {
+  &__row {
+    height: 60px;
+    justify-content: space-between;
+    @include media($breakpoint-sm) {
+      height: 90px;
+    }
+  }
+  &__counter {
+    margin-left: 8px;
+  }
+}
+
+.list {
+  &__row {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: flex-start;
+    @include media($breakpoint-sm) {
+      margin-top: 31px;
+    }
+  }
+  &__subtotal_row {
+    margin: 40px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__subtotal {
+    color: var(--light-grey);
+  }
+  &__price_row {
+    margin: 0;
+  }
+  &__price {
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 3px;
+    margin-top: 8px;
+    white-space: nowrap;
+  }
+  &__empty_text {
+    width: 100%;
+    height: 100px;
+    margin-left: 0;
+    justify-content: center;
+  }
+  &__checkout_button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.item {
+  &__box {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    border-radius: 6px;
+    background: var(--lighter-grey);
+  }
+  &__image_container {
+    position: relative;
+    width: 30%;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &__image {
+    position: absolute;
+    height: 100%;
+    left: -20%;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+    margin: 20px 0;
+  }
+  &__title_row {
+    gap: 6px;
+  }
+  &__title {
+    color: var(--blue);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @supports (-webkit-line-clamp: 2) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+  &__delete_button {
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  &__price_row {
+    margin-top: auto;
+  }
+  &__price {
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 3px;
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+}

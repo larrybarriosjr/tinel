@@ -4,14 +4,14 @@ import { ReactComponent as FlashIcon } from "assets/icons/flash.svg"
 import { ReactComponent as LayoutIcon } from "assets/icons/layout.svg"
 import clsx from "clsx"
 import { WorkshopCategories } from "constants/enums"
-import styles from "./WorkshopCategory.module.scss"
+import styles from "./Workshop.module.scss"
 
 type WorkshopCategoryProps = React.ComponentPropsWithoutRef<"span"> & {
   category: string
 }
 
 const WorkshopCategory = ({ category, className, ...props }: WorkshopCategoryProps) => {
-  const classes = clsx([styles.box, className])
+  const classes = clsx([styles.category__box, className])
 
   const Icon = ({ ...props }: React.ComponentPropsWithoutRef<"svg">) => {
     switch (category) {
@@ -30,7 +30,7 @@ const WorkshopCategory = ({ category, className, ...props }: WorkshopCategoryPro
 
   return (
     <span className={classes} {...props}>
-      <Icon role="img" aria-label="workshop-category" name={category} className={styles.icon} />
+      <Icon role="img" aria-label="workshop-category" name={category} className={styles.category__icon} />
     </span>
   )
 }

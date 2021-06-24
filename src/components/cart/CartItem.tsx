@@ -7,7 +7,7 @@ import { useAppDispatch } from "hooks/redux"
 import { removeFromCart, updateWorkshopQuantity } from "states/cart"
 import { DropDownItemType } from "types/component"
 import { monetize } from "utils/number-utils"
-import styles from "./CartItem.module.scss"
+import styles from "./Cart.module.scss"
 
 type CartItemProps = {
   id: number
@@ -18,9 +18,9 @@ type CartItemProps = {
 }
 
 const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
-  const titleClasses = clsx([styles.title, "cart"])
-  const currencyClasses = clsx([styles.currency, "cart"])
-  const priceClasses = clsx([styles.price, "cart"])
+  const titleClasses = clsx([styles.item__title, "cart"])
+  const currencyClasses = clsx([styles.item__currency, "cart"])
+  const priceClasses = clsx([styles.item__price, "cart"])
 
   const dispatch = useAppDispatch()
 
@@ -39,24 +39,24 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
   }
 
   return (
-    <div className={styles.box}>
-      <span className={styles.image_container}>
-        <img src={imageUrl} alt={title} className={styles.image} />
+    <div className={styles.item__box}>
+      <span className={styles.item__image_container}>
+        <img src={imageUrl} alt={title} className={styles.item__image} />
       </span>
-      <div className={styles.content}>
-        <Row className={styles.title_row}>
+      <div className={styles.item__content}>
+        <Row className={styles.item__title_row}>
           <h4 className={titleClasses} data-testid="cart-item-title">
             {title}
           </h4>
           <FlatButton
-            className={styles.delete_button}
+            className={styles.item__delete_button}
             onClick={handleDelete}
             data-testid="cart-item-delete-button"
           >
             <TrashIcon />
           </FlatButton>
         </Row>
-        <Row className={styles.price_row}>
+        <Row className={styles.item__price_row}>
           <DropdownInput
             items={items}
             value={items.find(item => quantity.toString() === item.value)}
