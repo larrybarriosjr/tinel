@@ -3,24 +3,12 @@ import { renderHook } from "@testing-library/react-hooks"
 import { persistor, store } from "app/store"
 import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
+import workshop from "mocks/workshops.json"
 import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import { PersistGate } from "redux-persist/integration/react"
 import { addToCart, removeFromCart } from "states/cart"
-import { OrderType } from "types/api"
 import Navbar from "./Navbar"
-
-const workshopItem: OrderType = {
-  category: "backend",
-  date: "2020-01-26T13:51:50.417-07:00",
-  desc: "The toughest part is probably to figure out which type of tests to write and how to test some specific logic in your app - but don't give up! Paula will present a few tips she learned along the way that will hopefully make your life easier. In this talk, you will hear about different test types and when to use them, real examples based on PHPUnit and Postman, followed by some tools for checking the test quality",
-  id: 1,
-  imageUrl: "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
-  price: 350,
-  title: "When you get lost in API testing",
-  userId: 1,
-  quantity: 1
-}
 
 describe("Layout", () => {
   let appLocation: RouteProps["location"]
@@ -86,13 +74,13 @@ describe("Layout", () => {
     const navbarCounter = screen.getByTestId("navbar-cart-counter")
     expect(navbarCounter).toHaveTextContent(/empty/i)
 
-    dispatch(addToCart(workshopItem))
+    dispatch(addToCart(workshop[0]))
     expect(navbarCounter).toHaveTextContent(/1/i)
 
-    dispatch(addToCart(workshopItem))
+    dispatch(addToCart(workshop[0]))
     expect(navbarCounter).toHaveTextContent(/2/i)
 
-    dispatch(removeFromCart(1))
+    dispatch(removeFromCart(workshop[0].id))
     expect(navbarCounter).toHaveTextContent(/empty/i)
   })
 
