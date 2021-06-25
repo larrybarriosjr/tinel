@@ -3,6 +3,7 @@ import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import Navbar from "components/layout/Navbar"
 import { useAppDispatch } from "hooks/redux"
+import categories from "mocks/categories.json"
 import workshops from "mocks/workshops.json"
 import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
@@ -10,6 +11,7 @@ import { clearCart } from "states/cart"
 import { sortByDateDesc } from "utils/array-utils"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
+import WorkshopFilter from "./WorkshopFilter"
 import WorkshopList from "./WorkshopList"
 
 describe("Workshop", () => {
@@ -20,6 +22,7 @@ describe("Workshop", () => {
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />
+          <WorkshopFilter categories={categories} onSelect={() => null} selected="all" />
           <WorkshopList items={workshops} limit={9} onLoadMore={() => null} />
           <Route
             path="*"
@@ -191,7 +194,49 @@ describe("Workshop", () => {
   })
 
   it("renders the load more button", () => {
-    const button = screen.getByRole("button", { name: "load-more-button" })
-    expect(button.textContent).toMatch(/load more/i)
+    const button = screen.queryByRole("button", { name: "load-more-button" })
+    if (workshops.length >= 9) {
+      expect(button?.textContent).toMatch(/load more/i)
+    } else {
+      expect(button).not.toBeInTheDocument()
+    }
+  })
+
+  it("renders the list of categories", () => {
+    const button = screen.getByRole("button", { name: "category-filter-button" })
+    fireEvent.click(button)
+
+    const items = screen
+      .getAllByRole("heading", { name: "category-item" })
+      .map(item => item.textContent?.toLowerCase())
+    expect(items).toStrictEqual(categories.reverse())
+  })
+})
+
+describe("Workshop Filter", () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Navbar />
+          <WorkshopFilter categories={categories} onSelect={() => null} selected="design" />
+          <WorkshopList
+            items={workshops.filter(item => item.category === "design")}
+            limit={9}
+            onLoadMore={() => null}
+          />
+          <Route path="*" />
+        </MemoryRouter>
+      </Provider>
+    )
+  })
+
+  it("filters the workshop items depending on category", () => {
+    screen
+      .getAllByRole("img", { name: "workshop-category" })
+      .map(icon => icon.getAttribute("name"))
+      .forEach(item => {
+        expect(item).toBe("design")
+      })
   })
 })
