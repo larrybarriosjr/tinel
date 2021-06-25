@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { createPortal } from "react-dom"
-import styles from "./Drawer.module.scss"
+import styles from "./Layout.module.scss"
 
 type DrawerProps = React.ComponentPropsWithoutRef<"div"> & {
   open: boolean

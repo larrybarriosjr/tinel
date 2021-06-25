@@ -1,0 +1,74 @@
+[
+  {
+    "email": "paulacucuk@test.com",
+    "id": 1,
+    "name": "Paula Cucuk",
+    "password": "$2a$10$tMnH3Oumf/HzknuW6pXTo.D2RbScsHD3CyySQSthaaHTdJILAhzNW"
+  },
+  {
+    "email": "aleksandaraskovic@test.com",
+    "id": 2,
+    "name": "Aleksandar Askovic",
+    "password": "$2a$10$chDpsUAE8LIBcO/BQKf7EOrDaCkS4PomvLgq.KMiScw.HP1HudrL2"
+  },
+  {
+    "email": "julianmollema@test.com",
+    "id": 3,
+    "name": "Julian Mollema",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "narakasbergen@test.com",
+    "id": 4,
+    "name": "Nara Kasbergen",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "srdjanvranac@test.com",
+    "id": 5,
+    "name": "Srdjan Vranac",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "calevans@test.com",
+    "id": 6,
+    "name": "Cal Evans",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "keneudeze@test.com",
+    "id": 7,
+    "name": "Kene Udeze",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "pimelshoff@test.com",
+    "id": 8,
+    "name": "Pim Elshoff",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "johndoe@test.com",
+    "id": 9,
+    "name": "John Doe",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "saravieira@test.com",
+    "id": 10,
+    "name": "Sara Vieira",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "michieldewit@test.com",
+    "id": 11,
+    "name": "Michiel de Wit",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  },
+  {
+    "email": "harryroberts@test.com",
+    "id": 12,
+    "name": "Harry Roberts",
+    "password": "$2a$10$2couoCxDodoecXmLAtdGsOfaDV4KTl1nf5x3L7rhoa7SeBY4zkVpq"
+  }
+]

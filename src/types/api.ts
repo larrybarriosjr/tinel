@@ -1,6 +1,8 @@
-export type WorkshopsQuery = {
-  page: number
-  limit: number
+export type UserType = {
+  id: number
+  email: string
+  name: string
+  password: string
 }
 
 export type WorkshopType = {
@@ -14,11 +16,11 @@ export type WorkshopType = {
   userId: number
 }
 
-export type OrderProductsType = WorkshopType & {
+export type OrderType = WorkshopType & {
   quantity: number
 }
 
-export type CreateOrderBody = {
-  products: OrderProductsType[]
+export type CreateOrderForm = {
+  products: OrderType[]
   total: number
 }

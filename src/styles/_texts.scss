@@ -2,7 +2,7 @@
 @import "./variables";
 
 h1 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 36px;
   line-height: 120%;
   @include media($breakpoint-sm) {
@@ -11,7 +11,7 @@ h1 {
 }
 
 h2 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 32px;
   line-height: 125%;
   @include media($breakpoint-sm) {
@@ -20,7 +20,7 @@ h2 {
 }
 
 h3 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 20.3px;
   line-height: 125%;
   &.cart {
@@ -33,7 +33,7 @@ h3 {
 }
 
 h4 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 18.9px;
   line-height: 125%;
   &.cart {
@@ -46,7 +46,7 @@ h4 {
 }
 
 h5 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 18.4px;
   line-height: 125%;
   @include media($breakpoint-sm) {
@@ -55,11 +55,11 @@ h5 {
 }
 
 h6 {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 13.5px;
   line-height: 125%;
   &.semi {
-    font-weight: 600;
+    font-weight: var(--semibold);
   }
   &.cart {
     font-size: 13.5px;
@@ -71,11 +71,11 @@ h6 {
 }
 
 p {
-  font-weight: 500;
+  font-weight: var(--normal);
   font-size: 14.4px;
   line-height: 150%;
   &.bold {
-    font-weight: 700;
+    font-weight: var(--bold);
     line-height: 125%;
   }
   @include media($breakpoint-sm) {

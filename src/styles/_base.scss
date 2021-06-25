@@ -2,13 +2,15 @@
  * ========================================================================== */
 
 /*
- * Add border box sizing in all browsers (opinionated).
+ * 1. Add border box sizing in all browsers (opinionated).
+ * 2. Use Livvic as the default font. [larry]
  */
 
 *,
 ::before,
 ::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* 1 */
+  font-family: "Livvic", sans-serif; /* 2 */
 }
 
 /*
@@ -29,7 +31,6 @@
  * 4. Remove the grey highlight on links in iOS (opinionated).
  * 5. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.
  * 6. Breaks words to prevent overflow in all browsers (opinionated).
- * 7. Use Livvic as the default font. [larry]
 */
 
 html {
@@ -41,7 +42,6 @@ html {
   -ms-text-size-adjust: 100%; /* 5 */
   -webkit-text-size-adjust: 100%; /* 5 */
   word-break: break-word; /* 6 */
-  font-family: "Livvic", sans-serif; /* 7 */
 }
 
 /* Sections
@@ -133,11 +133,13 @@ pre {
  * ========================================================================== */
 
 /*
- * Remove the gray background on active links in IE 10.
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove underline in links.
  */
 
 a {
   background-color: transparent;
+  text-decoration: none;
 }
 
 /*

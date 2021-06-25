@@ -1,0 +1,71 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.nav {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  z-index: 10;
+  padding: 0 20px;
+  background-color: var(--light-yellow);
+  @include media($breakpoint-sm) {
+    height: 90px;
+  }
+  &__container {
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__logo {
+    width: 90px;
+    height: 40px;
+    @include media($breakpoint-sm) {
+      width: 105px;
+      height: 47px;
+    }
+  }
+  &__cart_container {
+    margin: 0;
+    @include media($breakpoint-sm) {
+      width: 100%;
+      max-width: 320px;
+      align-items: center;
+    }
+  }
+  &__cart_counter {
+    display: none;
+    @include media($breakpoint-sm) {
+      display: inline;
+      margin-left: 8px;
+    }
+  }
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  overflow-y: auto;
+  background: white;
+  z-index: 10;
+  padding: 0 20px;
+  box-shadow: var(--shadow-cart);
+  transition: all 1s ease-in-out;
+  &.open {
+    right: 0;
+    animation: show 1s ease-in-out;
+  }
+  @include media($breakpoint-sm) {
+    max-width: 380px;
+  }
+  @keyframes show {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0%;
+    }
+  }
+}

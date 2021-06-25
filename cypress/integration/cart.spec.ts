@@ -1,16 +1,10 @@
 import { Routes } from "constants/enums"
 
-beforeEach(() => {
-  cy.visit(Routes.HOME)
-})
-
-describe("Sticky Navbar", () => {
-  it("always renders the sticky navbar at the top", () => {
-    cy.scrollTo("bottom").isWithinViewport("nav")
-  })
-})
-
 describe("Cart Drawer", () => {
+  before(() => {
+    cy.visit(Routes.HOME)
+  })
+
   it("renders the cart drawer in full width on small screens", () => {
     cy.viewport("iphone-x")
     cy.get("[data-testid=cart-button]").click()

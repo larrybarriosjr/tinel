@@ -1,0 +1,38 @@
+.primary {
+  border: none;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  color: var(--darker-grey);
+  background: var(--yellow);
+  padding: 0;
+  &.cart_drawer {
+    color: white;
+    background: var(--blue);
+  }
+}
+
+.flat {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.underline {
+  border: none;
+  background: none;
+  padding: 0;
+  padding-bottom: 5px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  &::after {
+    content: "";
+    display: inline;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--blue);
+  }
+}

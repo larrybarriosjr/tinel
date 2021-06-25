@@ -23,3 +23,11 @@ export enum Routes {
   WORKSHOP = "/workshop/",
   WORKSHOP_PATH = "/workshop/:id"
 }
+
+export enum WorkshopCategories {
+  ALL = "all",
+  DESIGN = "design",
+  FRONTEND = "frontend",
+  BACKEND = "backend",
+  MARKETING = "marketing"
+}

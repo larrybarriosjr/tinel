@@ -1,17 +1,21 @@
+import clsx from "clsx"
 import PrimaryButton from "components/common/button/PrimaryButton"
-import Row from "containers/Row"
+import Flex from "components/container/Flex"
 import { useAppSelector } from "hooks/redux"
 import { Fragment } from "react"
+import { monetize } from "utils/number-utils"
+import styles from "./Cart.module.scss"
 import CartItem from "./CartItem"
-import styles from "./CartList.module.scss"
 
 const CartList = () => {
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
 
+  const buttonClasses = clsx([styles.list__checkout_button, "cart_drawer"])
+
   return (
-    <Row className={styles.row}>
+    <Flex className={styles.list__container}>
       {cartQuantity
         ? cartItems.map(item => (
             <CartItem
@@ -26,29 +30,29 @@ const CartList = () => {
         : null}
       {cartQuantity ? (
         <Fragment>
-          <Row className={styles.total_row}>
-            <h6 className={styles.subtotal}>SUBTOTAL</h6>
-            <Row className={styles.totalprice_row}>
-              <h2 className={styles.price} data-testid="cart-total-price">
-                {cartTotal},00
+          <Flex className={styles.list__subtotal_container}>
+            <h6 className={styles.list__subtotal}>SUBTOTAL</h6>
+            <Flex className={styles.list__price_container}>
+              <h2 className={styles.list__price} data-testid="cart-total-price">
+                {monetize(cartTotal)}
               </h2>
-              <h4 className={styles.currency}>EUR</h4>
-            </Row>
-          </Row>
+              <h4 className={styles.list__currency}>EUR</h4>
+            </Flex>
+          </Flex>
         </Fragment>
       ) : (
-        <Row className={styles.empty_text}>
+        <Flex className={styles.list__empty_text}>
           <h4>Cart is Empty</h4>
-        </Row>
+        </Flex>
       )}
       {cartQuantity ? (
-        <Row className={styles.checkout_button}>
-          <PrimaryButton className="cart_drawer" data-testid="cart-checkout-button">
-            Checkout
+        <Flex className={styles.list__checkout_button_container}>
+          <PrimaryButton className={buttonClasses} data-testid="cart-checkout-button">
+            <h5>Checkout</h5>
           </PrimaryButton>
-        </Row>
+        </Flex>
       ) : null}
-    </Row>
+    </Flex>
   )
 }
 
