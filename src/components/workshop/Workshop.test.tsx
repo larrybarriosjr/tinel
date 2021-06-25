@@ -190,6 +190,10 @@ describe("Workshop", () => {
     expect(items.length).toBeLessThanOrEqual(9)
   })
 
-  it.todo("renders the load more button")
+  it("renders the load more button", () => {
+    const button = screen.getByRole("button", { name: "load-more-button" })
+    expect(button.textContent).toMatch(/load more/i)
+  })
+
   it.todo("lists another 9 or less workshop items when clicking the load more button")
 })

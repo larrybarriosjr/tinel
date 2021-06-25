@@ -1,3 +1,4 @@
+import UnderlineButton from "components/common/button/UnderlineButton"
 import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
 import { sortByDateDesc } from "utils/array-utils"
@@ -24,6 +25,9 @@ const WorkshopList = ({ items }: WorkshopListProps) => {
           <WorkshopItem key={item.id} item={item} />
         ))}
       </Flex>
+      <UnderlineButton className={styles.list__load_more_button} aria-label="load-more-button">
+        <h5>Load More</h5>
+      </UnderlineButton>
     </Flex>
   )
 }

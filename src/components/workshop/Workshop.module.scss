@@ -19,6 +19,10 @@
       margin: 40px 20px;
     }
   }
+  &__load_more_button {
+    margin-top: 30px;
+    margin-bottom: 35px;
+  }
 }
 
 .item {
@@ -133,6 +137,7 @@
   }
   &__button_text {
     height: 50px;
+    width: 100%;
   }
 }
 
