@@ -2,8 +2,8 @@ import UnderlineButton from "components/common/button/UnderlineButton"
 import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
 import { sortByDateDesc } from "utils/array-utils"
-import styles from "./Workshop.module.scss"
 import WorkshopItem from "./WorkshopItem"
+import styles from "./WorkshopList.module.scss"
 
 type WorkshopListProps = {
   items: WorkshopType[]

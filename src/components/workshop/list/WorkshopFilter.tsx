@@ -4,8 +4,8 @@ import { FlatButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import { useState } from "react"
 import { capitalize } from "utils/text-utils"
-import styles from "./Workshop.module.scss"
 import WorkshopCategoryIcon from "./WorkshopCategoryIcon"
+import styles from "./WorkshopList.module.scss"
 
 type WorkshopFilterProps = {
   categories: string[]

@@ -11,8 +11,8 @@ import { mountDrawer, showSidebar } from "states/presentation"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
-import styles from "./Workshop.module.scss"
 import WorkshopCategoryIcon from "./WorkshopCategoryIcon"
+import styles from "./WorkshopList.module.scss"
 
 type WorkshopItemProps = {
   item: WorkshopType

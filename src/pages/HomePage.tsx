@@ -1,8 +1,8 @@
 import { useGetCategoriesQuery } from "api/categories"
 import { useGetWorkshopsQuery } from "api/workshops"
 import Flex from "components/container/Flex"
-import WorkshopFilter from "components/workshop/WorkshopFilter"
-import WorkshopList from "components/workshop/WorkshopList"
+import WorkshopFilter from "components/workshop/list/WorkshopFilter"
+import WorkshopList from "components/workshop/list/WorkshopList"
 import { useEffect, useState } from "react"
 import styles from "./Page.module.scss"
 
