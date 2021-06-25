@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import Navbar from "components/layout/Navbar"
-import dayjs from "dayjs"
 import { useAppDispatch } from "hooks/redux"
 import workshops from "mocks/workshops.json"
 import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import { clearCart } from "states/cart"
+import { sortByDateDesc } from "utils/array-utils"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopList from "./WorkshopList"
@@ -37,9 +37,7 @@ describe("Workshop", () => {
     const imageSrcs = screen
       .getAllByRole("img", { name: "workshop-image" })
       .map(img => img.getAttribute("src"))
-    const imageUrls = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => workshop.imageUrl)
+    const imageUrls = sortByDateDesc(workshops, "date").map(workshop => workshop.imageUrl)
     expect(imageSrcs).toStrictEqual(imageUrls)
   })
 
@@ -47,9 +45,7 @@ describe("Workshop", () => {
     const categoryIcons = screen
       .getAllByRole("img", { name: "workshop-category" })
       .map(icon => icon.getAttribute("name"))
-    const categories = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => workshop.category)
+    const categories = sortByDateDesc(workshops, "date").map(workshop => workshop.category)
     expect(categoryIcons).toStrictEqual(categories)
   })
 
@@ -57,9 +53,7 @@ describe("Workshop", () => {
     const dateTexts = screen
       .getAllByRole("heading", { name: "workshop-date" })
       .map(icon => icon.textContent)
-    const dates = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => displayDate(workshop.date))
+    const dates = sortByDateDesc(workshops, "date").map(workshop => displayDate(workshop.date))
     expect(dateTexts).toStrictEqual(dates)
   })
 
@@ -67,9 +61,7 @@ describe("Workshop", () => {
     const timeTexts = screen
       .getAllByRole("heading", { name: "workshop-time" })
       .map(icon => icon.textContent)
-    const times = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => displayTime(workshop.date))
+    const times = sortByDateDesc(workshops, "date").map(workshop => displayTime(workshop.date))
     expect(timeTexts).toStrictEqual(times)
   })
 
@@ -77,9 +69,7 @@ describe("Workshop", () => {
     const titleTexts = screen
       .getAllByRole("heading", { name: "workshop-title" })
       .map(title => title.textContent)
-    const titles = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => workshop.title)
+    const titles = sortByDateDesc(workshops, "date").map(workshop => workshop.title)
     expect(titleTexts).toStrictEqual(titles)
   })
 
@@ -87,9 +77,7 @@ describe("Workshop", () => {
     const priceTexts = screen
       .getAllByRole("heading", { name: "workshop-price" })
       .map(price => price.textContent)
-    const prices = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(workshop => monetize(workshop.price))
+    const prices = sortByDateDesc(workshops, "date").map(workshop => monetize(workshop.price))
     expect(priceTexts).toStrictEqual(prices)
   })
 
@@ -115,9 +103,7 @@ describe("Workshop", () => {
     const dates = screen
       .getAllByRole("heading", { name: "workshop-date" })
       .map(date => date.getAttribute("aria-details"))
-    const sortedDates = workshops
-      .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-      .map(item => item.date)
+    const sortedDates = sortByDateDesc(workshops, "date").map(item => item.date)
     expect(dates).toStrictEqual(sortedDates)
   })
 

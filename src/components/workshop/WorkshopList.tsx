@@ -1,6 +1,6 @@
 import Flex from "components/container/Flex"
-import dayjs from "dayjs"
 import { WorkshopType } from "types/api"
+import { sortByDateDesc } from "utils/array-utils"
 import styles from "./Workshop.module.scss"
 import WorkshopItem from "./WorkshopItem"
 
@@ -13,11 +13,9 @@ const WorkshopList = ({ items }: WorkshopListProps) => {
 
   return (
     <Flex className={styles.list__container}>
-      {[...items]
-        .sort((a, b) => dayjs(b.date).unix() - dayjs(a.date).unix())
-        .map(item => (
-          <WorkshopItem key={item.id} item={item} />
-        ))}
+      {sortByDateDesc(items, "date").map(item => (
+        <WorkshopItem key={item.id} item={item} />
+      ))}
     </Flex>
   )
 }
