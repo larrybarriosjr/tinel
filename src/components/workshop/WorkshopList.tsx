@@ -7,9 +7,11 @@ import WorkshopItem from "./WorkshopItem"
 
 type WorkshopListProps = {
   items: WorkshopType[]
+  limit: number
+  onLoadMore: () => void
 }
 
-const WorkshopList = ({ items }: WorkshopListProps) => {
+const WorkshopList = ({ items, limit, onLoadMore }: WorkshopListProps) => {
   if (!items.length) return null
 
   return (
@@ -25,9 +27,15 @@ const WorkshopList = ({ items }: WorkshopListProps) => {
           <WorkshopItem key={item.id} item={item} />
         ))}
       </Flex>
-      <UnderlineButton className={styles.list__load_more_button} aria-label="load-more-button">
-        <h5>Load More</h5>
-      </UnderlineButton>
+      {limit <= items.length ? (
+        <UnderlineButton
+          onClick={onLoadMore}
+          className={styles.list__load_more_button}
+          aria-label="load-more-button"
+        >
+          <h5>Load More</h5>
+        </UnderlineButton>
+      ) : null}
     </Flex>
   )
 }

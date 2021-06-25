@@ -20,7 +20,7 @@ describe("Workshop", () => {
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />
-          <WorkshopList items={workshops} />
+          <WorkshopList items={workshops} limit={9} onLoadMore={() => null} />
           <Route
             path="*"
             render={({ location }) => {
@@ -194,6 +194,4 @@ describe("Workshop", () => {
     const button = screen.getByRole("button", { name: "load-more-button" })
     expect(button.textContent).toMatch(/load more/i)
   })
-
-  it.todo("lists another 9 or less workshop items when clicking the load more button")
 })
