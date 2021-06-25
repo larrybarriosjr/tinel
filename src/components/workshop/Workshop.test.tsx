@@ -194,4 +194,7 @@ describe("Workshop", () => {
     const button = screen.getByRole("button", { name: "load-more-button" })
     expect(button.textContent).toMatch(/load more/i)
   })
+
+  it.todo("renders the list of categories")
+  it.todo("filters the workshop items depending on category")
 })
