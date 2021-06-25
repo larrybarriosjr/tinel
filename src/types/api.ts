@@ -16,6 +16,11 @@ export type WorkshopType = {
   userId: number
 }
 
+export type WorkshopQuery = {
+  limit?: number
+  category?: string
+}
+
 export type OrderType = WorkshopType & {
   quantity: number
 }

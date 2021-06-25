@@ -12,7 +12,7 @@ import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import styles from "./Workshop.module.scss"
-import WorkshopCategory from "./WorkshopCategory"
+import WorkshopCategoryIcon from "./WorkshopCategoryIcon"
 
 type WorkshopItemProps = {
   item: WorkshopType
@@ -37,7 +37,15 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
           </Link>
         </span>
-        <WorkshopCategory category={category} className={styles.item__category} />
+        <span className={styles.item__category_container}>
+          <WorkshopCategoryIcon
+            category={category}
+            role="img"
+            aria-label="workshop-category"
+            name={category}
+            className={styles.item__category_icon}
+          />
+        </span>
       </div>
       <Flex className={styles.item__details_container}>
         <Flex className={styles.item__datetime_container}>

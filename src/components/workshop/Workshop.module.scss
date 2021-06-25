@@ -1,6 +1,46 @@
 @import "styles/mixins";
 @import "styles/variables";
 
+.filter {
+  &__button {
+    width: max-content;
+    padding-right: 10px;
+  }
+  &__container {
+    position: relative;
+    align-items: center;
+    gap: 3px;
+    color: var(--blue);
+  }
+  &__list_container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20px;
+    z-index: 100;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--lighter-grey);
+    width: max-content;
+    text-align: left;
+    color: var(--darker-grey);
+    & > .selected {
+      font-weight: var(--bold);
+      color: var(--blue);
+    }
+  }
+  &__list_item_all {
+    padding: 10px 20px;
+    padding-left: 50px;
+  }
+  &__list_item_category {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+  }
+}
+
 .list {
   &__box {
     flex-direction: column;
@@ -65,7 +105,14 @@
     height: 100%;
     left: -50%;
   }
-  &__category {
+  &__category_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--darker-grey);
+    border-radius: 6px;
+    height: 32px;
+    width: 32px;
     position: absolute;
     z-index: 1;
     top: 13px;
@@ -74,6 +121,11 @@
       right: 20px;
       bottom: -20px;
     }
+  }
+  &__category_icon {
+    fill: white;
+    height: 24px;
+    width: 24px;
   }
   &__details_container {
     width: 65%;
@@ -138,22 +190,5 @@
   &__button_text {
     height: 50px;
     width: 100%;
-  }
-}
-
-.category {
-  &__box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--darker-grey);
-    border-radius: 6px;
-    height: 32px;
-    width: 32px;
-  }
-  &__icon {
-    fill: white;
-    height: 24px;
-    width: 24px;
   }
 }
