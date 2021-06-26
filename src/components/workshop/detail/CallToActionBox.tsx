@@ -1,3 +1,5 @@
+import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
+import PrimaryButton from "components/common/button/PrimaryButton"
 import DropdownInput from "components/common/input/DropdownInput"
 import Flex from "components/container/Flex"
 import { quantityItems } from "constants/data"
@@ -18,11 +20,17 @@ const CallToActionBox = ({ price, quantity }: CallToActionBoxProps) => {
         </h3>
         <h6 className={styles.cta__currency}>EUR</h6>
       </Flex>
-      <DropdownInput
-        items={quantityItems}
-        value={quantityItems.find(item => quantity.toString() === item.value)}
-        id="workshop-ticket-dropdown"
-      />
+      <Flex>
+        <DropdownInput
+          items={quantityItems}
+          value={quantityItems.find(item => quantity.toString() === item.value)}
+          id="workshop-ticket-dropdown"
+        />
+        <PrimaryButton className={styles.cta__button_container} aria-label="workshop-button">
+          <p className="bold">Add to</p>
+          <CartIcon />
+        </PrimaryButton>
+      </Flex>
     </Flex>
   )
 }

@@ -77,4 +77,11 @@
     white-space: nowrap;
     margin-top: 6px;
   }
+  &__button_container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0 25px;
+    margin-left: 10px;
+  }
 }

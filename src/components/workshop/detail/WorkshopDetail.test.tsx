@@ -59,7 +59,13 @@ describe("Workshop Detail Page", () => {
     expect(quantity?.lastChild?.firstChild).toHaveTextContent(/2/i)
   })
 
-  it.todo("renders the add to cart button")
+  it("renders the add to cart button", () => {
+    const buttons = screen.getAllByRole("button", { name: "workshop-button" })
+    buttons.forEach(button => {
+      expect(button).toHaveTextContent(/add/i)
+    })
+  })
+
   it.todo("renders the total price of the total amount of workshop tickets")
   it.todo("renders the back button")
   it.todo("redirects to the homepage when clicking the back button")
