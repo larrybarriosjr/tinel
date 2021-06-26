@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react"
 import users from "mocks/users.json"
 import workshops from "mocks/workshops.json"
 import { WorkshopType } from "types/api"
+import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopDetail from "./WorkshopDetail"
 
@@ -48,7 +49,11 @@ describe("Workshop Detail Page", () => {
     expect(description).toBe(workshopItem.desc)
   })
 
-  it.todo("renders the workshop price per ticket")
+  it("renders the workshop price per ticket", () => {
+    const price = screen.getByRole("heading", { name: "workshop-price" }).textContent
+    expect(price).toBe(monetize(workshopItem.price))
+  })
+
   it.todo("renders the number of workshop tickets")
   it.todo("renders the add to cart button")
   it.todo("renders the total price of the total amount of workshop tickets")

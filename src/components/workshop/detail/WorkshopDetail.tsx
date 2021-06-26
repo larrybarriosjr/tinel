@@ -4,6 +4,7 @@ import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { UserType, WorkshopType } from "types/api"
 import { displayDate, displayTime } from "utils/text-utils"
+import CallToActionBox from "./CallToActionBox"
 import styles from "./WorkshopDetail.module.scss"
 
 type WorkshopDetailProps = {
@@ -12,7 +13,7 @@ type WorkshopDetailProps = {
 }
 
 const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
-  const { imageUrl, title, category, date, desc } = item
+  const { imageUrl, title, category, date, desc, price } = item
 
   return (
     <Flex className={styles.detail__container}>
@@ -50,6 +51,7 @@ const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
           {desc}
         </p>
       </div>
+      <CallToActionBox price={price} />
     </Flex>
   )
 }

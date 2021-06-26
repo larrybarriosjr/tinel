@@ -4,6 +4,7 @@
 .detail {
   &__container {
     flex-direction: column;
+    padding: 20px;
     padding-bottom: 17px;
   }
   &__graphics_container {
@@ -51,5 +52,28 @@
   }
   &__description {
     padding: 20px;
+  }
+}
+
+.cta {
+  &__container {
+    position: fixed;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: var(--shadow-sm);
+  }
+  &__price {
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 3px;
+    white-space: nowrap;
+    margin-top: 6px;
   }
 }
