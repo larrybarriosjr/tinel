@@ -1,17 +1,31 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { Routes } from "constants/enums"
 import users from "mocks/users.json"
 import workshops from "mocks/workshops.json"
+import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
+  let appLocation: RouteProps["location"]
   const workshopItem: WorkshopType = workshops[0]
   const workshopUser = users.filter(user => workshopItem.userId === user.id)[0]
 
   beforeEach(() => {
-    render(<WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />)
+    render(
+      <MemoryRouter>
+        <WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />
+        <Route
+          path="*"
+          render={({ location }) => {
+            appLocation = location
+            return null
+          }}
+        />
+      </MemoryRouter>
+    )
   })
 
   it("renders the workshop image", () => {
@@ -71,7 +85,16 @@ describe("Workshop Detail Page", () => {
     expect(total).toHaveTextContent(monetize(workshopItem.price * 2))
   })
 
-  it.todo("renders the back button")
-  it.todo("redirects to the homepage when clicking the back button")
+  it("renders the back button", () => {
+    const button = screen.getByRole("link", { name: "back-button" })
+    expect(button).toHaveTextContent(/back/i)
+  })
+
+  it("redirects to the homepage when clicking the back button", () => {
+    const button = screen.getByRole("link", { name: "back-button" })
+    fireEvent.click(button)
+    expect(appLocation).toHaveProperty("pathname", Routes.HOME)
+  })
+
   it.todo("adds the number of workshop ticket when clicking the add to cart button")
 })
