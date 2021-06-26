@@ -11,13 +11,14 @@ const DetailPage = () => {
   const { data: item } = useGetWorkshopByIdQuery(id)
   const { data: user } = useGetUserByIdQuery(item ? item.userId : 0)
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
-  const quantity = cartItems.filter(item => item.id.toString() === id).length
+  const workshopItem = cartItems.find(item => item.id.toString() === id)
 
+  if (!workshopItem) return null
   if (!item) return null
 
   return (
     <Flex className={styles.detail}>
-      <WorkshopDetail item={item} user={user} quantity={quantity} />
+      <WorkshopDetail item={item} user={user} quantity={workshopItem.quantity} />
     </Flex>
   )
 }

@@ -66,7 +66,11 @@ describe("Workshop Detail Page", () => {
     })
   })
 
-  it.todo("renders the total price of the total amount of workshop tickets")
+  it("renders the total price of the total amount of workshop tickets", () => {
+    const total = screen.getByRole("heading", { name: "workshop-total" })
+    expect(total).toHaveTextContent(monetize(workshopItem.price * 2))
+  })
+
   it.todo("renders the back button")
   it.todo("redirects to the homepage when clicking the back button")
   it.todo("adds the number of workshop ticket when clicking the add to cart button")

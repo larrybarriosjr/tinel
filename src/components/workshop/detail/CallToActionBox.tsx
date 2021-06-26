@@ -1,4 +1,5 @@
 import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
+import clsx from "clsx"
 import PrimaryButton from "components/common/button/PrimaryButton"
 import DropdownInput from "components/common/input/DropdownInput"
 import Flex from "components/container/Flex"
@@ -12,14 +13,21 @@ type CallToActionBoxProps = {
 }
 
 const CallToActionBox = ({ price, quantity }: CallToActionBoxProps) => {
+  const totalClasses = clsx([styles.cta__total, "semi"])
+
   return (
     <Flex className={styles.cta__container}>
-      <Flex className={styles.cta__price_container}>
-        <h3 className={styles.cta__price} aria-label="workshop-price">
-          {monetize(price)}
-        </h3>
-        <h6 className={styles.cta__currency}>EUR</h6>
-      </Flex>
+      <div>
+        <Flex className={styles.cta__price_container}>
+          <h3 className={styles.cta__price} aria-label="workshop-price">
+            {monetize(price)}
+          </h3>
+          <h6 className={styles.cta__currency}>EUR</h6>
+        </Flex>
+        <h6 className={totalClasses} aria-label="workshop-total">
+          Subtotal: {monetize(price * quantity)} EUR
+        </h6>
+      </div>
       <Flex>
         <DropdownInput
           items={quantityItems}

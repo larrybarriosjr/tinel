@@ -83,5 +83,12 @@
     gap: 3px;
     padding: 0 25px;
     margin-left: 10px;
+    white-space: nowrap;
+  }
+  &__total {
+    display: none;
+    margin-top: 5px;
+    white-space: nowrap;
+    color: var(--light-grey);
   }
 }
