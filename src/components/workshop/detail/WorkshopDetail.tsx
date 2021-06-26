@@ -17,7 +17,7 @@ type WorkshopDetailProps = {
 }
 
 const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
-  const { imageUrl, title, category, date, desc, price } = item
+  const { imageUrl, title, category, date, desc } = item
 
   return (
     <Flex className={styles.detail__container}>
@@ -59,7 +59,7 @@ const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
           {desc}
         </p>
       </div>
-      <CallToActionBox price={price} quantity={quantity} />
+      <CallToActionBox item={item} quantity={quantity} />
     </Flex>
   )
 }

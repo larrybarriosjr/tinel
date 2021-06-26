@@ -13,12 +13,11 @@ const DetailPage = () => {
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
   const workshopItem = cartItems.find(item => item.id.toString() === id)
 
-  if (!workshopItem) return null
   if (!item) return null
 
   return (
     <Flex className={styles.detail}>
-      <WorkshopDetail item={item} user={user} quantity={workshopItem.quantity} />
+      <WorkshopDetail item={item} user={user} quantity={workshopItem ? workshopItem.quantity : 1} />
     </Flex>
   )
 }

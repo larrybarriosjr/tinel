@@ -1,8 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react"
+import { store } from "app/store"
+import CartDrawer from "components/cart/CartDrawer"
 import { Routes } from "constants/enums"
 import users from "mocks/users.json"
 import workshops from "mocks/workshops.json"
+import { Provider } from "react-redux"
 import { MemoryRouter, Route, RouteProps } from "react-router-dom"
+import selectEvent from "react-select-event"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
@@ -15,16 +19,19 @@ describe("Workshop Detail Page", () => {
 
   beforeEach(() => {
     render(
-      <MemoryRouter>
-        <WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />
-        <Route
-          path="*"
-          render={({ location }) => {
-            appLocation = location
-            return null
-          }}
-        />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} />
+          <WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />
+          <Route
+            path="*"
+            render={({ location }) => {
+              appLocation = location
+              return null
+            }}
+          />
+        </MemoryRouter>
+      </Provider>
     )
   })
 
@@ -96,5 +103,13 @@ describe("Workshop Detail Page", () => {
     expect(appLocation).toHaveProperty("pathname", Routes.HOME)
   })
 
-  it.todo("adds the number of workshop ticket when clicking the add to cart button")
+  it("adds the number of workshop ticket when clicking the add to cart button", async () => {
+    const dropdown = document.querySelector("#workshop-ticket-dropdown") as HTMLElement
+    const button = screen.getByRole("button", { name: "workshop-button" })
+    const drawerCounter = screen.getByTestId("drawer-cart-counter")
+
+    await selectEvent.select(dropdown, ["4"])
+    fireEvent.click(button)
+    expect(drawerCounter).toHaveTextContent(/4/i)
+  })
 })
