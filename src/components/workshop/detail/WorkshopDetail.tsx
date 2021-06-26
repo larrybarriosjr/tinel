@@ -12,7 +12,7 @@ type WorkshopDetailProps = {
 }
 
 const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
-  const { imageUrl, title, category, date } = item
+  const { imageUrl, title, category, date, desc } = item
 
   return (
     <Flex className={styles.detail__container}>
@@ -46,6 +46,9 @@ const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
             <h5 aria-label="workshop-user">{user.name}</h5>
           </Flex>
         ) : null}
+        <p className={styles.detail__description} data-testid="workshop-description">
+          {desc}
+        </p>
       </div>
     </Flex>
   )

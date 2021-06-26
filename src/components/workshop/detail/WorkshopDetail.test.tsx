@@ -43,7 +43,11 @@ describe("Workshop Detail Page", () => {
     expect(user).toBe(workshopUser?.name)
   })
 
-  it.todo("renders the workshop description")
+  it("renders the workshop description", () => {
+    const description = screen.getByTestId("workshop-description").textContent
+    expect(description).toBe(workshopItem.desc)
+  })
+
   it.todo("renders the workshop price per ticket")
   it.todo("renders the number of workshop tickets")
   it.todo("renders the add to cart button")

@@ -4,6 +4,7 @@
 .detail {
   &__container {
     flex-direction: column;
+    padding-bottom: 17px;
   }
   &__graphics_container {
     position: relative;
@@ -47,5 +48,8 @@
     align-items: center;
     gap: 5px;
     padding: 0 20px;
+  }
+  &__description {
+    padding: 20px;
   }
 }
