@@ -14,7 +14,7 @@ import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopFilter from "./WorkshopFilter"
 import WorkshopList from "./WorkshopList"
 
-describe("Workshop", () => {
+describe("Workshop Items", () => {
   let appLocation: RouteProps["location"]
 
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe("Workshop", () => {
     const imageSrcs = screen
       .getAllByRole("img", { name: "workshop-image" })
       .map(img => img.getAttribute("src"))
-    const imageUrls = sortByDateDesc(workshops, "date").map(workshop => workshop.imageUrl)
+    const imageUrls = workshops.map(workshop => workshop.imageUrl)
     expect(imageSrcs).toStrictEqual(imageUrls)
   })
 
@@ -48,7 +48,7 @@ describe("Workshop", () => {
     const categoryIcons = screen
       .getAllByRole("img", { name: "workshop-category" })
       .map(icon => icon.getAttribute("name"))
-    const categories = sortByDateDesc(workshops, "date").map(workshop => workshop.category)
+    const categories = workshops.map(workshop => workshop.category)
     expect(categoryIcons).toStrictEqual(categories)
   })
 
@@ -56,7 +56,7 @@ describe("Workshop", () => {
     const dateTexts = screen
       .getAllByRole("heading", { name: "workshop-date" })
       .map(icon => icon.textContent)
-    const dates = sortByDateDesc(workshops, "date").map(workshop => displayDate(workshop.date))
+    const dates = workshops.map(workshop => displayDate(workshop.date))
     expect(dateTexts).toStrictEqual(dates)
   })
 
@@ -64,7 +64,7 @@ describe("Workshop", () => {
     const timeTexts = screen
       .getAllByRole("heading", { name: "workshop-time" })
       .map(icon => icon.textContent)
-    const times = sortByDateDesc(workshops, "date").map(workshop => displayTime(workshop.date))
+    const times = workshops.map(workshop => displayTime(workshop.date))
     expect(timeTexts).toStrictEqual(times)
   })
 
@@ -72,7 +72,7 @@ describe("Workshop", () => {
     const titleTexts = screen
       .getAllByRole("heading", { name: "workshop-title" })
       .map(title => title.textContent)
-    const titles = sortByDateDesc(workshops, "date").map(workshop => workshop.title)
+    const titles = workshops.map(workshop => workshop.title)
     expect(titleTexts).toStrictEqual(titles)
   })
 
@@ -80,7 +80,7 @@ describe("Workshop", () => {
     const priceTexts = screen
       .getAllByRole("heading", { name: "workshop-price" })
       .map(price => price.textContent)
-    const prices = sortByDateDesc(workshops, "date").map(workshop => monetize(workshop.price))
+    const prices = workshops.map(workshop => monetize(workshop.price))
     expect(priceTexts).toStrictEqual(prices)
   })
 
@@ -88,33 +88,25 @@ describe("Workshop", () => {
     const buttons = screen.getAllByRole("button", { name: "workshop-button-text" })
     const prices = workshops.length
     buttons.forEach(button => {
-      expect(button.textContent).toMatch(/add to cart/i)
+      expect(button).toHaveTextContent(/add to cart/i)
     })
-    expect(buttons.length).toBe(prices)
+    expect(buttons).toHaveLength(prices)
   })
 
   it("renders the cart icon buttons in the workshop items", () => {
     const buttons = screen.getAllByRole("button", { name: "workshop-button-icon" })
     const prices = workshops.length
     buttons.forEach(button => {
-      expect(button.textContent).toMatch(/cart/i)
+      expect(button).toHaveTextContent(/cart/i)
     })
-    expect(buttons.length).toBe(prices)
-  })
-
-  it("lists the workshop items in descending chronological order (recent to oldest)", () => {
-    const dates = screen
-      .getAllByRole("heading", { name: "workshop-date" })
-      .map(date => date.getAttribute("aria-details"))
-    const sortedDates = sortByDateDesc(workshops, "date").map(item => item.date)
-    expect(dates).toStrictEqual(sortedDates)
+    expect(buttons).toHaveLength(prices)
   })
 
   it("redirects to detail page when clicking the workshop image in the workshop items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-image-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+      expect(appLocation).toHaveProperty("pathname", link.getAttribute("href"))
     })
   })
 
@@ -122,7 +114,7 @@ describe("Workshop", () => {
     const links = screen.getAllByRole("link", { name: "workshop-title-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+      expect(appLocation).toHaveProperty("pathname", link.getAttribute("href"))
     })
   })
 
@@ -196,7 +188,7 @@ describe("Workshop", () => {
   it("renders the load more button", () => {
     const button = screen.queryByRole("button", { name: "load-more-button" })
     if (workshops.length >= 9) {
-      expect(button?.textContent).toMatch(/load more/i)
+      expect(button).toHaveTextContent(/load more/i)
     } else {
       expect(button).not.toBeInTheDocument()
     }
@@ -210,6 +202,29 @@ describe("Workshop", () => {
       .getAllByRole("heading", { name: "category-item" })
       .map(item => item.textContent?.toLowerCase())
     expect(items).toStrictEqual(categories.reverse())
+  })
+})
+
+describe("Workshop Sort", () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Navbar />
+          <WorkshopFilter categories={categories} onSelect={() => null} selected="all" />
+          <WorkshopList items={sortByDateDesc(workshops, "date")} limit={9} onLoadMore={() => null} />
+          <Route path="*" />
+        </MemoryRouter>
+      </Provider>
+    )
+  })
+
+  it("lists the workshop items in descending chronological order (recent to oldest)", () => {
+    const dates = screen
+      .getAllByRole("heading", { name: "workshop-date" })
+      .map(date => date.getAttribute("aria-details"))
+    const sortedDates = sortByDateDesc(workshops, "date").map(item => item.date)
+    expect(dates).toStrictEqual(sortedDates)
   })
 })
 
@@ -236,7 +251,7 @@ describe("Workshop Filter", () => {
       .getAllByRole("img", { name: "workshop-category" })
       .map(icon => icon.getAttribute("name"))
       .forEach(item => {
-        expect(item).toBe("design")
+        expect(item).toEqual("design")
       })
   })
 })

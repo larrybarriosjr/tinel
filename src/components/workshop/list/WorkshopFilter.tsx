@@ -1,11 +1,11 @@
 import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
+import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { useState } from "react"
 import { capitalize } from "utils/text-utils"
-import styles from "./Workshop.module.scss"
-import WorkshopCategoryIcon from "./WorkshopCategoryIcon"
+import styles from "./WorkshopList.module.scss"
 
 type WorkshopFilterProps = {
   categories: string[]
@@ -69,7 +69,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
                   if (e.key === "Enter" || e.key === " ") handleSelectCategory(category)
                 }}
               >
-                <WorkshopCategoryIcon category={category} width="24" height="24" />
+                <CategoryIcon category={category} width="24" height="24" />
                 <h5 aria-label="category-item">{capitalize(category)}</h5>
               </li>
             ))}

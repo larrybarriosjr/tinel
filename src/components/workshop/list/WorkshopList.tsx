@@ -1,9 +1,8 @@
 import UnderlineButton from "components/common/button/UnderlineButton"
 import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
-import { sortByDateDesc } from "utils/array-utils"
-import styles from "./Workshop.module.scss"
 import WorkshopItem from "./WorkshopItem"
+import styles from "./WorkshopList.module.scss"
 
 type WorkshopListProps = {
   items: WorkshopType[]
@@ -23,7 +22,7 @@ const WorkshopList = ({ items, limit, onLoadMore }: WorkshopListProps) => {
         </h6>
       </div>
       <Flex className={styles.list__container}>
-        {sortByDateDesc(items, "date").map(item => (
+        {items.map(item => (
           <WorkshopItem key={item.id} item={item} />
         ))}
       </Flex>

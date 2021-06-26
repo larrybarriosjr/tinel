@@ -44,7 +44,7 @@ describe("Layout", () => {
 
   it("redirects to home page when clicking the logo", () => {
     fireEvent.click(screen.getByTestId("logo-link"))
-    expect(appLocation?.pathname).toBe(Routes.HOME)
+    expect(appLocation).toHaveProperty("pathname", Routes.HOME)
   })
 
   it("renders the cart icon in the navbar", () => {

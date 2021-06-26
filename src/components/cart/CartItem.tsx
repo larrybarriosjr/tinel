@@ -3,6 +3,7 @@ import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import DropdownInput from "components/common/input/DropdownInput"
 import Flex from "components/container/Flex"
+import { quantityItems } from "constants/data"
 import { useAppDispatch } from "hooks/redux"
 import { removeFromCart, updateWorkshopQuantity } from "states/cart"
 import { DropDownItemType } from "types/component"
@@ -23,11 +24,6 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
   const priceClasses = clsx([styles.item__price, "cart"])
 
   const dispatch = useAppDispatch()
-
-  const items = Array.from({ length: 11 }, (_, idx) => idx).map(id => ({
-    label: id.toString(),
-    value: id.toString()
-  }))
 
   const handleDelete = () => {
     dispatch(removeFromCart(id))
@@ -58,8 +54,8 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
         </Flex>
         <Flex className={styles.item__price_container}>
           <DropdownInput
-            items={items}
-            value={items.find(item => quantity.toString() === item.value)}
+            items={quantityItems}
+            value={quantityItems.find(item => quantity.toString() === item.value)}
             onChange={handleSetQuantity}
             id="cart-ticket-dropdown"
           />

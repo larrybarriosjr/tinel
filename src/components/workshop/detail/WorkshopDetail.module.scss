@@ -1,0 +1,102 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.detail {
+  &__container {
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 17px;
+  }
+  &__back_button {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 5px;
+    color: inherit;
+    padding-right: 5px;
+  }
+  &__graphics_container {
+    position: relative;
+    height: 250px;
+    margin: 20px 0;
+  }
+  &__image_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  &__category_container {
+    height: 40px;
+    width: 40px;
+    right: 12px;
+    bottom: -20px;
+  }
+  &__datetime_container {
+    padding: 0 20px 10px;
+    align-items: center;
+    white-space: nowrap;
+  }
+  &__datetime_icon {
+    margin-right: 3px;
+  }
+  &__date {
+    margin-right: 10px;
+  }
+  &__title {
+    color: var(--blue);
+    padding-bottom: 10px;
+  }
+  &__user_container {
+    align-items: center;
+    gap: 5px;
+    padding: 0 20px;
+  }
+  &__description {
+    padding: 20px;
+  }
+}
+
+.cta {
+  &__container {
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: var(--shadow-sm);
+  }
+  &__price {
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 3px;
+    white-space: nowrap;
+    margin-top: 6px;
+  }
+  &__button_container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0 25px;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  &__total {
+    display: none;
+    margin-top: 5px;
+    white-space: nowrap;
+    color: var(--light-grey);
+  }
+}

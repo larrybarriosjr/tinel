@@ -94,27 +94,21 @@
   }
   &__image_container {
     position: absolute;
-    height: 150px;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
   }
   &__image {
+    object-fit: cover;
     position: absolute;
     height: 100%;
-    left: -50%;
+    width: 100%;
   }
   &__category_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--darker-grey);
-    border-radius: 6px;
     height: 32px;
     width: 32px;
-    position: absolute;
-    z-index: 1;
     top: 13px;
     right: -16px;
     @include media($breakpoint-sm) {
@@ -123,7 +117,6 @@
     }
   }
   &__category_icon {
-    fill: white;
     height: 24px;
     width: 24px;
   }
