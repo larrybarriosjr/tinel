@@ -90,7 +90,7 @@ describe("Workshop Items", () => {
     buttons.forEach(button => {
       expect(button.textContent).toMatch(/add to cart/i)
     })
-    expect(buttons.length).toBe(prices)
+    expect(buttons.length).toEqual(prices)
   })
 
   it("renders the cart icon buttons in the workshop items", () => {
@@ -99,14 +99,14 @@ describe("Workshop Items", () => {
     buttons.forEach(button => {
       expect(button.textContent).toMatch(/cart/i)
     })
-    expect(buttons.length).toBe(prices)
+    expect(buttons.length).toEqual(prices)
   })
 
   it("redirects to detail page when clicking the workshop image in the workshop items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-image-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+      expect(appLocation?.pathname).toEqual(link.getAttribute("href"))
     })
   })
 
@@ -114,7 +114,7 @@ describe("Workshop Items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-title-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toBe(link.getAttribute("href"))
+      expect(appLocation?.pathname).toEqual(link.getAttribute("href"))
     })
   })
 
@@ -251,7 +251,7 @@ describe("Workshop Filter", () => {
       .getAllByRole("img", { name: "workshop-category" })
       .map(icon => icon.getAttribute("name"))
       .forEach(item => {
-        expect(item).toBe("design")
+        expect(item).toEqual("design")
       })
   })
 })

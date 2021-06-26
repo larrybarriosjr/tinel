@@ -11,47 +11,47 @@ describe("Workshop Detail Page", () => {
   const workshopUser = users.find(user => workshopItem.userId === user.id)
 
   beforeEach(() => {
-    render(<WorkshopDetail item={workshopItem} user={workshopUser} />)
+    render(<WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />)
   })
 
   it("renders the workshop image", () => {
     const imageSrc = screen.getByRole("img", { name: "workshop-image" }).getAttribute("src")
-    expect(imageSrc).toBe(workshopItem.imageUrl)
+    expect(imageSrc).toEqual(workshopItem.imageUrl)
   })
 
   it("renders the workshop category icon", () => {
     const category = screen.getByRole("img", { name: "workshop-category" }).getAttribute("name")
-    expect(category).toBe(workshopItem.category)
+    expect(category).toEqual(workshopItem.category)
   })
 
   it("renders the workshop date", () => {
     const date = screen.getByRole("heading", { name: "workshop-date" }).textContent
-    expect(date).toBe(displayDate(workshopItem.date))
+    expect(date).toEqual(displayDate(workshopItem.date))
   })
 
   it("renders the workshop time", () => {
     const time = screen.getByRole("heading", { name: "workshop-time" }).textContent
-    expect(time).toBe(displayTime(workshopItem.date))
+    expect(time).toEqual(displayTime(workshopItem.date))
   })
 
   it("renders the workshop title", () => {
     const title = screen.getByRole("heading", { name: "workshop-title" }).textContent
-    expect(title).toBe(workshopItem.title)
+    expect(title).toEqual(workshopItem.title)
   })
 
   it("renders the workshop speaker", () => {
     const user = screen.getByRole("heading", { name: "workshop-user" }).textContent
-    expect(user).toBe(workshopUser?.name)
+    expect(user).toEqual(workshopUser?.name)
   })
 
   it("renders the workshop description", () => {
     const description = screen.getByTestId("workshop-description").textContent
-    expect(description).toBe(workshopItem.desc)
+    expect(description).toEqual(workshopItem.desc)
   })
 
   it("renders the workshop price per ticket", () => {
     const price = screen.getByRole("heading", { name: "workshop-price" }).textContent
-    expect(price).toBe(monetize(workshopItem.price))
+    expect(price).toEqual(monetize(workshopItem.price))
   })
 
   it.todo("renders the number of workshop tickets")
