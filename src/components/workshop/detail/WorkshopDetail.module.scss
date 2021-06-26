@@ -1,0 +1,16 @@
+.detail {
+  &__container {
+    flex-direction: column;
+  }
+  &__image_container {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,12 +1,20 @@
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
+import workshops from "mocks/workshops.json"
+import { WorkshopType } from "types/api"
 import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
+  const workshopItem: WorkshopType = workshops[0]
+
   beforeEach(() => {
-    render(<WorkshopDetail />)
+    render(<WorkshopDetail item={workshopItem} />)
   })
 
-  it.todo("renders the workshop image")
+  it("renders the workshop image", () => {
+    const imageSrc = screen.getByRole("img", { name: "workshop-image" }).getAttribute("src")
+    expect(imageSrc).toBe(workshopItem.imageUrl)
+  })
+
   it.todo("renders the workshop category icon")
   it.todo("renders the workshop date")
   it.todo("renders the workshop time")

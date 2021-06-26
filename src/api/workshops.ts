@@ -15,7 +15,7 @@ const workshopsApi = createApi({
         return url
       }
     }),
-    getWorkshopById: builder.query<WorkshopType, number>({ query: id => `${WORKSHOPS_URL}/${id}` })
+    getWorkshopById: builder.query<WorkshopType, string>({ query: id => `${WORKSHOPS_URL}/${id}` })
   })
 })
 
