@@ -10,9 +10,10 @@ import styles from "./WorkshopDetail.module.scss"
 type WorkshopDetailProps = {
   item: WorkshopType
   user?: UserType
+  quantity: number
 }
 
-const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
+const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
   const { imageUrl, title, category, date, desc, price } = item
 
   return (
@@ -51,7 +52,7 @@ const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
           {desc}
         </p>
       </div>
-      <CallToActionBox price={price} />
+      <CallToActionBox price={price} quantity={quantity} />
     </Flex>
   )
 }

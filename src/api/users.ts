@@ -8,7 +8,7 @@ const usersApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
     getUsers: builder.query<UserType[], null>({ query: () => USERS_URL }),
-    getUserById: builder.query<UserType, number>({ query: id => `${USERS_URL}/${id}` })
+    getUserById: builder.query<UserType, number>({ query: id => (id ? `${USERS_URL}/${id}` : "") })
   })
 })
 

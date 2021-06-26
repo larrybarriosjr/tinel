@@ -37,6 +37,7 @@ const DropdownInput = ({ id, items, value, onChange }: DropdownInputProps) => {
 
   return (
     <Select
+      menuPlacement="auto"
       options={items}
       value={value}
       isSearchable={false}

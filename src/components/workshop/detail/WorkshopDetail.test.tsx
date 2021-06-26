@@ -54,7 +54,11 @@ describe("Workshop Detail Page", () => {
     expect(price).toEqual(monetize(workshopItem.price))
   })
 
-  it.todo("renders the number of workshop tickets")
+  it("renders the number of workshop tickets", () => {
+    const quantity = document.querySelector("#workshop-ticket-dropdown")
+    expect(quantity?.lastChild?.firstChild?.textContent).toEqual("2")
+  })
+
   it.todo("renders the add to cart button")
   it.todo("renders the total price of the total amount of workshop tickets")
   it.todo("renders the back button")
