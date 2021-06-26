@@ -61,11 +61,11 @@ describe("Cart", () => {
       expect(title).toBeInTheDocument()
 
       if (idx + 1 === workshops[0].id) {
-        expect(title.textContent).toEqual(workshops[0].title)
+        expect(title).toHaveTextContent(workshops[0].title)
       }
 
       if (idx + 1 === workshops[1].id) {
-        expect(title.textContent).toEqual(workshops[1].title)
+        expect(title).toHaveTextContent(workshops[1].title)
       }
     })
   })
@@ -101,11 +101,11 @@ describe("Cart", () => {
       expect(price).toBeInTheDocument()
 
       if (idx + 1 === workshops[0].id) {
-        expect(price.textContent).toEqual(monetize(workshops[0].price))
+        expect(price).toHaveTextContent(monetize(workshops[0].price))
       }
 
       if (idx + 1 === workshops[1].id) {
-        expect(price.textContent).toEqual(monetize(workshops[1].price))
+        expect(price).toHaveTextContent(monetize(workshops[1].price))
       }
     })
   })
@@ -125,7 +125,7 @@ describe("Cart", () => {
     const price = screen.getByTestId("cart-total-price")
     expect(price).toBeInTheDocument()
 
-    expect(price.textContent).toEqual(monetize(totalPrice))
+    expect(price).toHaveTextContent(monetize(totalPrice))
   })
 
   it("renders the cart checkout button in the cart drawer", () => {

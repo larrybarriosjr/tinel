@@ -8,55 +8,55 @@ import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
   const workshopItem: WorkshopType = workshops[0]
-  const workshopUser = users.find(user => workshopItem.userId === user.id)
+  const workshopUser = users.filter(user => workshopItem.userId === user.id)[0]
 
   beforeEach(() => {
     render(<WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />)
   })
 
   it("renders the workshop image", () => {
-    const imageSrc = screen.getByRole("img", { name: "workshop-image" }).getAttribute("src")
-    expect(imageSrc).toEqual(workshopItem.imageUrl)
+    const image = screen.getByRole("img", { name: "workshop-image" })
+    expect(image).toHaveAttribute("src", workshopItem.imageUrl)
   })
 
   it("renders the workshop category icon", () => {
-    const category = screen.getByRole("img", { name: "workshop-category" }).getAttribute("name")
-    expect(category).toEqual(workshopItem.category)
+    const category = screen.getByRole("img", { name: "workshop-category" })
+    expect(category).toHaveAttribute("name", workshopItem.category)
   })
 
   it("renders the workshop date", () => {
-    const date = screen.getByRole("heading", { name: "workshop-date" }).textContent
-    expect(date).toEqual(displayDate(workshopItem.date))
+    const date = screen.getByRole("heading", { name: "workshop-date" })
+    expect(date).toHaveTextContent(displayDate(workshopItem.date))
   })
 
   it("renders the workshop time", () => {
-    const time = screen.getByRole("heading", { name: "workshop-time" }).textContent
-    expect(time).toEqual(displayTime(workshopItem.date))
+    const time = screen.getByRole("heading", { name: "workshop-time" })
+    expect(time).toHaveTextContent(displayTime(workshopItem.date))
   })
 
   it("renders the workshop title", () => {
-    const title = screen.getByRole("heading", { name: "workshop-title" }).textContent
-    expect(title).toEqual(workshopItem.title)
+    const title = screen.getByRole("heading", { name: "workshop-title" })
+    expect(title).toHaveTextContent(workshopItem.title)
   })
 
   it("renders the workshop speaker", () => {
-    const user = screen.getByRole("heading", { name: "workshop-user" }).textContent
-    expect(user).toEqual(workshopUser?.name)
+    const user = screen.getByRole("heading", { name: "workshop-user" })
+    expect(user).toHaveTextContent(workshopUser.name)
   })
 
   it("renders the workshop description", () => {
-    const description = screen.getByTestId("workshop-description").textContent
-    expect(description).toEqual(workshopItem.desc)
+    const description = screen.getByTestId("workshop-description")
+    expect(description).toHaveTextContent(workshopItem.desc)
   })
 
   it("renders the workshop price per ticket", () => {
-    const price = screen.getByRole("heading", { name: "workshop-price" }).textContent
-    expect(price).toEqual(monetize(workshopItem.price))
+    const price = screen.getByRole("heading", { name: "workshop-price" })
+    expect(price).toHaveTextContent(monetize(workshopItem.price))
   })
 
   it("renders the number of workshop tickets", () => {
     const quantity = document.querySelector("#workshop-ticket-dropdown")
-    expect(quantity?.lastChild?.firstChild?.textContent).toEqual("2")
+    expect(quantity?.lastChild?.firstChild).toHaveTextContent(/2/i)
   })
 
   it.todo("renders the add to cart button")

@@ -88,25 +88,25 @@ describe("Workshop Items", () => {
     const buttons = screen.getAllByRole("button", { name: "workshop-button-text" })
     const prices = workshops.length
     buttons.forEach(button => {
-      expect(button.textContent).toMatch(/add to cart/i)
+      expect(button).toHaveTextContent(/add to cart/i)
     })
-    expect(buttons.length).toEqual(prices)
+    expect(buttons).toHaveLength(prices)
   })
 
   it("renders the cart icon buttons in the workshop items", () => {
     const buttons = screen.getAllByRole("button", { name: "workshop-button-icon" })
     const prices = workshops.length
     buttons.forEach(button => {
-      expect(button.textContent).toMatch(/cart/i)
+      expect(button).toHaveTextContent(/cart/i)
     })
-    expect(buttons.length).toEqual(prices)
+    expect(buttons).toHaveLength(prices)
   })
 
   it("redirects to detail page when clicking the workshop image in the workshop items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-image-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toEqual(link.getAttribute("href"))
+      expect(appLocation).toHaveProperty("pathname", link.getAttribute("href"))
     })
   })
 
@@ -114,7 +114,7 @@ describe("Workshop Items", () => {
     const links = screen.getAllByRole("link", { name: "workshop-title-link" })
     links.forEach(link => {
       fireEvent.click(link)
-      expect(appLocation?.pathname).toEqual(link.getAttribute("href"))
+      expect(appLocation).toHaveProperty("pathname", link.getAttribute("href"))
     })
   })
 
@@ -188,7 +188,7 @@ describe("Workshop Items", () => {
   it("renders the load more button", () => {
     const button = screen.queryByRole("button", { name: "load-more-button" })
     if (workshops.length >= 9) {
-      expect(button?.textContent).toMatch(/load more/i)
+      expect(button).toHaveTextContent(/load more/i)
     } else {
       expect(button).not.toBeInTheDocument()
     }
