@@ -27,7 +27,7 @@ const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
           containerClassName={styles.detail__category_container}
         />
       </div>
-      <Flex className={styles.detail__details_container}>
+      <div>
         <Flex className={styles.detail__datetime_container}>
           <CalendarIcon className={styles.detail__datetime_icon} height="24" width="24" />
           <h6 className={styles.detail__date} aria-label="workshop-date" aria-details={date}>
@@ -36,7 +36,10 @@ const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
           <ClockIcon className={styles.detail__datetime_icon} height="24" width="24" />
           <h6 aria-label="workshop-time">{displayTime(date)}</h6>
         </Flex>
-      </Flex>
+        <h1 className={styles.detail__title} aria-label="workshop-title">
+          {title}
+        </h1>
+      </div>
     </Flex>
   )
 }

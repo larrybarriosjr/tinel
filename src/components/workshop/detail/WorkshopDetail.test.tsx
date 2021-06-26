@@ -31,7 +31,11 @@ describe("Workshop Detail Page", () => {
     expect(time).toBe(displayTime(workshopItem.date))
   })
 
-  it.todo("renders the workshop title")
+  it("renders the workshop title", () => {
+    const title = screen.getByRole("heading", { name: "workshop-title" }).textContent
+    expect(title).toBe(workshopItem.title)
+  })
+
   it.todo("renders the workshop speaker")
   it.todo("renders the workshop description")
   it.todo("renders the workshop price per ticket")
