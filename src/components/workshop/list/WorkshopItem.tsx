@@ -2,6 +2,7 @@ import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
 import PrimaryButton from "components/common/button/PrimaryButton"
+import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
@@ -11,7 +12,6 @@ import { mountDrawer, showSidebar } from "states/presentation"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
-import WorkshopCategoryIcon from "./WorkshopCategoryIcon"
 import styles from "./WorkshopList.module.scss"
 
 type WorkshopItemProps = {
@@ -37,15 +37,14 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             <img src={imageUrl} alt={title} aria-label="workshop-image" className={styles.item__image} />
           </Link>
         </span>
-        <span className={styles.item__category_container}>
-          <WorkshopCategoryIcon
-            category={category}
-            role="img"
-            aria-label="workshop-category"
-            name={category}
-            className={styles.item__category_icon}
-          />
-        </span>
+        <CategoryIcon
+          category={category}
+          role="img"
+          aria-label="workshop-category"
+          name={category}
+          className={styles.item__category_icon}
+          containerClassName={styles.item__category_container}
+        />
       </div>
       <Flex className={styles.item__details_container}>
         <Flex className={styles.item__datetime_container}>

@@ -15,7 +15,11 @@ describe("Workshop Detail Page", () => {
     expect(imageSrc).toBe(workshopItem.imageUrl)
   })
 
-  it.todo("renders the workshop category icon")
+  it("renders the workshop category icon", () => {
+    const category = screen.getByRole("img", { name: "workshop-category" }).getAttribute("name")
+    expect(category).toBe(workshopItem.category)
+  })
+
   it.todo("renders the workshop date")
   it.todo("renders the workshop time")
   it.todo("renders the workshop title")
