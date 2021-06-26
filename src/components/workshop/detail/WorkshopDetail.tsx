@@ -2,15 +2,16 @@ import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
-import { WorkshopType } from "types/api"
+import { UserType, WorkshopType } from "types/api"
 import { displayDate, displayTime } from "utils/text-utils"
 import styles from "./WorkshopDetail.module.scss"
 
 type WorkshopDetailProps = {
   item: WorkshopType
+  user?: UserType
 }
 
-const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
+const WorkshopDetail = ({ item, user }: WorkshopDetailProps) => {
   const { imageUrl, title, category, date } = item
 
   return (
@@ -39,6 +40,12 @@ const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
         <h1 className={styles.detail__title} aria-label="workshop-title">
           {title}
         </h1>
+        {user ? (
+          <Flex className={styles.detail__user_container}>
+            <p className="bold">WITH</p>
+            <h5 aria-label="workshop-user">{user.name}</h5>
+          </Flex>
+        ) : null}
       </div>
     </Flex>
   )

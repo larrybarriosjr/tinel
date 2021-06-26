@@ -41,5 +41,11 @@
   }
   &__title {
     color: var(--blue);
+    padding-bottom: 10px;
+  }
+  &__user_container {
+    align-items: center;
+    gap: 5px;
+    padding: 0 20px;
   }
 }

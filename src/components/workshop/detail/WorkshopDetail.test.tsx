@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import users from "mocks/users.json"
 import workshops from "mocks/workshops.json"
 import { WorkshopType } from "types/api"
 import { displayDate, displayTime } from "utils/text-utils"
@@ -6,9 +7,10 @@ import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
   const workshopItem: WorkshopType = workshops[0]
+  const workshopUser = users.find(user => workshopItem.userId === user.id)
 
   beforeEach(() => {
-    render(<WorkshopDetail item={workshopItem} />)
+    render(<WorkshopDetail item={workshopItem} user={workshopUser} />)
   })
 
   it("renders the workshop image", () => {
@@ -36,7 +38,11 @@ describe("Workshop Detail Page", () => {
     expect(title).toBe(workshopItem.title)
   })
 
-  it.todo("renders the workshop speaker")
+  it("renders the workshop speaker", () => {
+    const user = screen.getByRole("heading", { name: "workshop-user" }).textContent
+    expect(user).toBe(workshopUser?.name)
+  })
+
   it.todo("renders the workshop description")
   it.todo("renders the workshop price per ticket")
   it.todo("renders the number of workshop tickets")
