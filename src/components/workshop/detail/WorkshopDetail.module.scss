@@ -27,4 +27,18 @@
     right: 12px;
     bottom: -20px;
   }
+  &__details_container {
+    padding: 20px;
+    padding-bottom: 10px;
+  }
+  &__datetime_container {
+    align-items: center;
+    white-space: nowrap;
+  }
+  &__datetime_icon {
+    margin-right: 3px;
+  }
+  &__date {
+    margin-right: 10px;
+  }
 }

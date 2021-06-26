@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import workshops from "mocks/workshops.json"
 import { WorkshopType } from "types/api"
+import { displayDate, displayTime } from "utils/text-utils"
 import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
@@ -20,8 +21,16 @@ describe("Workshop Detail Page", () => {
     expect(category).toBe(workshopItem.category)
   })
 
-  it.todo("renders the workshop date")
-  it.todo("renders the workshop time")
+  it("renders the workshop date", () => {
+    const date = screen.getByRole("heading", { name: "workshop-date" }).textContent
+    expect(date).toBe(displayDate(workshopItem.date))
+  })
+
+  it("renders the workshop time", () => {
+    const time = screen.getByRole("heading", { name: "workshop-time" }).textContent
+    expect(time).toBe(displayTime(workshopItem.date))
+  })
+
   it.todo("renders the workshop title")
   it.todo("renders the workshop speaker")
   it.todo("renders the workshop description")

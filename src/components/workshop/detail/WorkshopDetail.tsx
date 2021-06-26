@@ -1,6 +1,9 @@
+import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
+import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
+import { displayDate, displayTime } from "utils/text-utils"
 import styles from "./WorkshopDetail.module.scss"
 
 type WorkshopDetailProps = {
@@ -8,7 +11,7 @@ type WorkshopDetailProps = {
 }
 
 const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
-  const { imageUrl, title, category } = item
+  const { imageUrl, title, category, date } = item
 
   return (
     <Flex className={styles.detail__container}>
@@ -24,6 +27,16 @@ const WorkshopDetail = ({ item }: WorkshopDetailProps) => {
           containerClassName={styles.detail__category_container}
         />
       </div>
+      <Flex className={styles.detail__details_container}>
+        <Flex className={styles.detail__datetime_container}>
+          <CalendarIcon className={styles.detail__datetime_icon} height="24" width="24" />
+          <h6 className={styles.detail__date} aria-label="workshop-date" aria-details={date}>
+            {displayDate(date)}
+          </h6>
+          <ClockIcon className={styles.detail__datetime_icon} height="24" width="24" />
+          <h6 aria-label="workshop-time">{displayTime(date)}</h6>
+        </Flex>
+      </Flex>
     </Flex>
   )
 }
