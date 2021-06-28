@@ -19,4 +19,20 @@
       }
     }
   }
+  &__header_container {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__close_button {
+    padding: 4px;
+    margin-right: -20px;
+  }
+  &__description {
+    color: var(--light-grey);
+  }
 }
