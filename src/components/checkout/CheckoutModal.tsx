@@ -4,6 +4,7 @@ import { FlatButton } from "components/common/button"
 import Modal from "components/common/Modal"
 import Flex from "components/container/Flex"
 import styles from "./Checkout.module.scss"
+import CheckoutForm from "./CheckoutForm"
 
 type CheckoutModalProps = React.ComponentPropsWithoutRef<"dialog"> & {
   onClose: () => void
@@ -24,6 +25,7 @@ const CheckoutModal = ({ open, className, onClose, ...props }: CheckoutModalProp
           <CloseIcon />
         </FlatButton>
       </Flex>
+      <CheckoutForm />
     </Modal>
   )
 }

@@ -36,3 +36,16 @@
     color: var(--light-grey);
   }
 }
+
+.form {
+  &__container {
+    margin-top: 34px;
+    margin-bottom: 45px;
+  }
+  &__submit_button {
+    height: 60px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}

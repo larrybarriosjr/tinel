@@ -18,6 +18,12 @@ export enum Color {
   DARKER_GREY = "var(--darker-grey)"
 }
 
+export enum Genders {
+  MALE = "male",
+  FEMALE = "female",
+  OTHER = "other"
+}
+
 export enum Routes {
   HOME = "/",
   WORKSHOP = "/workshop/",

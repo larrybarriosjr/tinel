@@ -1,0 +1,35 @@
+.text {
+  &__container {
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 30px;
+  }
+  &__label_container {
+    justify-content: space-between;
+  }
+  &__error_text {
+    color: var(--red);
+  }
+  &__input {
+    height: 54px;
+    border: none;
+    border-bottom: 2px solid var(--light-grey);
+    font-weight: 500;
+    font-size: 18.4px;
+    line-height: 23px;
+    color: var(--darker-grey);
+    &.error {
+      border-bottom: 2px solid var(--red);
+    }
+    &::placeholder {
+      color: var(--light-grey);
+    }
+    &:focus {
+      background: var(--lighter-grey);
+      border-bottom: 2px solid var(--blue);
+    }
+    &:not(:placeholder-shown) {
+      padding-left: 20px;
+    }
+  }
+}
