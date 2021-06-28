@@ -100,3 +100,22 @@
     color: var(--light-grey);
   }
 }
+
+.similar {
+  &__container {
+    background: var(--lighter-grey);
+    padding: 37px 20px;
+  }
+  &__title {
+    padding: 20px;
+    padding-top: 6px;
+  }
+  &__list {
+    flex-direction: column;
+    gap: 20px;
+    @include media($breakpoint-sm) {
+      gap: 40px;
+      margin: 40px 20px;
+    }
+  }
+}

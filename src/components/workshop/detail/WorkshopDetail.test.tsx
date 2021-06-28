@@ -10,6 +10,7 @@ import selectEvent from "react-select-event"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
+import SimilarWorkshops from "./SimilarWorkshops"
 import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
@@ -93,12 +94,12 @@ describe("Workshop Detail Page", () => {
   })
 
   it("renders the back button", () => {
-    const button = screen.getByRole("link", { name: "back-button" })
+    const button = screen.getByRole("button", { name: /back/i })
     expect(button).toHaveTextContent(/back/i)
   })
 
   it("redirects to the homepage when clicking the back button", () => {
-    const button = screen.getByRole("link", { name: "back-button" })
+    const button = screen.getByRole("button", { name: /back/i })
     fireEvent.click(button)
     expect(appLocation).toHaveProperty("pathname", Routes.HOME)
   })
@@ -111,5 +112,30 @@ describe("Workshop Detail Page", () => {
     await selectEvent.select(dropdown, ["4"])
     fireEvent.click(button)
     expect(drawerCounter).toHaveTextContent(/4/i)
+  })
+})
+
+describe("Similar Workshops", () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <SimilarWorkshops current={workshops[0]} items={workshops} />
+          <Route path="*" />
+        </MemoryRouter>
+      </Provider>
+    )
+  })
+
+  it("renders the similar workshops title", () => {
+    const title = screen.getByText(/similar workshops/i)
+    expect(title).toHaveTextContent(/similar workshops/i)
+  })
+
+  it("renders 3 workshops similar in categories", () => {
+    const list = screen.getAllByRole("img", { name: /category/i })
+    list.forEach(item => {
+      expect(item).toHaveAttribute("name", "backend")
+    })
   })
 })

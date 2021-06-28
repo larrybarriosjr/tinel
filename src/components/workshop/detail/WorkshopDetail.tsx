@@ -1,10 +1,10 @@
 import { ReactComponent as BackIcon } from "assets/icons/arrow-left.svg"
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
+import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
-import { Routes } from "constants/enums"
-import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { UserType, WorkshopType } from "types/api"
 import { displayDate, displayTime } from "utils/text-utils"
 import CallToActionBox from "./CallToActionBox"
@@ -19,12 +19,14 @@ type WorkshopDetailProps = {
 const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
   const { imageUrl, title, category, date, desc } = item
 
+  const { goBack } = useHistory()
+
   return (
     <Flex className={styles.detail__container}>
-      <Link to={Routes.HOME} className={styles.detail__back_button} aria-label="back-button">
+      <FlatButton onClick={goBack} className={styles.detail__back_button}>
         <BackIcon />
         <h6>Back</h6>
-      </Link>
+      </FlatButton>
       <div className={styles.detail__graphics_container}>
         <div className={styles.detail__image_container}>
           <img src={imageUrl} alt={title} className={styles.detail__image} aria-label="workshop-image" />

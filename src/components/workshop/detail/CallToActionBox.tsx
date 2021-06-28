@@ -5,7 +5,7 @@ import DropdownInput from "components/common/input/DropdownInput"
 import Flex from "components/container/Flex"
 import { quantityItems } from "constants/data"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { addToCart, updateWorkshopQuantity } from "states/cart"
 import { mountDrawer, showSidebar } from "states/presentation"
 import { WorkshopType } from "types/api"
@@ -26,6 +26,10 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
   const totalClasses = clsx([styles.cta__total, "semi"])
 
   const [quantityValue, setQuantityValue] = useState(quantity.toString())
+
+  useEffect(() => {
+    setQuantityValue(quantity.toString())
+  }, [quantity])
 
   const handleQuantityChange = (value: DropDownItemType | null) => {
     if (!value) return
