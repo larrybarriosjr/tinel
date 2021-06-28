@@ -1,4 +1,5 @@
 import PrimaryButton from "components/common/button/PrimaryButton"
+import DateInput from "components/common/input/DateInput"
 import TextInput from "components/common/input/TextInput"
 import { initialCheckoutData } from "constants/form"
 import { Form, Formik, FormikHelpers } from "formik"
@@ -18,8 +19,9 @@ const CheckoutForm = () => {
         <TextInput name="firstName" label="First Name" placeholder="Type your first name here" />
         <TextInput name="lastName" label="Last Name" placeholder="Type your last name here" />
         <TextInput name="email" label="Email Address" placeholder="Type your email address here" />
+        <DateInput name="birthday" label="Date of Birth" placeholder="DD.MM.YYYY" />
         <TextInput name="address" label="Address" placeholder="Type your address here" />
-        <TextInput name="zipCode" label="Zip Code" placeholder="eg. 21310" />
+        <TextInput name="zipCode" label="Zip Code" placeholder="eg. 21310" type="number" min="0" />
         <PrimaryButton className={styles.form__submit_button} type="submit">
           <h5>Checkout</h5>
         </PrimaryButton>
