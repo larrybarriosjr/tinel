@@ -10,6 +10,7 @@ import selectEvent from "react-select-event"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
+import SimilarWorkshops from "./SimilarWorkshops"
 import WorkshopDetail from "./WorkshopDetail"
 
 describe("Workshop Detail Page", () => {
@@ -112,4 +113,13 @@ describe("Workshop Detail Page", () => {
     fireEvent.click(button)
     expect(drawerCounter).toHaveTextContent(/4/i)
   })
+})
+
+describe("Similar Workshops", () => {
+  beforeEach(() => {
+    render(<SimilarWorkshops current={workshops[0]} items={workshops} />)
+  })
+
+  it.todo("renders the similar workshops title")
+  it.todo("renders 3 workshops similar in categories")
 })
