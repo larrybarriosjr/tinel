@@ -7,7 +7,11 @@ import { monetize } from "utils/number-utils"
 import styles from "./Cart.module.scss"
 import CartItem from "./CartItem"
 
-const CartList = () => {
+type CartListProps = {
+  onCheckout: () => void
+}
+
+const CartList = ({ onCheckout }: CartListProps) => {
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
@@ -47,7 +51,7 @@ const CartList = () => {
       )}
       {cartQuantity ? (
         <Flex className={styles.list__checkout_button_container}>
-          <PrimaryButton className={buttonClasses} data-testid="cart-checkout-button">
+          <PrimaryButton onClick={onCheckout} className={buttonClasses} data-testid="cart-checkout-button">
             <h5>Checkout</h5>
           </PrimaryButton>
         </Flex>

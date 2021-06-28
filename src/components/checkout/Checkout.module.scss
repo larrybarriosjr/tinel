@@ -1,0 +1,22 @@
+.modal {
+  &__container {
+    transition: all 300ms ease-in-out;
+    bottom: -2rem;
+    opacity: 0;
+    &.open {
+      bottom: 0;
+      opacity: 1;
+      animation: show 300ms ease-in-out;
+    }
+    @keyframes show {
+      from {
+        opacity: 0;
+        bottom: -2rem;
+      }
+      to {
+        opacity: 1;
+        bottom: 0;
+      }
+    }
+  }
+}

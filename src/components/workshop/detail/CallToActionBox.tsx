@@ -7,7 +7,7 @@ import { quantityItems } from "constants/data"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useEffect, useState } from "react"
 import { addToCart, updateWorkshopQuantity } from "states/cart"
-import { mountDrawer, showSidebar } from "states/presentation"
+import { mountDrawer, showDrawer } from "states/presentation"
 import { WorkshopType } from "types/api"
 import { DropDownItemType } from "types/component"
 import { monetize } from "utils/number-utils"
@@ -39,7 +39,7 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
   const handleAddToCartClick = () => {
     if (!existingInCart) dispatch(addToCart(item))
     dispatch(updateWorkshopQuantity({ id, quantity: parseInt(quantityValue) }))
-    dispatch(showSidebar())
+    dispatch(showDrawer())
     dispatch(mountDrawer())
   }
 

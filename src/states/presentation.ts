@@ -3,17 +3,19 @@ import { PresentationState } from "types/redux"
 
 const initialState: PresentationState = {
   drawerDisplay: false,
-  drawerMounted: false
+  drawerMounted: false,
+  checkoutModalDisplay: false,
+  checkoutModalMounted: false
 }
 
 const presentationSlice = createSlice({
   name: "presentationSlice",
   initialState,
   reducers: {
-    showSidebar: state => {
+    showDrawer: state => {
       state.drawerDisplay = true
     },
-    hideSidebar: state => {
+    hideDrawer: state => {
       state.drawerDisplay = false
     },
     mountDrawer: state => {
@@ -21,12 +23,33 @@ const presentationSlice = createSlice({
     },
     unmountDrawer: state => {
       state.drawerMounted = false
+    },
+    showCheckoutModal: state => {
+      state.checkoutModalDisplay = true
+    },
+    hideCheckoutModal: state => {
+      state.checkoutModalDisplay = false
+    },
+    mountCheckoutModal: state => {
+      state.checkoutModalMounted = true
+    },
+    unmountCheckoutModal: state => {
+      state.checkoutModalMounted = false
     }
   }
 })
 
 const { actions, reducer } = presentationSlice
 
-export const { showSidebar, hideSidebar, mountDrawer, unmountDrawer } = actions
+export const {
+  showDrawer,
+  hideDrawer,
+  mountDrawer,
+  unmountDrawer,
+  showCheckoutModal,
+  hideCheckoutModal,
+  mountCheckoutModal,
+  unmountCheckoutModal
+} = actions
 export const { name: presentationName } = presentationSlice
 export default reducer
