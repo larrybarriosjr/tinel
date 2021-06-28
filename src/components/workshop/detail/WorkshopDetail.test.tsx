@@ -94,12 +94,12 @@ describe("Workshop Detail Page", () => {
   })
 
   it("renders the back button", () => {
-    const button = screen.getByRole("link", { name: "back-button" })
+    const button = screen.getByRole("button", { name: /back/i })
     expect(button).toHaveTextContent(/back/i)
   })
 
   it("redirects to the homepage when clicking the back button", () => {
-    const button = screen.getByRole("link", { name: "back-button" })
+    const button = screen.getByRole("button", { name: /back/i })
     fireEvent.click(button)
     expect(appLocation).toHaveProperty("pathname", Routes.HOME)
   })
@@ -117,9 +117,25 @@ describe("Workshop Detail Page", () => {
 
 describe("Similar Workshops", () => {
   beforeEach(() => {
-    render(<SimilarWorkshops current={workshops[0]} items={workshops} />)
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <SimilarWorkshops current={workshops[0]} items={workshops} />
+          <Route path="*" />
+        </MemoryRouter>
+      </Provider>
+    )
   })
 
-  it.todo("renders the similar workshops title")
-  it.todo("renders 3 workshops similar in categories")
+  it("renders the similar workshops title", () => {
+    const title = screen.getByText(/similar workshops/i)
+    expect(title).toHaveTextContent(/similar workshops/i)
+  })
+
+  it("renders 3 workshops similar in categories", () => {
+    const list = screen.getAllByRole("img", { name: /category/i })
+    list.forEach(item => {
+      expect(item).toHaveAttribute("name", "backend")
+    })
+  })
 })
