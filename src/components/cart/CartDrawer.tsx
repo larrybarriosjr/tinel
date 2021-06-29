@@ -1,5 +1,6 @@
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
 import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
+import { ReactComponent as FilledCartIcon } from "assets/icons/filled-cart.svg"
 import { FlatButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import Drawer from "components/layout/Drawer"
@@ -22,7 +23,11 @@ const CartDrawer = ({ open, onClose, onTransitionEnd, onCheckout }: CartDrawerPr
     <Drawer open={open} onTransitionEnd={onTransitionEnd}>
       <Flex className={styles.drawer__header_container}>
         <Flex className={styles.drawer__cart_container}>
-          <EmptyCartIcon data-testid="drawer-cart-icon" />
+          {!cartQuantity ? (
+            <EmptyCartIcon data-testid="drawer-cart-icon" />
+          ) : (
+            <FilledCartIcon data-testid="drawer-cart-icon" />
+          )}
           <h5 className={styles.drawer__counter} data-testid="drawer-cart-counter">
             {cartQuantity} {pluralize("Workshop", cartQuantity)}
           </h5>

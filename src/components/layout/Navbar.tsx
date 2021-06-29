@@ -1,4 +1,5 @@
 import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
+import { ReactComponent as FilledCartIcon } from "assets/icons/filled-cart.svg"
 import { ReactComponent as Logo } from "assets/logo.svg"
 import CartDrawer from "components/cart/CartDrawer"
 import { FlatButton } from "components/common/button"
@@ -54,7 +55,11 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </Link>
         <Flex className={styles.nav__cart_container}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
-            <EmptyCartIcon data-testid="navbar-cart-icon" />
+            {!cartQuantity ? (
+              <EmptyCartIcon data-testid="navbar-cart-icon" />
+            ) : (
+              <FilledCartIcon data-testid="navbar-cart-icon" />
+            )}
           </FlatButton>
           <h6 className={styles.nav__cart_counter} data-testid="navbar-cart-counter">
             {cartQuantity
