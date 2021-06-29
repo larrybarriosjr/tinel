@@ -61,6 +61,7 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
           items={quantityItems}
           value={quantityItems.find(item => quantityValue === item.value)}
           id="workshop-ticket-dropdown"
+          placement="top"
           onChange={handleQuantityChange}
         />
         <PrimaryButton

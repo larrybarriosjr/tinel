@@ -1,16 +1,17 @@
 import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
 import { Colors } from "constants/enums"
-import Select, { ActionMeta, GroupTypeBase, Styles } from "react-select"
+import Select, { ActionMeta, GroupTypeBase, MenuPlacement, Styles } from "react-select"
 import { DropDownItemType } from "types/component"
 
 type DropdownInputProps = {
   id: string
   items: DropDownItemType[]
   value?: DropDownItemType
+  placement?: MenuPlacement
   onChange?: (value: DropDownItemType | null, action: ActionMeta<DropDownItemType>) => void
 }
 
-const DropdownInput = ({ id, items, value, onChange }: DropdownInputProps) => {
+const DropdownInput = ({ id, items, value, placement = "auto", onChange }: DropdownInputProps) => {
   const styles: Partial<Styles<DropDownItemType, false, GroupTypeBase<DropDownItemType>>> | undefined = {
     control: () => ({
       display: "flex",
@@ -37,7 +38,7 @@ const DropdownInput = ({ id, items, value, onChange }: DropdownInputProps) => {
 
   return (
     <Select
-      menuPlacement="auto"
+      menuPlacement={placement}
       options={items}
       value={value}
       isSearchable={false}
