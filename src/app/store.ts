@@ -10,12 +10,13 @@ import persistStore from "redux-persist/lib/persistStore"
 import storage from "redux-persist/lib/storage"
 import cartReducer, { cartName } from "states/cart"
 import presentationReducer, { presentationName } from "states/presentation"
+import workshopReducer, { workshopName } from "states/workshop"
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: [cartName]
+  whitelist: [cartName, workshopName]
 }
 
 const reducers = combineReducers({
@@ -24,7 +25,8 @@ const reducers = combineReducers({
   [ApiReducerKey.USERS]: usersApiReducer,
   [ApiReducerKey.WORKSHOPS]: workshopsApiReducer,
   [presentationName]: presentationReducer,
-  [cartName]: cartReducer
+  [cartName]: cartReducer,
+  [workshopName]: workshopReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)

@@ -3,18 +3,22 @@ import { useGetWorkshopsQuery } from "api/workshops"
 import Flex from "components/container/Flex"
 import WorkshopFilter from "components/workshop/list/WorkshopFilter"
 import WorkshopList from "components/workshop/list/WorkshopList"
+import { WorkshopCategories } from "constants/enums"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useState } from "react"
+import { selectFilter } from "states/workshop"
 import { sortByDateDesc } from "utils/array-utils"
 import styles from "./Page.module.scss"
 
 const HomePage = () => {
+  const dispatch = useAppDispatch()
   const [limit, setLimit] = useState(9)
-  const [category, setCategory] = useState("all")
+  const category = useAppSelector(state => state.workshopSlice.filterSelected)
   const { data: items } = useGetWorkshopsQuery({ limit, category })
   const { data: categories } = useGetCategoriesQuery(null)
 
-  const handleSelectCategory = (text: string) => {
-    setCategory(text)
+  const handleSelectCategory = (category: WorkshopCategories) => {
+    dispatch(selectFilter(category))
   }
 
   const handleLoadMoreItem = () => {

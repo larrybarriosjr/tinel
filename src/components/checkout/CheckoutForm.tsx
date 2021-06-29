@@ -9,6 +9,7 @@ import { Form, Formik, FormikHelpers } from "formik"
 import { useAppDispatch } from "hooks/redux"
 import { clearCart } from "states/cart"
 import { toggleCheckoutModalDisplay } from "states/presentation"
+import { resetFilter } from "states/workshop"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validation/checkoutSchema"
 import styles from "./Checkout.module.scss"
@@ -20,6 +21,7 @@ const CheckoutForm = () => {
     helpers.resetForm()
     dispatch(toggleCheckoutModalDisplay(false))
     dispatch(clearCart())
+    dispatch(resetFilter())
   }
 
   return (

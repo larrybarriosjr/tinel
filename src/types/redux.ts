@@ -1,4 +1,5 @@
 import { store } from "app/store"
+import { WorkshopCategories } from "constants/enums"
 import { OrderType } from "./api"
 
 // Redux Types
@@ -11,7 +12,6 @@ export interface CartState {
   cartQuantity: number
   cartTotal: number
 }
-
 export interface UpdateWorkshopQuantityAction {
   id: number
   quantity: number
@@ -23,4 +23,9 @@ export interface PresentationState {
   drawerMounted: boolean
   checkoutModalDisplay: boolean
   checkoutModalMounted: boolean
+}
+
+// Workshop Filter Types
+export interface WorkshopFilterState {
+  filterSelected: WorkshopCategories
 }
