@@ -1,8 +1,8 @@
 import { CloseIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
-import Modal from "components/common/Modal"
 import Flex from "components/container/Flex"
+import Modal from "components/layout/Modal"
 import styles from "./Checkout.module.scss"
 import CheckoutForm from "./CheckoutForm"
 
