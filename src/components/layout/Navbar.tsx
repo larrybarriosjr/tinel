@@ -6,7 +6,14 @@ import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { Link } from "react-router-dom"
-import { hideSidebar, mountDrawer, showSidebar, unmountDrawer } from "states/presentation"
+import {
+  hideDrawer,
+  mountCheckoutModal,
+  mountDrawer,
+  showCheckoutModal,
+  showDrawer,
+  unmountDrawer
+} from "states/presentation"
 import { pluralize } from "utils/text-utils"
 import styles from "./Layout.module.scss"
 
@@ -16,20 +23,29 @@ const Navbar = ({ ...props }: NavbarProps) => {
   const dispatch = useAppDispatch()
   const drawerDisplay = useAppSelector(state => state.presentationSlice.drawerDisplay)
   const drawerMounted = useAppSelector(state => state.presentationSlice.drawerMounted)
+  const checkoutModalDisplay = useAppSelector(state => state.presentationSlice.checkoutModalDisplay)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
 
   const handleShowDrawer = () => {
-    dispatch(showSidebar())
+    dispatch(showDrawer())
     dispatch(mountDrawer())
   }
 
   const handleHideDrawer = () => {
-    dispatch(hideSidebar())
+    dispatch(hideDrawer())
   }
 
   const handleUnmountDrawer = () => {
     if (drawerDisplay) return
     dispatch(unmountDrawer())
+    if (checkoutModalDisplay) {
+      dispatch(mountCheckoutModal())
+    }
+  }
+
+  const handleCheckout = () => {
+    dispatch(hideDrawer())
+    dispatch(showCheckoutModal())
   }
 
   return (
@@ -50,7 +66,12 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </Flex>
       </Flex>
       {drawerMounted ? (
-        <CartDrawer open={drawerDisplay} onClose={handleHideDrawer} onTransitionEnd={handleUnmountDrawer} />
+        <CartDrawer
+          open={drawerDisplay}
+          onClose={handleHideDrawer}
+          onTransitionEnd={handleUnmountDrawer}
+          onCheckout={handleCheckout}
+        />
       ) : null}
     </nav>
   )

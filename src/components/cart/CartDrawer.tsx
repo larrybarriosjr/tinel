@@ -12,9 +12,10 @@ type CartDrawerProps = {
   open: boolean
   onClose: () => void
   onTransitionEnd: () => void
+  onCheckout: () => void
 }
 
-const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
+const CartDrawer = ({ open, onClose, onTransitionEnd, onCheckout }: CartDrawerProps) => {
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
 
   return (
@@ -32,7 +33,7 @@ const CartDrawer = ({ open, onClose, onTransitionEnd }: CartDrawerProps) => {
           </FlatButton>
         </Flex>
       </Flex>
-      <CartList />
+      <CartList onCheckout={onCheckout} />
     </Drawer>
   )
 }

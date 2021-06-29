@@ -24,7 +24,7 @@ describe("Cart", () => {
 
     render(
       <Provider store={store}>
-        <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} />
+        <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} onCheckout={() => null} />
       </Provider>
     )
   })
