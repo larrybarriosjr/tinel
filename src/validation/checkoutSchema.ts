@@ -5,8 +5,8 @@ import { boolean, object, SchemaOf, string } from "yup"
 const checkoutSchema: SchemaOf<CheckoutFormType> = object().shape({
   firstName: string().required("First Name is required"),
   lastName: string().required("Last Name is required"),
-  email: string().email("Invalid email address").required("Email address is required"),
-  birthday: string().required("Date of birth is required"),
+  email: string().email("Invalid email address").required("Email Address is required"),
+  birthday: string().required("Date of Birth is required"),
   gender: string()
     .oneOf([...genderItems.map(item => item.value)], "Gender is required")
     .required("Gender is required"),
