@@ -1,4 +1,4 @@
-import UnderlineButton from "components/common/button/UnderlineButton"
+import { UnderlineButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
 import WorkshopItem from "./WorkshopItem"

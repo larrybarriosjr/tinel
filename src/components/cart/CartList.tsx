@@ -1,5 +1,4 @@
-import clsx from "clsx"
-import PrimaryButton from "components/common/button/PrimaryButton"
+import { SecondaryButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import { useAppSelector } from "hooks/redux"
 import { Fragment } from "react"
@@ -15,8 +14,6 @@ const CartList = ({ onCheckout }: CartListProps) => {
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
-
-  const buttonClasses = clsx([styles.list__checkout_button, "cart_drawer"])
 
   return (
     <Flex className={styles.list__container}>
@@ -51,9 +48,9 @@ const CartList = ({ onCheckout }: CartListProps) => {
       )}
       {cartQuantity ? (
         <Flex className={styles.list__checkout_button_container}>
-          <PrimaryButton onClick={onCheckout} className={buttonClasses} data-testid="cart-checkout-button">
+          <SecondaryButton onClick={onCheckout} data-testid="cart-checkout-button">
             <h5>Checkout</h5>
-          </PrimaryButton>
+          </SecondaryButton>
         </Flex>
       ) : null}
     </Flex>

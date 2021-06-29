@@ -1,6 +1,6 @@
 import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
 import clsx from "clsx"
-import PrimaryButton from "components/common/button/PrimaryButton"
+import { PrimaryButton } from "components/common/button"
 import DropdownInput from "components/common/input/DropdownInput"
 import Flex from "components/container/Flex"
 import { quantityItems } from "constants/data"

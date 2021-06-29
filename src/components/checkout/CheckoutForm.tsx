@@ -1,4 +1,4 @@
-import PrimaryButton from "components/common/button/PrimaryButton"
+import { PrimaryButton } from "components/common/button"
 import CheckboxInput from "components/common/input/CheckboxInput"
 import DateInput from "components/common/input/DateInput"
 import SelectInput from "components/common/input/SelectInput"

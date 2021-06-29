@@ -5,10 +5,17 @@
   color: var(--darker-grey);
   background: var(--yellow);
   padding: 0;
-  &.cart_drawer {
-    color: white;
-    background: var(--blue);
-  }
+}
+
+.secondary {
+  height: 60px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  color: white;
+  background: var(--blue);
+  padding: 0;
 }
 
 .flat {

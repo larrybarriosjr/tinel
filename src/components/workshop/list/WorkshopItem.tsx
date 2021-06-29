@@ -1,7 +1,7 @@
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
 import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
 import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
-import PrimaryButton from "components/common/button/PrimaryButton"
+import { PrimaryButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
