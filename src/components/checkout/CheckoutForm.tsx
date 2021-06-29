@@ -1,28 +1,44 @@
-import PrimaryButton from "components/common/button/PrimaryButton"
-import CheckboxInput from "components/common/input/CheckboxInput"
-import DateInput from "components/common/input/DateInput"
-import SelectInput from "components/common/input/SelectInput"
-import TextInput from "components/common/input/TextInput"
+import { QueryStatus } from "@reduxjs/toolkit/dist/query"
+import { useCreateOrderMutation } from "api/orders"
+import { PrimaryButton } from "components/common/button"
+import { CheckboxInput, DateInput, SelectInput, TextInput } from "components/common/input"
+import Loading from "components/layout/Loading"
 import { genderItems } from "constants/data"
 import { initialCheckoutData } from "constants/form"
 import { Form, Formik, FormikHelpers } from "formik"
-import { useAppDispatch } from "hooks/redux"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
+import { useEffect } from "react"
 import { clearCart } from "states/cart"
-import { hideCheckoutModal } from "states/presentation"
+import { toggleCheckoutModalDisplay, toggleSuccessModalDisplay } from "states/presentation"
+import { resetFilter } from "states/workshop"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validation/checkoutSchema"
 import styles from "./Checkout.module.scss"
 
 const CheckoutForm = () => {
   const dispatch = useAppDispatch()
+  const cartItems = useAppSelector(state => state.cartSlice.cartItems)
+  const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
+  const [createOrder, { data, status, isLoading }] = useCreateOrderMutation()
+
   const handleSubmit = (values: CheckoutFormType, helpers: FormikHelpers<CheckoutFormType>) => {
     console.log(values)
+    createOrder({ products: cartItems, total: cartTotal })
     helpers.resetForm()
-    dispatch(hideCheckoutModal())
-    dispatch(clearCart())
   }
 
-  return (
+  useEffect(() => {
+    if (status === QueryStatus.fulfilled) {
+      dispatch(toggleCheckoutModalDisplay(false))
+      dispatch(clearCart())
+      dispatch(resetFilter())
+      dispatch(toggleSuccessModalDisplay(true))
+    }
+  }, [status, data, dispatch])
+
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Formik initialValues={initialCheckoutData} validationSchema={checkoutSchema} onSubmit={handleSubmit}>
       <Form className={styles.form__container}>
         <TextInput name="firstName" label="First Name" placeholder="Type your first name here" />

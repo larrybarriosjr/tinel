@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { ApiReducerKey } from "constants/enums"
+import { ApiReducerKeys, WorkshopCategories } from "constants/enums"
 import { BASE_URL, CATEGORIES_URL } from "constants/env"
 
 const categoriesApi = createApi({
-  reducerPath: ApiReducerKey.CATEGORIES,
+  reducerPath: ApiReducerKeys.CATEGORIES,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
-    getCategories: builder.query<string[], null>({ query: () => CATEGORIES_URL })
+    getCategories: builder.query<WorkshopCategories[], null>({ query: () => CATEGORIES_URL })
   })
 })
 

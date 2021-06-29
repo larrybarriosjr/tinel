@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { ApiReducerKey } from "constants/enums"
+import { ApiReducerKeys } from "constants/enums"
 import { BASE_URL, WORKSHOPS_LIMIT, WORKSHOPS_URL } from "constants/env"
 import { WorkshopQuery, WorkshopType } from "types/api"
 
 const workshopsApi = createApi({
-  reducerPath: ApiReducerKey.WORKSHOPS,
+  reducerPath: ApiReducerKeys.WORKSHOPS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
     getWorkshops: builder.query<WorkshopType[], WorkshopQuery | null>({

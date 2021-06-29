@@ -1,14 +1,12 @@
-import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
-import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
-import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
-import PrimaryButton from "components/common/button/PrimaryButton"
+import { CalendarIcon, ClockIcon, EmptyCartIcon } from "assets/icons"
+import { PrimaryButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
 import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
 import { Link } from "react-router-dom"
 import { addToCart } from "states/cart"
-import { mountDrawer, showDrawer } from "states/presentation"
+import { toggleDrawerDisplay, toggleDrawerMounted } from "states/presentation"
 import { WorkshopType } from "types/api"
 import { monetize } from "utils/number-utils"
 import { displayDate, displayTime } from "utils/text-utils"
@@ -24,8 +22,8 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
   const dispatch = useAppDispatch()
 
   const handleAddToCart = () => {
-    dispatch(showDrawer())
-    dispatch(mountDrawer())
+    dispatch(toggleDrawerDisplay(true))
+    dispatch(toggleDrawerMounted(true))
     dispatch(addToCart(item))
   }
 
@@ -72,7 +70,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             className={styles.item__button_icon}
             aria-label="workshop-button-icon"
           >
-            <CartIcon height="32" width="32" />
+            <EmptyCartIcon height="32" width="32" />
           </PrimaryButton>
         </Flex>
         <Flex className={styles.item__button_container}>

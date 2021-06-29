@@ -1,40 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { PresentationState } from "types/redux"
 
 const initialState: PresentationState = {
   drawerDisplay: false,
   drawerMounted: false,
   checkoutModalDisplay: false,
-  checkoutModalMounted: false
+  checkoutModalMounted: false,
+  successModalDisplay: false,
+  successModalMounted: false
 }
 
 const presentationSlice = createSlice({
   name: "presentationSlice",
   initialState,
   reducers: {
-    showDrawer: state => {
-      state.drawerDisplay = true
+    toggleDrawerDisplay: (state, action: PayloadAction<boolean>) => {
+      state.drawerDisplay = action.payload
     },
-    hideDrawer: state => {
-      state.drawerDisplay = false
+    toggleDrawerMounted: (state, action: PayloadAction<boolean>) => {
+      state.drawerMounted = action.payload
     },
-    mountDrawer: state => {
-      state.drawerMounted = true
+    toggleCheckoutModalDisplay: (state, action: PayloadAction<boolean>) => {
+      state.checkoutModalDisplay = action.payload
     },
-    unmountDrawer: state => {
-      state.drawerMounted = false
+    toggleCheckoutModalMounted: (state, action: PayloadAction<boolean>) => {
+      state.checkoutModalMounted = action.payload
     },
-    showCheckoutModal: state => {
-      state.checkoutModalDisplay = true
+    toggleSuccessModalDisplay: (state, action: PayloadAction<boolean>) => {
+      state.successModalDisplay = action.payload
     },
-    hideCheckoutModal: state => {
-      state.checkoutModalDisplay = false
-    },
-    mountCheckoutModal: state => {
-      state.checkoutModalMounted = true
-    },
-    unmountCheckoutModal: state => {
-      state.checkoutModalMounted = false
+    toggleSuccessModalMounted: (state, action: PayloadAction<boolean>) => {
+      state.successModalMounted = action.payload
     }
   }
 })
@@ -42,14 +38,12 @@ const presentationSlice = createSlice({
 const { actions, reducer } = presentationSlice
 
 export const {
-  showDrawer,
-  hideDrawer,
-  mountDrawer,
-  unmountDrawer,
-  showCheckoutModal,
-  hideCheckoutModal,
-  mountCheckoutModal,
-  unmountCheckoutModal
+  toggleDrawerDisplay,
+  toggleDrawerMounted,
+  toggleCheckoutModalDisplay,
+  toggleCheckoutModalMounted,
+  toggleSuccessModalDisplay,
+  toggleSuccessModalMounted
 } = actions
 export const { name: presentationName } = presentationSlice
 export default reducer

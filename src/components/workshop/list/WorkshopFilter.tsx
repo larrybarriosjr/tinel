@@ -1,20 +1,24 @@
-import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
+import { ChevronDownIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
+import { Colors, WorkshopCategories } from "constants/enums"
 import { useState } from "react"
 import { capitalize } from "utils/text-utils"
 import styles from "./WorkshopList.module.scss"
 
 type WorkshopFilterProps = {
-  categories: string[]
-  onSelect: (text: string) => void
+  categories: WorkshopCategories[]
+  onSelect: (text: WorkshopCategories) => void
   selected: string
 }
 
 const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps) => {
-  const allCategoryClasses = clsx([styles.filter__list_item_all, { [styles.selected]: selected === "all" }])
+  const allCategoryClasses = clsx([
+    styles.filter__list_item_all,
+    { [styles.selected]: selected === WorkshopCategories.ALL }
+  ])
   const itemCategoryClasses = (category: string) =>
     clsx([styles.filter__list_item_category, { [styles.selected]: selected === category }])
 
@@ -24,7 +28,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
     setDropdownDisplay(display => !display)
   }
 
-  const handleSelectCategory = (category: string) => {
+  const handleSelectCategory = (category: WorkshopCategories) => {
     onSelect(category)
   }
 
@@ -35,8 +39,8 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
       aria-label="category-filter-button"
     >
       <Flex className={styles.filter__container}>
-        <DownIcon
-          fill="var(--blue)"
+        <ChevronDownIcon
+          fill={Colors.BLUE}
           transform={`scale(1, ${dropdownDisplay ? -1 : 1})`}
           role="combobox"
           aria-expanded={dropdownDisplay}
@@ -48,11 +52,11 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
             <li
               tabIndex={0}
               role="option"
-              aria-selected={selected === "all"}
+              aria-selected={selected === WorkshopCategories.ALL}
               className={allCategoryClasses}
-              onClick={() => handleSelectCategory("all")}
+              onClick={() => handleSelectCategory(WorkshopCategories.ALL)}
               onKeyDown={e => {
-                if (e.key === "Enter" || e.key === "Space") handleSelectCategory("all")
+                if (e.key === "Enter" || e.key === "Space") handleSelectCategory(WorkshopCategories.ALL)
               }}
             >
               <h5>All</h5>

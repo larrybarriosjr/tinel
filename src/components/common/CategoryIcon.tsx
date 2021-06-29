@@ -1,7 +1,4 @@
-import { ReactComponent as BrushIcon } from "assets/icons/brush.svg"
-import { ReactComponent as CodeIcon } from "assets/icons/code.svg"
-import { ReactComponent as FlashIcon } from "assets/icons/flash.svg"
-import { ReactComponent as LayoutIcon } from "assets/icons/layout.svg"
+import { BrushIcon, CodeIcon, FlashIcon, LayoutIcon } from "assets/icons"
 import clsx from "clsx"
 import { WorkshopCategories } from "constants/enums"
 import styles from "./Common.module.scss"
