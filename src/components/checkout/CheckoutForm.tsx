@@ -7,6 +7,7 @@ import { genderItems } from "constants/data"
 import { initialCheckoutData } from "constants/form"
 import { Form, Formik, FormikHelpers } from "formik"
 import { useAppDispatch } from "hooks/redux"
+import { clearCart } from "states/cart"
 import { hideCheckoutModal } from "states/presentation"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validation/checkoutSchema"
@@ -18,6 +19,7 @@ const CheckoutForm = () => {
     console.log(values)
     helpers.resetForm()
     dispatch(hideCheckoutModal())
+    dispatch(clearCart())
   }
 
   return (
