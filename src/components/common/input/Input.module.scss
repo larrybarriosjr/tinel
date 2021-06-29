@@ -60,3 +60,17 @@
     height: 100%;
   }
 }
+
+.select {
+  &__placeholder {
+    padding-left: 0;
+    color: var(--light-grey);
+  }
+  &__empty {
+    padding-left: 0 !important;
+    color: var(--light-grey);
+  }
+  &__option {
+    padding-left: 20px;
+  }
+}
