@@ -1,6 +1,4 @@
-import { ReactComponent as BackIcon } from "assets/icons/arrow-left.svg"
-import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
-import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
+import { ArrowLeftIcon, CalendarIcon, ClockIcon } from "assets/icons"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
@@ -24,7 +22,7 @@ const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
   return (
     <Flex className={styles.detail__container}>
       <FlatButton onClick={goBack} className={styles.detail__back_button}>
-        <BackIcon />
+        <ArrowLeftIcon />
         <h6>Back</h6>
       </FlatButton>
       <div className={styles.detail__graphics_container}>

@@ -1,4 +1,4 @@
-import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
+import { EmptyCartIcon } from "assets/icons"
 import clsx from "clsx"
 import { PrimaryButton } from "components/common/button"
 import { DropdownInput } from "components/common/input"
@@ -70,7 +70,7 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
           aria-label="workshop-button"
         >
           <p className="bold">Add to</p>
-          <CartIcon />
+          <EmptyCartIcon />
         </PrimaryButton>
       </Flex>
     </Flex>

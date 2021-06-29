@@ -1,4 +1,4 @@
-import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
+import { CloseIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import Modal from "components/common/Modal"

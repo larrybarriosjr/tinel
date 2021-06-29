@@ -1,4 +1,4 @@
-import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
+import { CalendarIcon } from "assets/icons"
 import clsx from "clsx"
 import Flex from "components/container/Flex"
 import dayjs from "dayjs"

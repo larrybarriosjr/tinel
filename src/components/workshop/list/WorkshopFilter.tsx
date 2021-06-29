@@ -1,4 +1,4 @@
-import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
+import { ChevronDownIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
@@ -39,7 +39,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
       aria-label="category-filter-button"
     >
       <Flex className={styles.filter__container}>
-        <DownIcon
+        <ChevronDownIcon
           fill={Colors.BLUE}
           transform={`scale(1, ${dropdownDisplay ? -1 : 1})`}
           role="combobox"

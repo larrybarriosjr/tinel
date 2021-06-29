@@ -1,6 +1,15 @@
 @import "styles/mixins";
 @import "styles/variables";
 
+.logo {
+  width: 90px;
+  height: 40px;
+  @include media($breakpoint-sm) {
+    width: 105px;
+    height: 47px;
+  }
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -15,14 +24,6 @@
     height: 100%;
     align-items: center;
     justify-content: space-between;
-  }
-  &__logo {
-    width: 90px;
-    height: 40px;
-    @include media($breakpoint-sm) {
-      width: 105px;
-      height: 47px;
-    }
   }
   &__cart_container {
     margin: 0;

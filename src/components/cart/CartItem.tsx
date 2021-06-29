@@ -1,4 +1,4 @@
-import { ReactComponent as TrashIcon } from "assets/icons/trash.svg"
+import { TrashIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import { DropdownInput } from "components/common/input"

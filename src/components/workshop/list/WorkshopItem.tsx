@@ -1,6 +1,4 @@
-import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg"
-import { ReactComponent as ClockIcon } from "assets/icons/clock.svg"
-import { ReactComponent as CartIcon } from "assets/icons/empty-cart.svg"
+import { CalendarIcon, ClockIcon, EmptyCartIcon } from "assets/icons"
 import { PrimaryButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
@@ -72,7 +70,7 @@ const WorkshopItem = ({ item }: WorkshopItemProps) => {
             className={styles.item__button_icon}
             aria-label="workshop-button-icon"
           >
-            <CartIcon height="32" width="32" />
+            <EmptyCartIcon height="32" width="32" />
           </PrimaryButton>
         </Flex>
         <Flex className={styles.item__button_container}>

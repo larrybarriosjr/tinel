@@ -1,4 +1,4 @@
-import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
+import { ChevronDownIcon } from "assets/icons"
 import { Colors } from "constants/enums"
 import Select, { ActionMeta, GroupTypeBase, MenuPlacement, Styles } from "react-select"
 import { DropDownItemType } from "types/component"
@@ -34,7 +34,7 @@ const DropdownInput = ({ id, items, value, placement = "auto", onChange }: Dropd
     dropdownIndicator: () => ({})
   }
 
-  const DropdownIndicator = () => <DownIcon width="24" height="24" />
+  const DropdownIndicator = () => <ChevronDownIcon width="24" height="24" />
 
   return (
     <Select

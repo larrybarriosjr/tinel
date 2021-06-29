@@ -1,4 +1,4 @@
-import { ReactComponent as CheckIcon } from "assets/icons/check.svg"
+import { CheckIcon } from "assets/icons"
 import clsx from "clsx"
 import Flex from "components/container/Flex"
 import { FieldHookConfig, useField } from "formik"

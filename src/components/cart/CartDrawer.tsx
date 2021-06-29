@@ -1,6 +1,4 @@
-import { ReactComponent as CloseIcon } from "assets/icons/close.svg"
-import { ReactComponent as EmptyCartIcon } from "assets/icons/empty-cart.svg"
-import { ReactComponent as FilledCartIcon } from "assets/icons/filled-cart.svg"
+import { CloseIcon, EmptyCartIcon, FilledCartIcon } from "assets/icons"
 import { FlatButton } from "components/common/button"
 import Flex from "components/container/Flex"
 import Drawer from "components/layout/Drawer"
