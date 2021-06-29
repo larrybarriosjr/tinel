@@ -23,6 +23,8 @@ export interface PresentationState {
   drawerMounted: boolean
   checkoutModalDisplay: boolean
   checkoutModalMounted: boolean
+  successModalDisplay: boolean
+  successModalMounted: boolean
 }
 
 // Workshop Filter Types

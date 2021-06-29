@@ -5,7 +5,9 @@ const initialState: PresentationState = {
   drawerDisplay: false,
   drawerMounted: false,
   checkoutModalDisplay: false,
-  checkoutModalMounted: false
+  checkoutModalMounted: false,
+  successModalDisplay: false,
+  successModalMounted: false
 }
 
 const presentationSlice = createSlice({
@@ -23,6 +25,12 @@ const presentationSlice = createSlice({
     },
     toggleCheckoutModalMounted: (state, action: PayloadAction<boolean>) => {
       state.checkoutModalMounted = action.payload
+    },
+    toggleSuccessModalDisplay: (state, action: PayloadAction<boolean>) => {
+      state.successModalDisplay = action.payload
+    },
+    toggleSuccessModalMounted: (state, action: PayloadAction<boolean>) => {
+      state.successModalMounted = action.payload
     }
   }
 })
@@ -33,7 +41,9 @@ export const {
   toggleDrawerDisplay,
   toggleDrawerMounted,
   toggleCheckoutModalDisplay,
-  toggleCheckoutModalMounted
+  toggleCheckoutModalMounted,
+  toggleSuccessModalDisplay,
+  toggleSuccessModalMounted
 } = actions
 export const { name: presentationName } = presentationSlice
 export default reducer

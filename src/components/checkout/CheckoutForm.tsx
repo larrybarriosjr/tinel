@@ -9,7 +9,7 @@ import { Form, Formik, FormikHelpers } from "formik"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useEffect } from "react"
 import { clearCart } from "states/cart"
-import { toggleCheckoutModalDisplay } from "states/presentation"
+import { toggleCheckoutModalDisplay, toggleSuccessModalDisplay } from "states/presentation"
 import { resetFilter } from "states/workshop"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validation/checkoutSchema"
@@ -32,6 +32,7 @@ const CheckoutForm = () => {
       dispatch(toggleCheckoutModalDisplay(false))
       dispatch(clearCart())
       dispatch(resetFilter())
+      dispatch(toggleSuccessModalDisplay(true))
     }
   }, [status, data, dispatch])
 

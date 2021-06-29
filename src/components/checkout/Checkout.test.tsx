@@ -1,8 +1,10 @@
 import { act, fireEvent, render, screen } from "@testing-library/react"
 import { store } from "app/store"
+import { Routes } from "constants/enums"
 import { Provider } from "react-redux"
+import { MemoryRouter, Route, RouteProps } from "react-router-dom"
 import CheckoutModal from "./CheckoutModal"
-import ThankYouModal from "./ThankYouModal"
+import SuccessModal from "./SuccessModal"
 
 describe("Checkout Form", () => {
   beforeEach(() => {
@@ -86,13 +88,44 @@ describe("Checkout Form", () => {
   })
 })
 
-describe("Thank You Modal", () => {
+describe("Success Modal", () => {
+  let appLocation: RouteProps["location"]
+
   beforeEach(() => {
-    render(<ThankYouModal />)
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <SuccessModal />
+          <Route
+            path="*"
+            render={({ location }) => {
+              appLocation = location
+              return null
+            }}
+          />
+        </MemoryRouter>
+      </Provider>
+    )
   })
 
-  it.todo("renders modal title")
-  it.todo("renders modal description")
-  it.todo("renders back to shop button")
-  it.todo("redirects to home page when clicking on back to shop button")
+  it("renders modal title", () => {
+    const title = screen.getByText(/thank you/i)
+    expect(title).toBeInTheDocument()
+  })
+
+  it("renders modal description", () => {
+    const description = screen.getByText(/success/i)
+    expect(description).toBeInTheDocument()
+  })
+
+  it("renders back to shop button", () => {
+    const button = screen.getByText(/back to shop/i)
+    expect(button).toBeInTheDocument()
+  })
+
+  it("redirects to home page when clicking on back to shop button", () => {
+    const button = screen.getByText(/back to shop/i)
+    fireEvent.click(button)
+    expect(appLocation).toHaveProperty("pathname", Routes.HOME)
+  })
 })
