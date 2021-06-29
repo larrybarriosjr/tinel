@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen } from "@testing-library/react"
 import { store } from "app/store"
 import { Provider } from "react-redux"
 import CheckoutModal from "./CheckoutModal"
+import ThankYouModal from "./ThankYouModal"
 
 describe("Checkout Form", () => {
   beforeEach(() => {
@@ -83,4 +84,15 @@ describe("Checkout Form", () => {
     expect(zipCodeError).toBeInTheDocument()
     expect(agreeCheckboxError).toBeInTheDocument()
   })
+})
+
+describe("Thank You Modal", () => {
+  beforeEach(() => {
+    render(<ThankYouModal />)
+  })
+
+  it.todo("renders modal title")
+  it.todo("renders modal description")
+  it.todo("renders back to shop button")
+  it.todo("redirects to home page when clicking on back to shop button")
 })
