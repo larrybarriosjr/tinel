@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { PresentationState } from "types/redux"
 
 const initialState: PresentationState = {
@@ -12,29 +12,17 @@ const presentationSlice = createSlice({
   name: "presentationSlice",
   initialState,
   reducers: {
-    showDrawer: state => {
-      state.drawerDisplay = true
+    toggleDrawerDisplay: (state, action: PayloadAction<boolean>) => {
+      state.drawerDisplay = action.payload
     },
-    hideDrawer: state => {
-      state.drawerDisplay = false
+    toggleDrawerMounted: (state, action: PayloadAction<boolean>) => {
+      state.drawerMounted = action.payload
     },
-    mountDrawer: state => {
-      state.drawerMounted = true
+    toggleCheckoutModalDisplay: (state, action: PayloadAction<boolean>) => {
+      state.checkoutModalDisplay = action.payload
     },
-    unmountDrawer: state => {
-      state.drawerMounted = false
-    },
-    showCheckoutModal: state => {
-      state.checkoutModalDisplay = true
-    },
-    hideCheckoutModal: state => {
-      state.checkoutModalDisplay = false
-    },
-    mountCheckoutModal: state => {
-      state.checkoutModalMounted = true
-    },
-    unmountCheckoutModal: state => {
-      state.checkoutModalMounted = false
+    toggleCheckoutModalMounted: (state, action: PayloadAction<boolean>) => {
+      state.checkoutModalMounted = action.payload
     }
   }
 })
@@ -42,14 +30,10 @@ const presentationSlice = createSlice({
 const { actions, reducer } = presentationSlice
 
 export const {
-  showDrawer,
-  hideDrawer,
-  mountDrawer,
-  unmountDrawer,
-  showCheckoutModal,
-  hideCheckoutModal,
-  mountCheckoutModal,
-  unmountCheckoutModal
+  toggleDrawerDisplay,
+  toggleDrawerMounted,
+  toggleCheckoutModalDisplay,
+  toggleCheckoutModalMounted
 } = actions
 export const { name: presentationName } = presentationSlice
 export default reducer

@@ -6,7 +6,7 @@ import DetailPage from "pages/DetailPage"
 import HomePage from "pages/HomePage"
 import { Fragment } from "react"
 import { Route, Switch } from "react-router-dom"
-import { hideCheckoutModal, unmountCheckoutModal } from "states/presentation"
+import { toggleCheckoutModalDisplay, toggleCheckoutModalMounted } from "states/presentation"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -14,11 +14,11 @@ function App() {
   const checkoutModalMounted = useAppSelector(state => state.presentationSlice.checkoutModalMounted)
 
   const handleCloseModal = () => {
-    dispatch(hideCheckoutModal())
+    dispatch(toggleCheckoutModalDisplay(false))
   }
 
   const handleTransitionEnd = () => {
-    dispatch(unmountCheckoutModal())
+    dispatch(toggleCheckoutModalMounted(false))
   }
 
   return (

@@ -7,12 +7,10 @@ import { Routes } from "constants/enums"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { Link } from "react-router-dom"
 import {
-  hideDrawer,
-  mountCheckoutModal,
-  mountDrawer,
-  showCheckoutModal,
-  showDrawer,
-  unmountDrawer
+  toggleCheckoutModalDisplay,
+  toggleCheckoutModalMounted,
+  toggleDrawerDisplay,
+  toggleDrawerMounted
 } from "states/presentation"
 import { pluralize } from "utils/text-utils"
 import styles from "./Layout.module.scss"
@@ -27,25 +25,25 @@ const Navbar = ({ ...props }: NavbarProps) => {
   const cartQuantity = useAppSelector(state => state.cartSlice.cartQuantity)
 
   const handleShowDrawer = () => {
-    dispatch(showDrawer())
-    dispatch(mountDrawer())
+    dispatch(toggleDrawerDisplay(true))
+    dispatch(toggleDrawerMounted(true))
   }
 
   const handleHideDrawer = () => {
-    dispatch(hideDrawer())
+    dispatch(toggleDrawerDisplay(false))
   }
 
   const handleUnmountDrawer = () => {
     if (drawerDisplay) return
-    dispatch(unmountDrawer())
+    dispatch(toggleDrawerMounted(false))
     if (checkoutModalDisplay) {
-      dispatch(mountCheckoutModal())
+      dispatch(toggleCheckoutModalMounted(true))
     }
   }
 
   const handleCheckout = () => {
-    dispatch(hideDrawer())
-    dispatch(showCheckoutModal())
+    dispatch(toggleDrawerDisplay(false))
+    dispatch(toggleCheckoutModalDisplay(true))
   }
 
   return (
