@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
 import Flex from "components/container/Flex"
-import { WorkshopCategories } from "constants/enums"
+import { Colors, WorkshopCategories } from "constants/enums"
 import { useState } from "react"
 import { capitalize } from "utils/text-utils"
 import styles from "./WorkshopList.module.scss"
@@ -40,7 +40,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
     >
       <Flex className={styles.filter__container}>
         <DownIcon
-          fill="var(--blue)"
+          fill={Colors.BLUE}
           transform={`scale(1, ${dropdownDisplay ? -1 : 1})`}
           role="combobox"
           aria-expanded={dropdownDisplay}

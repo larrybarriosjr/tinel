@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { ApiReducerKey } from "constants/enums"
+import { ApiReducerKeys } from "constants/enums"
 import { BASE_URL, USERS_URL } from "constants/env"
 import { UserType } from "types/api"
 
 const usersApi = createApi({
-  reducerPath: ApiReducerKey.USERS,
+  reducerPath: ApiReducerKeys.USERS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
     getUsers: builder.query<UserType[], null>({ query: () => USERS_URL }),

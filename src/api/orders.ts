@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { ApiReducerKey } from "constants/enums"
+import { ApiReducerKeys } from "constants/enums"
 import { BASE_URL, ORDERS_URL } from "constants/env"
 import { CreateOrderForm, OrderType } from "types/api"
 
 const ordersApi = createApi({
-  reducerPath: ApiReducerKey.ORDERS,
+  reducerPath: ApiReducerKeys.ORDERS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
     getOrders: builder.query<OrderType[], null>({ query: () => ORDERS_URL }),

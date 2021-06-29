@@ -1,4 +1,5 @@
 import { ReactComponent as DownIcon } from "assets/icons/chevron-down.svg"
+import { Colors } from "constants/enums"
 import Select, { ActionMeta, GroupTypeBase, Styles } from "react-select"
 import { DropDownItemType } from "types/component"
 
@@ -25,7 +26,7 @@ const DropdownInput = ({ id, items, value, onChange }: DropdownInputProps) => {
       background: "white"
     }),
     valueContainer: () => ({ display: "flex", marginLeft: "auto" }),
-    singleValue: () => ({ color: "var(--darker-grey)", whiteSpace: "nowrap" }),
+    singleValue: () => ({ color: Colors.DARKER_GREY, whiteSpace: "nowrap" }),
     option: base => ({ ...base, padding: "4px", textAlign: "center" }),
     indicatorSeparator: () => ({}),
     indicatorsContainer: () => ({}),

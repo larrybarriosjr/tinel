@@ -4,7 +4,7 @@ import { categoriesApiMiddleware, categoriesApiReducer } from "api/categories"
 import { ordersApiMiddleware, ordersApiReducer } from "api/orders"
 import { usersApiMiddleware, usersApiReducer } from "api/users"
 import { workshopsApiMiddleware, workshopsApiReducer } from "api/workshops"
-import { ApiReducerKey } from "constants/enums"
+import { ApiReducerKeys } from "constants/enums"
 import { FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE } from "redux-persist"
 import persistStore from "redux-persist/lib/persistStore"
 import storage from "redux-persist/lib/storage"
@@ -20,10 +20,10 @@ const persistConfig = {
 }
 
 const reducers = combineReducers({
-  [ApiReducerKey.CATEGORIES]: categoriesApiReducer,
-  [ApiReducerKey.ORDERS]: ordersApiReducer,
-  [ApiReducerKey.USERS]: usersApiReducer,
-  [ApiReducerKey.WORKSHOPS]: workshopsApiReducer,
+  [ApiReducerKeys.CATEGORIES]: categoriesApiReducer,
+  [ApiReducerKeys.ORDERS]: ordersApiReducer,
+  [ApiReducerKeys.USERS]: usersApiReducer,
+  [ApiReducerKeys.WORKSHOPS]: workshopsApiReducer,
   [presentationName]: presentationReducer,
   [cartName]: cartReducer,
   [workshopName]: workshopReducer

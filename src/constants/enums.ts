@@ -1,11 +1,11 @@
-export enum ApiReducerKey {
+export enum ApiReducerKeys {
   CATEGORIES = "categoriesApi",
   ORDERS = "ordersApi",
   USERS = "usersApi",
   WORKSHOPS = "workshopsApi"
 }
 
-export enum Color {
+export enum Colors {
   YELLOW = "var(--yellow)",
   LIGHT_YELLOW = "var(--light-yellow)",
   BLUE = "var(--blue)",
