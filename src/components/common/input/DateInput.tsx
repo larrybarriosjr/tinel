@@ -57,6 +57,7 @@ const DateInput = ({ label, ...props }: DateInputProps) => {
       <div className={styles.date__input_container}>
         <CalendarIcon className={styles.date__calendar} onMouseDown={handleToggleDisplayDate} />
         <input
+          id={field.name}
           onMouseDown={handleToggleDisplayDate}
           onFocus={handleDisplayDate}
           onKeyDown={handleDeleteDate}

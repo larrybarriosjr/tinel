@@ -27,6 +27,7 @@ const TextInput = ({ label, ...props }: TextInputProps) => {
         {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
       </Flex>
       <input
+        id={field.name}
         type={props.type}
         min={props.min}
         className={inputClasses}

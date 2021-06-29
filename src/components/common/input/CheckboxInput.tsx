@@ -33,7 +33,15 @@ const CheckboxInput = ({ label, ...props }: CheckboxInputProps) => {
   return (
     <Flex className={styles.checkbox__container}>
       <Flex className={styles.checkbox__input_container}>
-        <input ref={inputRef} type="checkbox" name={field.name} checked={field.value} hidden />
+        <input
+          id={field.name}
+          ref={inputRef}
+          type="checkbox"
+          name={field.name}
+          checked={field.value}
+          readOnly
+          hidden
+        />
         <div
           role="checkbox"
           tabIndex={0}

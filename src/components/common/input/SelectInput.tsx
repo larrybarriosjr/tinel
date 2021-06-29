@@ -16,7 +16,8 @@ const SelectInput = ({ items, label, ...props }: SelectInputProps) => {
   const errorClasses = clsx([styles.input__error, "semi"])
   const inputClasses = clsx([
     styles.input__element,
-    { [(styles.error, styles.select__empty)]: meta.touched && meta.error }
+    { [styles.select__empty]: !meta.touched && !field.value },
+    { [(styles.error, styles.select__empty)]: meta.error }
   ])
 
   return (
@@ -27,8 +28,16 @@ const SelectInput = ({ items, label, ...props }: SelectInputProps) => {
         </label>
         {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
       </Flex>
-      <select className={inputClasses} placeholder={props.placeholder} {...field}>
-        <option value="" selected className={styles.select__placeholder}>
+      <select
+        id={field.name}
+        name={field.name}
+        className={inputClasses}
+        placeholder={props.placeholder}
+        value={field.value || ""}
+        onBlur={field.onBlur}
+        onChange={field.onChange}
+      >
+        <option value="" className={styles.select__placeholder}>
           {props.placeholder}
         </option>
         {items.map((item, idx) => (
