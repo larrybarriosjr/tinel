@@ -1,9 +1,15 @@
 import { act, fireEvent, render, screen } from "@testing-library/react"
+import { store } from "app/store"
+import { Provider } from "react-redux"
 import CheckoutModal from "./CheckoutModal"
 
 describe("Checkout Form", () => {
   beforeEach(() => {
-    render(<CheckoutModal open={true} onClose={() => null} />)
+    render(
+      <Provider store={store}>
+        <CheckoutModal open={true} onClose={() => null} />
+      </Provider>
+    )
   })
 
   it("renders checkout form header", () => {

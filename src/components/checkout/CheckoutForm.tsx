@@ -6,14 +6,18 @@ import TextInput from "components/common/input/TextInput"
 import { genderItems } from "constants/data"
 import { initialCheckoutData } from "constants/form"
 import { Form, Formik, FormikHelpers } from "formik"
+import { useAppDispatch } from "hooks/redux"
+import { hideCheckoutModal } from "states/presentation"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validation/checkoutSchema"
 import styles from "./Checkout.module.scss"
 
 const CheckoutForm = () => {
+  const dispatch = useAppDispatch()
   const handleSubmit = (values: CheckoutFormType, helpers: FormikHelpers<CheckoutFormType>) => {
     console.log(values)
     helpers.resetForm()
+    dispatch(hideCheckoutModal())
   }
 
   return (

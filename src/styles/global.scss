@@ -29,8 +29,8 @@
 
 .DayPicker {
   position: absolute;
-  bottom: -20px;
   z-index: 100;
+  margin-top: 80px;
   background: white;
   border: 1px solid var(--lighter-grey);
   border-radius: 6px;
