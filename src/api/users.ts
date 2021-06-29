@@ -7,14 +7,8 @@ const usersApi = createApi({
   reducerPath: ApiReducerKeys.USERS,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
-    getUsers: builder.query<UserType[], null>({ query: () => USERS_URL }),
     getUserById: builder.query<UserType, number>({ query: id => (id ? `${USERS_URL}/${id}` : "") })
   })
 })
 
-export const {
-  useGetUsersQuery,
-  useGetUserByIdQuery,
-  reducer: usersApiReducer,
-  middleware: usersApiMiddleware
-} = usersApi
+export const { useGetUserByIdQuery, reducer: usersApiReducer, middleware: usersApiMiddleware } = usersApi
