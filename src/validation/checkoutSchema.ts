@@ -12,7 +12,7 @@ const checkoutSchema: SchemaOf<CheckoutFormType> = object().shape({
     .required("Gender is required"),
   address: string().required("Address is required"),
   zipCode: string().matches(/\d+/, "Zip code must be a valid number").required("Zip code is required"),
-  isAgreed: boolean().required("You must agree before checking out")
+  isAgreed: boolean().isTrue("You must agree before checking out").required()
 })
 
 export default checkoutSchema

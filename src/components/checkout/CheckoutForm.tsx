@@ -1,4 +1,5 @@
 import PrimaryButton from "components/common/button/PrimaryButton"
+import CheckboxInput from "components/common/input/CheckboxInput"
 import DateInput from "components/common/input/DateInput"
 import SelectInput from "components/common/input/SelectInput"
 import TextInput from "components/common/input/TextInput"
@@ -12,7 +13,7 @@ import styles from "./Checkout.module.scss"
 const CheckoutForm = () => {
   const handleSubmit = (values: CheckoutFormType, helpers: FormikHelpers<CheckoutFormType>) => {
     console.log(values)
-    console.log(helpers)
+    helpers.resetForm()
   }
 
   return (
@@ -25,6 +26,7 @@ const CheckoutForm = () => {
         <SelectInput name="gender" label="Gender" placeholder="Choose your gender" items={genderItems} />
         <TextInput name="address" label="Address" placeholder="Type your address here" />
         <TextInput name="zipCode" label="Zip Code" placeholder="eg. 21310" type="number" min="0" />
+        <CheckboxInput name="isAgreed" label="I Agree" />
         <PrimaryButton className={styles.form__submit_button} type="submit">
           <h5>Checkout</h5>
         </PrimaryButton>

@@ -5,7 +5,7 @@ import { DropDownItemType } from "types/component"
 import styles from "./Input.module.scss"
 
 type SelectInputProps = FieldHookConfig<string> &
-  React.ComponentPropsWithoutRef<"input"> & {
+  React.ComponentPropsWithoutRef<"select"> & {
     items: DropDownItemType[]
     label: string
   }

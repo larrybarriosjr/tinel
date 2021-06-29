@@ -71,6 +71,39 @@
     color: var(--light-grey);
   }
   &__option {
-    padding-left: 20px;
+    color: var(--darker-grey);
+  }
+}
+
+.checkbox {
+  &__container {
+    align-items: center;
+    margin-top: 30px;
+  }
+  &__input_container {
+    align-items: center;
+    gap: 10px;
+  }
+  &__element {
+    border-radius: 4px;
+    height: 32px;
+    width: 32px;
+    border: 2px solid var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__true {
+    border: none;
+    background: var(--blue);
+  }
+  &__error {
+    width: 150px;
+    margin-left: auto;
+    color: var(--red);
+    text-align: right;
+  }
+  &__label {
+    white-space: nowrap;
   }
 }
