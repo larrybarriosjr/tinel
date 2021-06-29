@@ -2,6 +2,7 @@ import { QueryStatus } from "@reduxjs/toolkit/dist/query"
 import { useCreateOrderMutation } from "api/orders"
 import { PrimaryButton } from "components/common/button"
 import { CheckboxInput, DateInput, SelectInput, TextInput } from "components/common/input"
+import Loading from "components/layout/Loading"
 import { genderItems } from "constants/data"
 import { initialCheckoutData } from "constants/form"
 import { Form, Formik, FormikHelpers } from "formik"
@@ -18,7 +19,7 @@ const CheckoutForm = () => {
   const dispatch = useAppDispatch()
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
-  const [createOrder, { data, status }] = useCreateOrderMutation()
+  const [createOrder, { data, status, isLoading }] = useCreateOrderMutation()
 
   const handleSubmit = (values: CheckoutFormType, helpers: FormikHelpers<CheckoutFormType>) => {
     console.log(values)
@@ -34,7 +35,9 @@ const CheckoutForm = () => {
     }
   }, [status, data, dispatch])
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Formik initialValues={initialCheckoutData} validationSchema={checkoutSchema} onSubmit={handleSubmit}>
       <Form className={styles.form__container}>
         <TextInput name="firstName" label="First Name" placeholder="Type your first name here" />

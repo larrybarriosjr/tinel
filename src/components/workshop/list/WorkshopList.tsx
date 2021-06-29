@@ -1,5 +1,6 @@
 import { UnderlineButton } from "components/common/button"
 import Flex from "components/container/Flex"
+import Loading from "components/layout/Loading"
 import { WorkshopType } from "types/api"
 import WorkshopItem from "./WorkshopItem"
 import styles from "./WorkshopList.module.scss"
@@ -8,9 +9,10 @@ type WorkshopListProps = {
   items: WorkshopType[]
   limit: number
   onLoadMore: () => void
+  loading?: boolean
 }
 
-const WorkshopList = ({ items, limit, onLoadMore }: WorkshopListProps) => {
+const WorkshopList = ({ items, limit, onLoadMore, loading }: WorkshopListProps) => {
   if (!items.length) return null
 
   return (
@@ -35,6 +37,7 @@ const WorkshopList = ({ items, limit, onLoadMore }: WorkshopListProps) => {
           <h5>Load More</h5>
         </UnderlineButton>
       ) : null}
+      {loading ? <Loading /> : null}
     </Flex>
   )
 }

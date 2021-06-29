@@ -1,6 +1,7 @@
 import { useGetCategoriesQuery } from "api/categories"
 import { useGetWorkshopsQuery } from "api/workshops"
 import Flex from "components/container/Flex"
+import Loading from "components/layout/Loading"
 import WorkshopFilter from "components/workshop/list/WorkshopFilter"
 import WorkshopList from "components/workshop/list/WorkshopList"
 import { WorkshopCategories } from "constants/enums"
@@ -14,7 +15,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch()
   const [limit, setLimit] = useState(9)
   const category = useAppSelector(state => state.workshopSlice.filterSelected)
-  const { data: items } = useGetWorkshopsQuery({ limit, category })
+  const { data: items, isFetching, isLoading } = useGetWorkshopsQuery({ limit, category })
   const { data: categories } = useGetCategoriesQuery(null)
 
   const handleSelectCategory = (category: WorkshopCategories) => {
@@ -25,13 +26,21 @@ const HomePage = () => {
     setLimit(limit => limit + 9)
   }
 
-  if (!items) return null
   if (!categories) return null
 
   return (
     <Flex className={styles.home}>
       <WorkshopFilter categories={categories} onSelect={handleSelectCategory} selected={category} />
-      <WorkshopList items={sortByDateDesc(items, "date")} limit={limit} onLoadMore={handleLoadMoreItem} />
+      {!items && (isFetching || isLoading) ? <Loading className={styles.home__loading} /> : null}
+      {items && !items.length ? <h3 className={styles.home__empty}>No workshops found.</h3> : null}
+      {items && items.length ? (
+        <WorkshopList
+          items={sortByDateDesc(items, "date")}
+          limit={limit}
+          onLoadMore={handleLoadMoreItem}
+          loading={isFetching || isLoading}
+        />
+      ) : null}
     </Flex>
   )
 }
