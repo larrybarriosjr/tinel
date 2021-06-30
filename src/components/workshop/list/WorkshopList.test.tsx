@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import { store } from "app/store"
 import Navbar from "components/layout/Navbar"
+import { WorkshopCategories } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
 import categories from "mocks/categories.json"
 import workshops from "mocks/workshops.json"
@@ -22,7 +23,11 @@ describe("Workshop Items", () => {
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />
-          <WorkshopFilter categories={categories} onSelect={() => null} selected="all" />
+          <WorkshopFilter
+            categories={categories as WorkshopCategories[]}
+            onSelect={() => null}
+            selected="all"
+          />
           <WorkshopList items={workshops} limit={9} onLoadMore={() => null} />
           <Route
             path="*"
@@ -201,7 +206,7 @@ describe("Workshop Items", () => {
     const items = screen
       .getAllByRole("heading", { name: "category-item" })
       .map(item => item.textContent?.toLowerCase())
-    expect(items).toStrictEqual(categories.reverse())
+    expect(items).toEqual(expect.arrayContaining(categories.reverse()))
   })
 })
 
@@ -211,7 +216,11 @@ describe("Workshop Sort", () => {
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />
-          <WorkshopFilter categories={categories} onSelect={() => null} selected="all" />
+          <WorkshopFilter
+            categories={categories as WorkshopCategories[]}
+            onSelect={() => null}
+            selected="all"
+          />
           <WorkshopList items={sortByDateDesc(workshops, "date")} limit={9} onLoadMore={() => null} />
           <Route path="*" />
         </MemoryRouter>
@@ -234,7 +243,11 @@ describe("Workshop Filter", () => {
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />
-          <WorkshopFilter categories={categories} onSelect={() => null} selected="design" />
+          <WorkshopFilter
+            categories={categories as WorkshopCategories[]}
+            onSelect={() => null}
+            selected="design"
+          />
           <WorkshopList
             items={workshops.filter(item => item.category === "design")}
             limit={9}
