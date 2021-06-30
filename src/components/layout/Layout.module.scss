@@ -53,10 +53,22 @@
   z-index: 100;
   padding: 0 20px;
   box-shadow: var(--shadow-cart);
-  transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in;
+  @include media($breakpoint-sm) {
+    transition: all 750ms ease-in;
+  }
+  @include media($breakpoint-md) {
+    transition: all 1000ms ease-in;
+  }
   &.open {
     right: 0;
-    animation: show 500ms ease-in-out;
+    animation: show 500ms ease-out;
+    @include media($breakpoint-sm) {
+      animation: show 750ms ease-out;
+    }
+    @include media($breakpoint-md) {
+      animation: show 1000ms ease-out;
+    }
   }
   @include media($breakpoint-sm) {
     max-width: 380px;
@@ -92,28 +104,29 @@
     border-top-right-radius: 16px;
     padding: 40px;
     box-shadow: var(--shadow-cart);
-    transition: all 300ms ease-in-out;
     height: auto;
     min-height: 100vh;
     top: 2rem;
     opacity: 0;
+    transition: all 300ms ease-in-out;
     @include media($breakpoint-sm) {
       top: 90px;
       padding: 80px;
       max-width: 760px;
+      min-height: unset;
       border-radius: 16px;
       box-shadow: var(--shadow-lg);
     }
     &.open {
       top: 0;
       opacity: 1;
-      animation: show-xs 300ms ease-in-out;
+      animation: show-compact 300ms ease-in-out;
       @include media($breakpoint-sm) {
         top: 60px;
-        animation: show-sm 300ms ease-in-out;
+        animation: show-regular 300ms ease-in-out;
       }
     }
-    @keyframes show-xs {
+    @keyframes show-compact {
       from {
         opacity: 0;
         top: 2rem;
@@ -123,7 +136,7 @@
         top: 0;
       }
     }
-    @keyframes show-sm {
+    @keyframes show-regular {
       from {
         opacity: 0;
         top: 90px;
@@ -178,6 +191,7 @@
     padding-left: 40px;
     @include media($breakpoint-sm) {
       height: 80px;
+      padding-left: 80px;
     }
   }
   &__detail {
