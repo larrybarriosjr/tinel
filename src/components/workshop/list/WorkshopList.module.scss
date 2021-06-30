@@ -157,7 +157,7 @@
     }
     @include media($breakpoint-lg) {
       justify-content: space-between;
-      grid-template-columns: repeat(3, auto);
+      grid-template-columns: repeat(3, minmax(auto, 1fr));
     }
     @include media($breakpoint-xl) {
       margin: 40px 0;
