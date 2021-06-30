@@ -43,6 +43,7 @@
 
 .list {
   &__box {
+    width: 100%;
     flex-direction: column;
   }
   &__title_container {
@@ -56,12 +57,25 @@
     gap: 20px;
     margin-bottom: 30px;
     @include media($breakpoint-sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
       margin: 40px 20px;
+      justify-items: center;
+    }
+    @include media($breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   &__load_more_button {
     margin-bottom: 35px;
+    @include media($breakpoint-sm) {
+      margin-bottom: 60px;
+    }
+    @include media($breakpoint-lg) {
+      margin-left: auto;
+      margin-right: 248px !important;
+    }
   }
 }
 
@@ -99,6 +113,11 @@
     overflow: hidden;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    @include media($breakpoint-sm) {
+      border-radius: 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
   }
   &__image {
     object-fit: cover;
@@ -112,13 +131,20 @@
     top: 13px;
     right: -16px;
     @include media($breakpoint-sm) {
+      top: unset;
       right: 20px;
       bottom: -20px;
+      height: 40px;
+      width: 40px;
     }
   }
   &__category_icon {
     height: 24px;
     width: 24px;
+    @include media($breakpoint-sm) {
+      height: 32px;
+      width: 32px;
+    }
   }
   &__details_container {
     width: 65%;
@@ -127,7 +153,8 @@
     padding: 20px;
     padding-left: 25px;
     @include media($breakpoint-sm) {
-      margin: 20px;
+      padding: 20px 40px;
+      width: 100%;
     }
   }
   &__datetime_container {
@@ -145,7 +172,7 @@
     margin-top: 5px;
     @include two-line-overflow;
     @include media($breakpoint-sm) {
-      margin: 10px 0;
+      margin-top: 10px;
     }
   }
   &__price_container {
@@ -160,7 +187,7 @@
     white-space: nowrap;
     margin-top: 16px;
     @include media($breakpoint-sm) {
-      margin-top: 8px;
+      margin-top: 24px;
     }
   }
   &__button_container {
