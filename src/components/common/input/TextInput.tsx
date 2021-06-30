@@ -18,6 +18,12 @@ const TextInput = ({ label, ...props }: TextInputProps) => {
     { [styles.number]: props.type === "number" }
   ])
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (props.type === "number" && !/\d/.test(e.key)) {
+      e.preventDefault()
+    }
+  }
+
   return (
     <Flex className={styles.input__container}>
       <Flex className={styles.input__label_container}>
@@ -32,6 +38,7 @@ const TextInput = ({ label, ...props }: TextInputProps) => {
         min={props.min}
         className={inputClasses}
         placeholder={props.placeholder}
+        onKeyPress={handleKeyPress}
         {...field}
       />
     </Flex>

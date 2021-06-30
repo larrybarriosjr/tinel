@@ -12,7 +12,7 @@ import { clearCart } from "states/cart"
 import { toggleCheckoutModalDisplay, toggleSuccessModalDisplay } from "states/presentation"
 import { resetFilter } from "states/workshop"
 import { CheckoutFormType } from "types/form"
-import checkoutSchema from "validation/checkoutSchema"
+import checkoutSchema from "validations/checkoutSchema"
 import styles from "./Checkout.module.scss"
 
 const CheckoutForm = () => {
