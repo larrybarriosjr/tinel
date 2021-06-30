@@ -10,12 +10,11 @@ type CheckoutModalProps = React.ComponentPropsWithoutRef<"dialog"> & {
   onClose: () => void
 }
 
-const CheckoutModal = ({ open, className, onClose, ...props }: CheckoutModalProps) => {
-  const modalClasses = clsx([styles.modal__container, { [styles.open]: open }, className])
+const CheckoutModal = ({ open, onClose, ...props }: CheckoutModalProps) => {
   const descriptionClasses = clsx([styles.modal__description, "semi"])
 
   return (
-    <Modal open={true} className={modalClasses} {...props}>
+    <Modal open={open} {...props}>
       <Flex className={styles.modal__header_container}>
         <header className={styles.modal__header}>
           <h2>Checkout</h2>

@@ -13,7 +13,7 @@ type SuccessModalProps = React.ComponentPropsWithoutRef<"dialog">
 const SuccessModal = ({ open, className, ...props }: SuccessModalProps) => {
   const { push } = useHistory()
   const dispatch = useAppDispatch()
-  const modalClasses = clsx([styles.modal__container, { [styles.open]: open }, className])
+  const modalClasses = clsx([styles.success__modal_container, className])
   const headerClasses = clsx([styles.modal__header_container, styles.success__header])
   const descriptionClasses = clsx([styles.modal__description, "semi"])
 
@@ -23,7 +23,7 @@ const SuccessModal = ({ open, className, ...props }: SuccessModalProps) => {
   }
 
   return (
-    <Modal open={true} className={modalClasses} {...props}>
+    <Modal open={open} className={modalClasses} {...props}>
       <div className={styles.success__container}>
         <Flex className={headerClasses}>
           <header className={styles.modal__header}>
