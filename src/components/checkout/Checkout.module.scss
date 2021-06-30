@@ -1,27 +1,16 @@
+@import "styles/mixins";
+@import "styles/variables";
+
 .modal {
-  &__container {
-    transition: all 300ms ease-in-out;
-    bottom: -2rem;
-    opacity: 0;
-    &.open {
-      bottom: 0;
-      opacity: 1;
-      animation: show 300ms ease-in-out;
-    }
-    @keyframes show {
-      from {
-        opacity: 0;
-        bottom: -2rem;
-      }
-      to {
-        opacity: 1;
-        bottom: 0;
-      }
-    }
-  }
   &__header_container {
+    display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    @include media($breakpoint-sm) {
+      max-width: 560px;
+      margin: auto;
+      margin-bottom: 40px;
+    }
   }
   &__header {
     display: flex;
@@ -42,29 +31,68 @@
     margin-top: 34px;
     margin-bottom: 45px;
     position: relative;
+    @include media($breakpoint-sm) {
+      margin: auto;
+      max-width: 560px;
+    }
+  }
+  &__two_cols {
+    display: flex;
+    flex-direction: column;
+    @include media($breakpoint-sm) {
+      flex-direction: row;
+      width: 100%;
+      gap: 40px;
+    }
   }
   &__submit_button {
     height: 60px;
     width: 100%;
     margin-top: 20px;
     margin-bottom: 5px;
+    @include media($breakpoint-sm) {
+      margin-bottom: 20px;
+    }
   }
 }
 
 .success {
+  &__modal_container {
+    height: 100% !important;
+    @include media($breakpoint-sm) {
+      height: auto !important;
+    }
+  }
   &__container {
     position: relative;
     height: 100%;
+    @include media($breakpoint-sm) {
+      position: static;
+      height: auto;
+    }
   }
   &__header {
+    display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
+    @include media($breakpoint-sm) {
+      height: auto;
+      width: 300px;
+      margin: 0;
+      margin-bottom: 40px;
+    }
   }
   &__button {
     position: absolute;
     height: 60px;
     width: 100%;
     bottom: 60px;
+    @include media($breakpoint-sm) {
+      position: static;
+      bottom: unset;
+      margin-bottom: 20px;
+      width: 200px;
+    }
   }
 }

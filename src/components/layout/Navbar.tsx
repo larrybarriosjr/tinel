@@ -1,7 +1,6 @@
 import { EmptyCartIcon, FilledCartIcon } from "assets/icons"
 import CartDrawer from "components/cart/CartDrawer"
 import { FlatButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import {
   toggleCheckoutModalDisplay,
@@ -46,9 +45,9 @@ const Navbar = ({ ...props }: NavbarProps) => {
 
   return (
     <nav className={styles.nav} {...props}>
-      <Flex className={styles.nav__container}>
+      <div className={styles.nav__container}>
         <Logo />
-        <Flex className={styles.nav__cart_container}>
+        <div className={styles.nav__cart_container}>
           <FlatButton data-testid="cart-button" onClick={handleShowDrawer}>
             {!cartQuantity ? (
               <EmptyCartIcon data-testid="navbar-cart-icon" />
@@ -61,8 +60,8 @@ const Navbar = ({ ...props }: NavbarProps) => {
               ? `${cartQuantity} ${pluralize("Workshop", cartQuantity)} in Cart`
               : "Cart is Empty"}
           </h6>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
       {drawerMounted ? (
         <CartDrawer
           open={drawerDisplay}

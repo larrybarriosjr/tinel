@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Flex from "components/container/Flex"
 import { FieldHookConfig, useField } from "formik"
 import styles from "./Input.module.scss"
 
@@ -25,13 +24,13 @@ const TextInput = ({ label, ...props }: TextInputProps) => {
   }
 
   return (
-    <Flex className={styles.input__container}>
-      <Flex className={styles.input__label_container}>
+    <div className={styles.input__container}>
+      <div className={styles.input__label_container}>
         <label htmlFor={field.name}>
           <h6>{label}</h6>
         </label>
         {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
-      </Flex>
+      </div>
       <input
         id={field.name}
         type={props.type}
@@ -41,7 +40,7 @@ const TextInput = ({ label, ...props }: TextInputProps) => {
         onKeyPress={handleKeyPress}
         {...field}
       />
-    </Flex>
+    </div>
   )
 }
 

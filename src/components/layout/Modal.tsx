@@ -4,13 +4,15 @@ import styles from "./Layout.module.scss"
 
 type ModalProps = React.ComponentPropsWithoutRef<"dialog">
 
-const Modal = ({ className, children, ...props }: ModalProps) => {
-  const classes = clsx([styles.modal__container, className])
+const Modal = ({ open, className, children, ...props }: ModalProps) => {
+  const classes = clsx([styles.modal__element, { [styles.open]: open }, className])
 
   return createPortal(
-    <dialog className={classes} {...props}>
-      {children}
-    </dialog>,
+    <div className={styles.modal__container}>
+      <dialog open={true} className={classes} {...props}>
+        {children}
+      </dialog>
+    </div>,
     document.body
   )
 }

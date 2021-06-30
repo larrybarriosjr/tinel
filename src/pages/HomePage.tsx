@@ -1,6 +1,5 @@
 import { useGetCategoriesQuery } from "api/categories"
 import { useGetWorkshopsQuery } from "api/workshops"
-import Flex from "components/container/Flex"
 import Loading from "components/layout/Loading"
 import WorkshopFilter from "components/workshop/list/WorkshopFilter"
 import WorkshopList from "components/workshop/list/WorkshopList"
@@ -29,7 +28,7 @@ const HomePage = () => {
   if (!categories) return null
 
   return (
-    <Flex className={styles.home}>
+    <div className={styles.home}>
       <WorkshopFilter categories={categories} onSelect={handleSelectCategory} selected={category} />
       {!items && (isFetching || isLoading) ? <Loading className={styles.home__loading} /> : null}
       {items && !items.length ? <h3 className={styles.home__empty}>No workshops found.</h3> : null}
@@ -41,7 +40,7 @@ const HomePage = () => {
           loading={isFetching || isLoading}
         />
       ) : null}
-    </Flex>
+    </div>
   )
 }
 

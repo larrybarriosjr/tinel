@@ -1,4 +1,3 @@
-import Flex from "components/container/Flex"
 import { WorkshopType } from "types/api"
 import WorkshopItem from "../list/WorkshopItem"
 import styles from "./WorkshopDetail.module.scss"
@@ -19,11 +18,11 @@ const SimilarWorkshops = ({ current, items }: SimilarWorkshopsProps) => {
   return (
     <div className={styles.similar__container}>
       <h2 className={styles.similar__title}>Similar Workshops</h2>
-      <Flex className={styles.similar__list}>
+      <div className={styles.similar__list}>
         {similarItems.map(item => (
           <WorkshopItem key={item.id} item={item} />
         ))}
-      </Flex>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import { UnderlineButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import Loading from "components/layout/Loading"
 import { WorkshopType } from "types/api"
 import WorkshopItem from "./WorkshopItem"
@@ -16,18 +15,18 @@ const WorkshopList = ({ items, limit, onLoadMore, loading }: WorkshopListProps) 
   if (!items.length) return null
 
   return (
-    <Flex className={styles.list__box}>
+    <div className={styles.list__box}>
       <div className={styles.list__title_container}>
         <h2>Workshops</h2>
         <h6>
           <span className={styles.list__displayed}>Displayed:</span> {items.length}
         </h6>
       </div>
-      <Flex className={styles.list__container}>
+      <div className={styles.list__container}>
         {items.map(item => (
           <WorkshopItem key={item.id} item={item} />
         ))}
-      </Flex>
+      </div>
       {limit <= items.length ? (
         <UnderlineButton
           onClick={onLoadMore}
@@ -38,7 +37,7 @@ const WorkshopList = ({ items, limit, onLoadMore, loading }: WorkshopListProps) 
         </UnderlineButton>
       ) : null}
       {loading ? <Loading /> : null}
-    </Flex>
+    </div>
   )
 }
 

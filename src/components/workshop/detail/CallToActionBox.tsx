@@ -2,7 +2,6 @@ import { EmptyCartIcon } from "assets/icons"
 import clsx from "clsx"
 import { PrimaryButton } from "components/common/button"
 import { DropdownInput } from "components/common/input"
-import Flex from "components/container/Flex"
 import { quantityItems } from "constants/data"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { useEffect, useState } from "react"
@@ -44,19 +43,19 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
   }
 
   return (
-    <Flex className={styles.cta__container}>
+    <div className={styles.cta__container}>
       <div>
-        <Flex className={styles.cta__price_container}>
+        <div className={styles.cta__price_container}>
           <h3 className={styles.cta__price} aria-label="workshop-price">
             {monetize(price)}
           </h3>
           <h6 className={styles.cta__currency}>EUR</h6>
-        </Flex>
+        </div>
         <h6 className={totalClasses} aria-label="workshop-total">
           Subtotal: {monetize(price * parseInt(quantityValue))} EUR
         </h6>
       </div>
-      <Flex>
+      <div className={styles.cta__action_container}>
         <DropdownInput
           items={quantityItems}
           value={quantityItems.find(item => quantityValue === item.value)}
@@ -72,8 +71,8 @@ const CallToActionBox = ({ item, quantity }: CallToActionBoxProps) => {
           <p className="bold">Add to</p>
           <EmptyCartIcon />
         </PrimaryButton>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   )
 }
 

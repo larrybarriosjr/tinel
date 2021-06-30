@@ -14,7 +14,6 @@ import { resetFilter } from "states/workshop"
 import { CheckoutFormType } from "types/form"
 import checkoutSchema from "validations/checkoutSchema"
 import styles from "./Checkout.module.scss"
-
 const CheckoutForm = () => {
   const dispatch = useAppDispatch()
   const cartItems = useAppSelector(state => state.cartSlice.cartItems)
@@ -44,8 +43,10 @@ const CheckoutForm = () => {
         <TextInput name="firstName" label="First Name" placeholder="Type your first name here" />
         <TextInput name="lastName" label="Last Name" placeholder="Type your last name here" />
         <TextInput name="email" label="Email Address" placeholder="Type your email address here" />
-        <DateInput name="birthday" label="Date of Birth" placeholder="DD.MM.YYYY" />
-        <SelectInput name="gender" label="Gender" placeholder="Choose your gender" items={genderItems} />
+        <div className={styles.form__two_cols}>
+          <DateInput name="birthday" label="Date of Birth" placeholder="DD.MM.YYYY" />
+          <SelectInput name="gender" label="Gender" placeholder="Choose your gender" items={genderItems} />
+        </div>
         <TextInput name="address" label="Address" placeholder="Type your address here" />
         <TextInput name="zipCode" label="Zip Code" placeholder="eg. 21310" type="number" min="0" />
         <CheckboxInput name="isAgreed" label="I Agree" />

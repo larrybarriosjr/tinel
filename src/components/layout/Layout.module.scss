@@ -21,11 +21,13 @@
     height: 90px;
   }
   &__container {
+    display: flex;
     height: 100%;
     align-items: center;
     justify-content: space-between;
   }
   &__cart_container {
+    display: flex;
     margin: 0;
     @include media($breakpoint-sm) {
       width: 100%;
@@ -53,10 +55,22 @@
   z-index: 100;
   padding: 0 20px;
   box-shadow: var(--shadow-cart);
-  transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in;
+  @include media($breakpoint-sm) {
+    transition: all 750ms ease-in;
+  }
+  @include media($breakpoint-md) {
+    transition: all 1000ms ease-in;
+  }
   &.open {
     right: 0;
-    animation: show 500ms ease-in-out;
+    animation: show 500ms ease-out;
+    @include media($breakpoint-sm) {
+      animation: show 750ms ease-out;
+    }
+    @include media($breakpoint-md) {
+      animation: show 1000ms ease-out;
+    }
   }
   @include media($breakpoint-sm) {
     max-width: 380px;
@@ -74,20 +88,65 @@
 .modal {
   &__container {
     position: fixed;
-    width: 100%;
-    height: 100vh;
-    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     z-index: 1000;
     overflow-y: auto;
+    background: rgba(0, 0, 0, 0.75);
+  }
+  &__element {
+    width: 100%;
     background: white;
     border: none;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     padding: 40px;
     box-shadow: var(--shadow-cart);
+    height: auto;
+    min-height: 100vh;
+    top: 2rem;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
     @include media($breakpoint-sm) {
+      top: 90px;
+      padding: 80px;
+      max-width: 760px;
+      min-height: unset;
       border-radius: 16px;
       box-shadow: var(--shadow-lg);
+    }
+    &.open {
+      top: 0;
+      opacity: 1;
+      animation: show-compact 300ms ease-in-out;
+      @include media($breakpoint-sm) {
+        top: 60px;
+        animation: show-regular 300ms ease-in-out;
+      }
+    }
+    @keyframes show-compact {
+      from {
+        opacity: 0;
+        top: 2rem;
+      }
+      to {
+        opacity: 1;
+        top: 0;
+      }
+    }
+    @keyframes show-regular {
+      from {
+        opacity: 0;
+        top: 90px;
+      }
+      to {
+        opacity: 1;
+        top: 60px;
+      }
     }
   }
 }
@@ -132,6 +191,10 @@
     background: var(--lighter-grey);
     color: var(--light-grey);
     padding-left: 40px;
+    @include media($breakpoint-sm) {
+      height: 80px;
+      padding-left: 80px;
+    }
   }
   &__detail {
     margin-bottom: 80px;

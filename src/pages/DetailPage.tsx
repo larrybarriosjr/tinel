@@ -1,7 +1,6 @@
 import { useGetUserByIdQuery } from "api/users"
 import { useGetWorkshopByIdQuery, useGetWorkshopsQuery } from "api/workshops"
 import { PrimaryButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import Loading from "components/layout/Loading"
 import SimilarWorkshops from "components/workshop/detail/SimilarWorkshops"
 import WorkshopDetail from "components/workshop/detail/WorkshopDetail"
@@ -21,7 +20,7 @@ const DetailPage = () => {
   const quantity = workshopItem ? workshopItem.quantity : 1
 
   return (
-    <Flex className={styles.detail}>
+    <div className={styles.detail}>
       {!item && (isFetching || isLoading) ? <Loading className={styles.detail__loading} /> : null}
       {!item && !isFetching && !isLoading ? (
         <div className={styles.detail__empty_container}>
@@ -39,7 +38,7 @@ const DetailPage = () => {
           <SimilarWorkshops current={item} items={items} />
         </Fragment>
       ) : null}
-    </Flex>
+    </div>
   )
 }
 

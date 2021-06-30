@@ -1,6 +1,5 @@
 import { CheckIcon } from "assets/icons"
 import clsx from "clsx"
-import Flex from "components/container/Flex"
 import { FieldHookConfig, useField } from "formik"
 import React, { useRef } from "react"
 import styles from "./Input.module.scss"
@@ -31,8 +30,8 @@ const CheckboxInput = ({ label, ...props }: CheckboxInputProps) => {
   }
 
   return (
-    <Flex className={styles.checkbox__container}>
-      <Flex className={styles.checkbox__input_container}>
+    <div className={styles.checkbox__container}>
+      <div className={styles.checkbox__input_container}>
         <input
           id={field.name}
           ref={inputRef}
@@ -55,9 +54,9 @@ const CheckboxInput = ({ label, ...props }: CheckboxInputProps) => {
         <label htmlFor={field.name} className={styles.checkbox__label}>
           <h6>{label}</h6>
         </label>
-      </Flex>
+      </div>
       {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
-    </Flex>
+    </div>
   )
 }
 

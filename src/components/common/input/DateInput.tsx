@@ -1,6 +1,5 @@
 import { CalendarIcon } from "assets/icons"
 import clsx from "clsx"
-import Flex from "components/container/Flex"
 import { FieldHookConfig, useField } from "formik"
 import React from "react"
 import ReactDatePicker from "react-datepicker"
@@ -30,13 +29,13 @@ const DateInput = ({ label, ...props }: DateInputProps) => {
   }
 
   return (
-    <Flex className={styles.input__container}>
-      <Flex className={styles.input__label_container}>
+    <div className={styles.input__container}>
+      <div className={styles.input__label_container}>
         <label htmlFor={field.name}>
           <h6>{label}</h6>
         </label>
         {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
-      </Flex>
+      </div>
       <div className={styles.date__input_container}>
         <CalendarIcon className={styles.date__calendar} />
         <ReactDatePicker
@@ -56,7 +55,7 @@ const DateInput = ({ label, ...props }: DateInputProps) => {
           showYearDropdown
         />
       </div>
-    </Flex>
+    </div>
   )
 }
 
