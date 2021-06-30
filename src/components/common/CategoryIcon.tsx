@@ -10,6 +10,7 @@ type CategoryIconProps = React.ComponentPropsWithoutRef<"svg"> & {
 }
 
 const CategoryIcon = ({
+  fill,
   category,
   hasContainer = true,
   containerClassName,
@@ -34,7 +35,7 @@ const CategoryIcon = ({
 
   return (
     <span className={containerClasses}>
-      <Icon fill={hasContainer ? "white" : "var(--darker-grey)"} {...props} />
+      <Icon fill={hasContainer ? "white" : fill || "var(--darker-grey)"} {...props} />
     </span>
   )
 }
