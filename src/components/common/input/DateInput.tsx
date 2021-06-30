@@ -40,6 +40,7 @@ const DateInput = ({ label, ...props }: DateInputProps) => {
       <div className={styles.date__input_container}>
         <CalendarIcon className={styles.date__calendar} />
         <ReactDatePicker
+          id={field.name}
           wrapperClassName={wrapperClasses}
           name={field.name}
           onBlur={field.onBlur}
