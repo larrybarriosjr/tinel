@@ -132,6 +132,9 @@
     background: var(--lighter-grey);
     color: var(--light-grey);
     padding-left: 40px;
+    @include media($breakpoint-sm) {
+      height: 80px;
+    }
   }
   &__detail {
     margin-bottom: 80px;
