@@ -1,11 +1,10 @@
 import { CalendarIcon } from "assets/icons"
 import clsx from "clsx"
 import Flex from "components/container/Flex"
-import dayjs from "dayjs"
 import { FieldHookConfig, useField } from "formik"
-import React, { useState } from "react"
-import DayPicker from "react-day-picker/DayPicker"
-import "react-day-picker/lib/style.css"
+import React from "react"
+import ReactDatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import styles from "./Input.module.scss"
 
 type DateInputProps = FieldHookConfig<string> &
@@ -13,37 +12,21 @@ type DateInputProps = FieldHookConfig<string> &
     label: string
   }
 
-const FORMAT = "DD.MM.YYYY"
+const FORMAT = "dd.MM.yyyy"
 
 const DateInput = ({ label, ...props }: DateInputProps) => {
   const [field, meta, { setValue }] = useField(props)
 
-  const [inputDate, setInputDate] = useState(new Date())
-  const [dateDisplay, setDateDisplay] = useState(false)
-
   const errorClasses = clsx([styles.input__error, "semi"])
+  const wrapperClasses = clsx([styles.date__datepicker_wrapper])
   const inputClasses = clsx([
     styles.input__element,
     styles.date__input,
     { [styles.error]: meta.touched && meta.error }
   ])
 
-  const setDate = (day: Date) => {
-    setValue(dayjs(day).format(FORMAT))
-    setInputDate(day)
-    setDateDisplay(false)
-  }
-
-  const handleDisplayDate = () => {
-    setDateDisplay(true)
-  }
-
-  const handleToggleDisplayDate = () => {
-    setDateDisplay(state => !state)
-  }
-
-  const handleDeleteDate = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Backspace" || e.key === "Delete") setValue("")
+  const handleChangeDate = (date: Date | null) => {
+    return date ? setValue(date.toISOString()) : setValue("")
   }
 
   return (
@@ -55,26 +38,24 @@ const DateInput = ({ label, ...props }: DateInputProps) => {
         {meta.touched && meta.error ? <h6 className={errorClasses}>{meta.error}</h6> : null}
       </Flex>
       <div className={styles.date__input_container}>
-        <CalendarIcon className={styles.date__calendar} onMouseDown={handleToggleDisplayDate} />
-        <input
+        <CalendarIcon className={styles.date__calendar} />
+        <ReactDatePicker
           id={field.name}
-          onMouseDown={handleToggleDisplayDate}
-          onFocus={handleDisplayDate}
-          onKeyDown={handleDeleteDate}
-          placeholder={props.placeholder}
+          wrapperClassName={wrapperClasses}
+          name={field.name}
+          onBlur={field.onBlur}
+          onChange={handleChangeDate}
+          placeholderText={props.placeholder}
+          selected={field.value ? new Date(field.value) : null}
           className={inputClasses}
-          {...field}
-          readOnly
+          showPopperArrow={false}
+          maxDate={new Date()}
+          dateFormat={FORMAT}
+          dropdownMode="select"
+          showMonthDropdown
+          showYearDropdown
         />
       </div>
-      {dateDisplay ? (
-        <DayPicker
-          className={styles.date__datepicker}
-          onDayClick={setDate}
-          selectedDays={inputDate}
-          month={inputDate}
-        />
-      ) : null}
     </Flex>
   )
 }

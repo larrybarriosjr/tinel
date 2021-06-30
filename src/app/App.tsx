@@ -1,5 +1,6 @@
 import CheckoutModal from "components/checkout/CheckoutModal"
 import SuccessModal from "components/checkout/SuccessModal"
+import Footer from "components/layout/Footer"
 import Navbar from "components/layout/Navbar"
 import { Routes } from "constants/enums"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
@@ -12,6 +13,7 @@ import {
   toggleCheckoutModalMounted,
   toggleSuccessModalMounted
 } from "states/presentation"
+import styles from "./App.module.scss"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -40,10 +42,15 @@ function App() {
   return (
     <Fragment>
       <Navbar />
-      <Switch>
-        <Route exact path={Routes.HOME} component={HomePage} />
-        <Route path={Routes.WORKSHOP_PATH} component={DetailPage} />
-      </Switch>
+      <main className={styles.main}>
+        <Switch>
+          <Route exact path={Routes.HOME} component={HomePage} />
+          <Route path={Routes.WORKSHOP_PATH} component={DetailPage} />
+        </Switch>
+      </main>
+      <Footer />
+
+      {/* Checkout Modal */}
       {checkoutModalMounted ? (
         <CheckoutModal
           open={checkoutModalDisplay}
@@ -51,6 +58,8 @@ function App() {
           onTransitionEnd={handleCheckoutTransitionEnd}
         />
       ) : null}
+
+      {/* Success Modal */}
       {successModalMounted ? (
         <SuccessModal open={successModalDisplay} onTransitionEnd={handleSuccessTransitionEnd} />
       ) : null}

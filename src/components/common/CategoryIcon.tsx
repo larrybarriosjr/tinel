@@ -5,11 +5,17 @@ import styles from "./Common.module.scss"
 
 type CategoryIconProps = React.ComponentPropsWithoutRef<"svg"> & {
   category: string
+  hasContainer?: boolean
   containerClassName?: string
 }
 
-const CategoryIcon = ({ category, containerClassName, ...props }: CategoryIconProps) => {
-  const containerClasses = clsx([styles.category__container, containerClassName])
+const CategoryIcon = ({
+  category,
+  hasContainer = true,
+  containerClassName,
+  ...props
+}: CategoryIconProps) => {
+  const containerClasses = clsx([{ [styles.category__container]: hasContainer }, containerClassName])
 
   const Icon = (iconProps: React.ComponentPropsWithoutRef<"svg">) => {
     switch (category) {
@@ -28,7 +34,7 @@ const CategoryIcon = ({ category, containerClassName, ...props }: CategoryIconPr
 
   return (
     <span className={containerClasses}>
-      <Icon fill="white" {...props} />
+      <Icon fill={hasContainer ? "white" : "var(--darker-grey)"} {...props} />
     </span>
   )
 }

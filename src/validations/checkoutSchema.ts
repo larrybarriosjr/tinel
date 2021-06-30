@@ -11,7 +11,7 @@ const checkoutSchema: SchemaOf<CheckoutFormType> = object().shape({
     .oneOf([...genderItems.map(item => item.value)], "Gender is required")
     .required("Gender is required"),
   address: string().required("Address is required"),
-  zipCode: string().matches(/\d+/, "Zip code must be a valid number").required("Zip code is required"),
+  zipCode: string().matches(/^\d+$/, "Zip code must be a valid number").required("Zip code is required"),
   isAgreed: boolean().isTrue("You must agree before checking out").required()
 })
 

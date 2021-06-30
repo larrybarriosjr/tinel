@@ -73,7 +73,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
                   if (e.key === "Enter" || e.key === " ") handleSelectCategory(category)
                 }}
               >
-                <CategoryIcon category={category} width="24" height="24" />
+                <CategoryIcon category={category} hasContainer={false} width="24" height="24" />
                 <h5 aria-label="category-item">{capitalize(category)}</h5>
               </li>
             ))}
