@@ -2,7 +2,6 @@ import { QueryStatus } from "@reduxjs/toolkit/dist/query"
 import { useCreateOrderMutation } from "api/orders"
 import { PrimaryButton } from "components/common/button"
 import { CheckboxInput, DateInput, SelectInput, TextInput } from "components/common/input"
-import Flex from "components/container/Flex"
 import Loading from "components/layout/Loading"
 import { genderItems } from "constants/data"
 import { initialCheckoutData } from "constants/form"
@@ -44,10 +43,10 @@ const CheckoutForm = () => {
         <TextInput name="firstName" label="First Name" placeholder="Type your first name here" />
         <TextInput name="lastName" label="Last Name" placeholder="Type your last name here" />
         <TextInput name="email" label="Email Address" placeholder="Type your email address here" />
-        <Flex className={styles.form__two_cols}>
+        <div className={styles.form__two_cols}>
           <DateInput name="birthday" label="Date of Birth" placeholder="DD.MM.YYYY" />
           <SelectInput name="gender" label="Gender" placeholder="Choose your gender" items={genderItems} />
-        </Flex>
+        </div>
         <TextInput name="address" label="Address" placeholder="Type your address here" />
         <TextInput name="zipCode" label="Zip Code" placeholder="eg. 21310" type="number" min="0" />
         <CheckboxInput name="isAgreed" label="I Agree" />

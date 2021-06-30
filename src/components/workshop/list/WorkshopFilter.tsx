@@ -2,7 +2,6 @@ import { ChevronDownIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
-import Flex from "components/container/Flex"
 import { Colors, WorkshopCategories } from "constants/enums"
 import { Fragment, useState } from "react"
 import { capitalize } from "utils/text-utils"
@@ -45,7 +44,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
         className={styles.filter_button}
         aria-label="category-filter-button"
       >
-        <Flex className={styles.filter_button__container}>
+        <div className={styles.filter_button__container}>
           <ChevronDownIcon
             fill={Colors.BLUE}
             transform={`scale(1, ${dropdownDisplay ? -1 : 1})`}
@@ -96,9 +95,9 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
               ))}
             </ul>
           ) : null}
-        </Flex>
+        </div>
       </FlatButton>
-      <Flex className={styles.filter_sidebar}>
+      <div className={styles.filter_sidebar}>
         <h6 className={styles.filter_sidebar__label}>Filter by category:</h6>
         <ul id="category-list" aria-label="category-list" className={styles.filter_sidebar__list_container}>
           <li
@@ -136,7 +135,7 @@ const WorkshopFilter = ({ categories, onSelect, selected }: WorkshopFilterProps)
             </li>
           ))}
         </ul>
-      </Flex>
+      </div>
     </Fragment>
   )
 }

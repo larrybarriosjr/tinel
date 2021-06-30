@@ -1,6 +1,5 @@
 import clsx from "clsx"
 import { PrimaryButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import Modal from "components/layout/Modal"
 import { Routes } from "constants/enums"
 import { useAppDispatch } from "hooks/redux"
@@ -25,14 +24,14 @@ const SuccessModal = ({ open, className, ...props }: SuccessModalProps) => {
   return (
     <Modal open={open} className={modalClasses} {...props}>
       <div className={styles.success__container}>
-        <Flex className={headerClasses}>
+        <div className={headerClasses}>
           <header className={styles.modal__header}>
             <h2>Thank you!</h2>
             <h6 className={descriptionClasses}>
               Your checkout has been processed successfully. Please check your email for more details.
             </h6>
           </header>
-        </Flex>
+        </div>
         <PrimaryButton onClick={handleGoHome} className={styles.success__button}>
           <h5>Back to Shop</h5>
         </PrimaryButton>

@@ -1,7 +1,6 @@
 import { ArrowLeftIcon, CalendarIcon, ClockIcon } from "assets/icons"
 import { FlatButton } from "components/common/button"
 import CategoryIcon from "components/common/CategoryIcon"
-import Flex from "components/container/Flex"
 import { useHistory } from "react-router-dom"
 import { UserType, WorkshopType } from "types/api"
 import { displayDate, displayTime } from "utils/text-utils"
@@ -20,7 +19,7 @@ const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
   const { goBack } = useHistory()
 
   return (
-    <Flex className={styles.detail__container}>
+    <div className={styles.detail__container}>
       <FlatButton onClick={goBack} className={styles.detail__back_button}>
         <ArrowLeftIcon />
         <h6>Back</h6>
@@ -38,29 +37,29 @@ const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
         />
       </div>
       <div>
-        <Flex className={styles.detail__datetime_container}>
+        <div className={styles.detail__datetime_container}>
           <CalendarIcon className={styles.detail__datetime_icon} height="24" width="24" />
           <h6 className={styles.detail__date} aria-label="workshop-date" aria-details={date}>
             {displayDate(date)}
           </h6>
           <ClockIcon className={styles.detail__datetime_icon} height="24" width="24" />
           <h6 aria-label="workshop-time">{displayTime(date)}</h6>
-        </Flex>
+        </div>
         <h1 className={styles.detail__title} aria-label="workshop-title">
           {title}
         </h1>
         {user ? (
-          <Flex className={styles.detail__user_container}>
+          <div className={styles.detail__user_container}>
             <p className="bold">WITH</p>
             <h5 aria-label="workshop-user">{user.name}</h5>
-          </Flex>
+          </div>
         ) : null}
         <p className={styles.detail__description} data-testid="workshop-description">
           {desc}
         </p>
       </div>
       <CallToActionBox item={item} quantity={quantity} />
-    </Flex>
+    </div>
   )
 }
 

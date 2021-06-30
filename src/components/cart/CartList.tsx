@@ -1,5 +1,4 @@
 import { SecondaryButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import { useAppSelector } from "hooks/redux"
 import { Fragment } from "react"
 import { monetize } from "utils/number-utils"
@@ -16,7 +15,7 @@ const CartList = ({ onCheckout }: CartListProps) => {
   const cartTotal = useAppSelector(state => state.cartSlice.cartTotal)
 
   return (
-    <Flex className={styles.list__container}>
+    <div className={styles.list__container}>
       {cartQuantity
         ? cartItems.map(item => (
             <CartItem
@@ -31,29 +30,29 @@ const CartList = ({ onCheckout }: CartListProps) => {
         : null}
       {cartQuantity ? (
         <Fragment>
-          <Flex className={styles.list__subtotal_container}>
+          <div className={styles.list__subtotal_container}>
             <h6 className={styles.list__subtotal}>SUBTOTAL</h6>
-            <Flex className={styles.list__price_container}>
+            <div className={styles.list__price_container}>
               <h2 className={styles.list__price} data-testid="cart-total-price">
                 {monetize(cartTotal)}
               </h2>
               <h4 className={styles.list__currency}>EUR</h4>
-            </Flex>
-          </Flex>
+            </div>
+          </div>
         </Fragment>
       ) : (
-        <Flex className={styles.list__empty_text}>
+        <div className={styles.list__empty_text}>
           <h4>Cart is Empty</h4>
-        </Flex>
+        </div>
       )}
       {cartQuantity ? (
-        <Flex className={styles.list__checkout_button_container}>
+        <div className={styles.list__checkout_button_container}>
           <SecondaryButton onClick={onCheckout} data-testid="cart-checkout-button">
             <h5>Checkout</h5>
           </SecondaryButton>
-        </Flex>
+        </div>
       ) : null}
-    </Flex>
+    </div>
   )
 }
 

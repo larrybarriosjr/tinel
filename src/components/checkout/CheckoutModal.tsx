@@ -1,7 +1,6 @@
 import { CloseIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import Modal from "components/layout/Modal"
 import styles from "./Checkout.module.scss"
 import CheckoutForm from "./CheckoutForm"
@@ -15,7 +14,7 @@ const CheckoutModal = ({ open, onClose, ...props }: CheckoutModalProps) => {
 
   return (
     <Modal open={open} {...props}>
-      <Flex className={styles.modal__header_container}>
+      <div className={styles.modal__header_container}>
         <header className={styles.modal__header}>
           <h2>Checkout</h2>
           <h6 className={descriptionClasses}>Please fill out the checkout form below.</h6>
@@ -23,7 +22,7 @@ const CheckoutModal = ({ open, onClose, ...props }: CheckoutModalProps) => {
         <FlatButton onClick={onClose} className={styles.modal__close_button}>
           <CloseIcon />
         </FlatButton>
-      </Flex>
+      </div>
       <CheckoutForm />
     </Modal>
   )

@@ -1,6 +1,5 @@
 import { CloseIcon, EmptyCartIcon, FilledCartIcon } from "assets/icons"
 import { FlatButton } from "components/common/button"
-import Flex from "components/container/Flex"
 import Drawer from "components/layout/Drawer"
 import { useAppSelector } from "hooks/redux"
 import { pluralize } from "utils/text-utils"
@@ -19,8 +18,8 @@ const CartDrawer = ({ open, onClose, onTransitionEnd, onCheckout }: CartDrawerPr
 
   return (
     <Drawer open={open} onTransitionEnd={onTransitionEnd}>
-      <Flex className={styles.drawer__header_container}>
-        <Flex className={styles.drawer__cart_container}>
+      <div className={styles.drawer__header_container}>
+        <div className={styles.drawer__cart_container}>
           {!cartQuantity ? (
             <EmptyCartIcon data-testid="drawer-cart-icon" />
           ) : (
@@ -29,13 +28,11 @@ const CartDrawer = ({ open, onClose, onTransitionEnd, onCheckout }: CartDrawerPr
           <h5 className={styles.drawer__counter} data-testid="drawer-cart-counter">
             {cartQuantity} {pluralize("Workshop", cartQuantity)}
           </h5>
-        </Flex>
-        <Flex>
-          <FlatButton onClick={onClose} data-testid="drawer-close-button">
-            <CloseIcon data-testid="drawer-close-icon" />
-          </FlatButton>
-        </Flex>
-      </Flex>
+        </div>
+        <FlatButton onClick={onClose} data-testid="drawer-close-button">
+          <CloseIcon data-testid="drawer-close-icon" />
+        </FlatButton>
+      </div>
       <CartList onCheckout={onCheckout} />
     </Drawer>
   )

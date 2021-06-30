@@ -2,7 +2,6 @@ import { TrashIcon } from "assets/icons"
 import clsx from "clsx"
 import { FlatButton } from "components/common/button"
 import { DropdownInput } from "components/common/input"
-import Flex from "components/container/Flex"
 import { quantityItems } from "constants/data"
 import { useAppDispatch } from "hooks/redux"
 import { removeFromCart, updateWorkshopQuantity } from "states/cart"
@@ -35,12 +34,12 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
   }
 
   return (
-    <Flex className={styles.item__box}>
+    <div className={styles.item__box}>
       <span className={styles.item__image_container}>
         <img src={imageUrl} alt={title} className={styles.item__image} />
       </span>
-      <Flex className={styles.item__content_container}>
-        <Flex className={styles.item__title_container}>
+      <div className={styles.item__content_container}>
+        <div className={styles.item__title_container}>
           <h4 className={titleClasses} data-testid="cart-item-title">
             {title}
           </h4>
@@ -51,8 +50,8 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
           >
             <TrashIcon />
           </FlatButton>
-        </Flex>
-        <Flex className={styles.item__price_container}>
+        </div>
+        <div className={styles.item__price_container}>
           <DropdownInput
             items={quantityItems}
             value={quantityItems.find(item => quantity.toString() === item.value)}
@@ -63,9 +62,9 @@ const CartItem = ({ id, title, imageUrl, quantity, price }: CartItemProps) => {
             {monetize(price)}
           </h3>
           <h6 className={currencyClasses}>EUR</h6>
-        </Flex>
-      </Flex>
-    </Flex>
+        </div>
+      </div>
+    </div>
   )
 }
 
