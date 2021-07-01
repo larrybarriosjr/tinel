@@ -162,8 +162,9 @@
       justify-content: space-between;
       grid-template-columns: repeat(3, minmax(auto, 1fr));
     }
-    @include media($breakpoint-xl) {
+    @include media($breakpoint-2xl) {
       margin: 40px 0;
+      grid-template-columns: repeat(4, minmax(auto, 1fr));
     }
   }
   &__load_more_button {
@@ -231,6 +232,7 @@
     width: 100%;
   }
   &__category_container {
+    position: absolute;
     height: 32px;
     width: 32px;
     top: 13px;

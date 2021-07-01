@@ -48,7 +48,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -100%;
+  right: -380px;
   width: 100%;
   overflow-y: auto;
   background: white;
@@ -56,28 +56,16 @@
   padding: 0 20px;
   box-shadow: var(--shadow-cart);
   transition: all 500ms ease-in;
-  @include media($breakpoint-sm) {
-    transition: all 750ms ease-in;
-  }
-  @include media($breakpoint-md) {
-    transition: all 1000ms ease-in;
-  }
   &.open {
     right: 0;
     animation: show 500ms ease-out;
-    @include media($breakpoint-sm) {
-      animation: show 750ms ease-out;
-    }
-    @include media($breakpoint-md) {
-      animation: show 1000ms ease-out;
-    }
   }
   @include media($breakpoint-sm) {
     max-width: 380px;
   }
   @keyframes show {
     from {
-      right: -100%;
+      right: -380px;
     }
     to {
       right: 0%;
@@ -198,5 +186,8 @@
   }
   &__detail {
     margin-bottom: 80px;
+    @include media($breakpoint-md) {
+      margin: 0;
+    }
   }
 }

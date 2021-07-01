@@ -7,6 +7,28 @@
     flex-direction: column;
     padding: 20px;
     padding-bottom: 17px;
+    @include media($breakpoint-sm) {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    @include media($breakpoint-md) {
+      padding-left: 25px;
+      display: grid;
+      justify-content: space-between;
+      grid-template-areas:
+        "back ."
+        "image image"
+        "details cta";
+    }
+    @include media($breakpoint-lg) {
+      align-items: flex-start;
+      gap: 0;
+      justify-content: flex-start;
+      grid-template-columns: minmax(auto, 380px) 620px 420px;
+      grid-template-areas:
+        "back image image"
+        ". details cta";
+    }
   }
   &__back_button {
     display: flex;
@@ -15,11 +37,27 @@
     gap: 5px;
     color: inherit;
     padding-right: 5px;
+    grid-area: back;
+    @include media($breakpoint-lg) {
+      padding-top: 5px;
+    }
   }
   &__graphics_container {
     position: relative;
     height: 250px;
     margin: 20px 0;
+    grid-area: image;
+    @include media($breakpoint-sm) {
+      height: 300px;
+      margin-bottom: 40px;
+    }
+    @include media($breakpoint-md) {
+      height: auto;
+    }
+    @include media($breakpoint-lg) {
+      margin: 0;
+      margin-bottom: 40px;
+    }
   }
   &__image_container {
     position: absolute;
@@ -27,46 +65,85 @@
     height: 100%;
     border-radius: 8px;
     overflow: hidden;
+    @include media($breakpoint-md) {
+      position: static;
+    }
   }
   &__image {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
-  &__category_container {
+  &__graphics_category {
+    position: absolute;
     height: 40px;
     width: 40px;
     right: 12px;
     bottom: -20px;
+    @include media($breakpoint-sm) {
+      display: none;
+    }
+  }
+  &__details_container {
+    grid-area: details;
   }
   &__datetime_container {
     display: flex;
     padding: 0 20px 10px;
     align-items: center;
     white-space: nowrap;
+    @include media($breakpoint-sm) {
+      padding: 0;
+    }
+  }
+  &__details_category {
+    display: none;
+    height: 40px;
+    width: 40px;
+    @include media($breakpoint-sm) {
+      display: flex;
+      margin-right: 20px;
+    }
   }
   &__datetime_icon {
     margin-right: 3px;
+    @include media($breakpoint-sm) {
+      margin-right: 5px;
+    }
   }
   &__date {
     margin-right: 10px;
+    @include media($breakpoint-sm) {
+      margin-right: 20px;
+    }
   }
   &__title {
     color: var(--blue);
     padding-bottom: 10px;
+    max-width: 620px;
+    @include media($breakpoint-sm) {
+      padding: 20px 0;
+    }
   }
   &__user_container {
     display: flex;
     align-items: center;
     gap: 5px;
     padding: 0 20px;
+    @include media($breakpoint-sm) {
+      padding: 0;
+    }
   }
   &__description {
     padding: 20px;
+    max-width: 580px;
+    @include media($breakpoint-sm) {
+      padding: 40px 0;
+    }
   }
 }
 
-.cta {
+.cta_sticky {
   &__container {
     display: flex;
     position: fixed;
@@ -80,6 +157,9 @@
     z-index: 100;
     background: white;
     box-shadow: var(--shadow-sm);
+    @include media($breakpoint-md) {
+      display: none;
+    }
   }
   &__price_container {
     display: flex;
@@ -106,9 +186,48 @@
     margin-left: 10px;
     white-space: nowrap;
   }
-  &__total {
+}
+
+.cta_box {
+  &__container {
     display: none;
-    margin-top: 5px;
+    width: 360px;
+    height: 320px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 16px;
+    grid-area: cta;
+    margin-right: 20px;
+    margin-left: 40px;
+    padding: 50px 40px;
+    @include media($breakpoint-md) {
+      display: block;
+    }
+  }
+  &__price_container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    white-space: nowrap;
+  }
+  &__price {
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 5px;
+    white-space: nowrap;
+    margin-top: 16px;
+  }
+  &__action_container {
+    display: flex;
+  }
+  &__button_container {
+    width: 100%;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  &__total {
+    margin-top: 10px;
+    margin-left: 92px;
     white-space: nowrap;
     color: var(--light-grey);
   }
@@ -116,21 +235,44 @@
 
 .similar {
   &__container {
+    display: flex;
+    flex-direction: column;
     background: var(--lighter-grey);
     padding: 37px 20px;
     margin-bottom: 1px;
+    @include media($breakpoint-lg) {
+      display: grid;
+      padding: 80px 20px;
+      grid-template-rows: repeat(2, auto);
+      grid-template-columns: minmax(auto, 380px) 1040px;
+      grid-template-areas:
+        ". title"
+        ". list";
+    }
   }
   &__title {
     padding: 20px;
     padding-top: 6px;
+    grid-area: title;
+    @include media($breakpoint-lg) {
+      padding: 0;
+    }
   }
   &__list {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    grid-area: list;
     @include media($breakpoint-sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
-      margin: 40px 20px;
+      padding: 20px;
+    }
+    @include media($breakpoint-lg) {
+      padding: 0;
+      padding-top: 40px;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
