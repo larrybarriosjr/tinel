@@ -6,6 +6,12 @@ A simple webshop that sells workshops. An assignment for a job application at Lo
 
 ## **Workflow**
 
+### _ASSET SETUP_
+
+Using the design file given with the assignment, I created an svg for icons and logo similar to the file. I
+also created a custom logo for favicon and mobile app logos based on the original logo of the webshop. This
+adds completeness to the overall appearance of the site.
+
 ### _DEVELOPMENT SETUP_
 
 To make a development environment that is consistent throughout the developers, I setup configurations for
