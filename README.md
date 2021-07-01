@@ -1,4 +1,4 @@
-![Tinel Workshop Logo](https://github.com/larrybarriosjr/tinel/blob/develop/src/assets/logo.svg)
+![Tinel Workshop Logo](https://github.com/larrybarriosjr/tinel/blob/develop/src/assets/logo.png)
 
 # **Tinel Workshop**
 
