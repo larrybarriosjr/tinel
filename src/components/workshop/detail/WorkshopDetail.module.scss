@@ -116,21 +116,44 @@
 
 .similar {
   &__container {
+    display: flex;
+    flex-direction: column;
     background: var(--lighter-grey);
     padding: 37px 20px;
     margin-bottom: 1px;
+    @include media($breakpoint-lg) {
+      display: grid;
+      padding: 80px 20px;
+      grid-template-rows: repeat(2, auto);
+      grid-template-columns: minmax(auto, 380px) 1040px;
+    grid-template-areas:
+      ". title"
+      ". list";
+    }
   }
   &__title {
     padding: 20px;
     padding-top: 6px;
+    grid-area: title;
+    @include media($breakpoint-lg) {
+      padding: 0;
+    }
   }
   &__list {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    grid-area: list;
     @include media($breakpoint-sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
-      margin: 40px 20px;
+      padding: 20px;
+    }
+    @include media($breakpoint-lg) {
+      padding: 0;
+      padding-top: 40px;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
