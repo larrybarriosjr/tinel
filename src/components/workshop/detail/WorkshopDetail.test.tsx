@@ -22,7 +22,12 @@ describe("Workshop Detail Page", () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <CartDrawer open={true} onClose={() => null} onTransitionEnd={() => null} />
+          <CartDrawer
+            open={true}
+            onClose={() => null}
+            onTransitionEnd={() => null}
+            onCheckout={() => null}
+          />
           <WorkshopDetail item={workshopItem} user={workshopUser} quantity={2} />
           <Route
             path="*"
@@ -42,7 +47,7 @@ describe("Workshop Detail Page", () => {
   })
 
   it("renders the workshop category icon", () => {
-    const category = screen.getByRole("img", { name: "workshop-category" })
+    const category = screen.getAllByRole("img", { name: "workshop-category" })[0]
     expect(category).toHaveAttribute("name", workshopItem.category)
   })
 
@@ -72,7 +77,7 @@ describe("Workshop Detail Page", () => {
   })
 
   it("renders the workshop price per ticket", () => {
-    const price = screen.getByRole("heading", { name: "workshop-price" })
+    const price = screen.getAllByRole("heading", { name: "workshop-price" })[0]
     expect(price).toHaveTextContent(monetize(workshopItem.price))
   })
 
@@ -106,7 +111,7 @@ describe("Workshop Detail Page", () => {
 
   it("adds the number of workshop ticket when clicking the add to cart button", async () => {
     const dropdown = document.querySelector("#workshop-ticket-dropdown") as HTMLElement
-    const button = screen.getByRole("button", { name: "workshop-button" })
+    const button = screen.getAllByRole("button", { name: "workshop-button" })[0]
     const drawerCounter = screen.getByTestId("drawer-cart-counter")
 
     await selectEvent.select(dropdown, ["4"])
