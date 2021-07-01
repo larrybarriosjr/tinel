@@ -13,15 +13,21 @@
     }
     @include media($breakpoint-md) {
       padding-left: 25px;
+      display: grid;
+      justify-content: space-between;
+      grid-template-areas:
+        "back ."
+        "image image"
+        "details cta";
     }
     @include media($breakpoint-lg) {
-      display: grid;
       align-items: flex-start;
-      grid-template-rows: repeat(2, auto);
-      grid-template-columns: minmax(auto, 380px) 1040px;
+      gap: 0;
+      justify-content: flex-start;
+      grid-template-columns: minmax(auto, 380px) 620px 420px;
       grid-template-areas:
-        "back image"
-        ". details";
+        "back image image"
+        ". details cta";
     }
   }
   &__back_button {
@@ -46,10 +52,9 @@
       margin-bottom: 40px;
     }
     @include media($breakpoint-md) {
-      height: 350px;
+      height: auto;
     }
     @include media($breakpoint-lg) {
-      height: 382px;
       margin: 0;
       margin-bottom: 40px;
     }
@@ -60,6 +65,9 @@
     height: 100%;
     border-radius: 8px;
     overflow: hidden;
+    @include media($breakpoint-md) {
+      position: static;
+    }
   }
   &__image {
     object-fit: cover;
@@ -112,7 +120,7 @@
   &__title {
     color: var(--blue);
     padding-bottom: 10px;
-    max-width: 580px;
+    max-width: 620px;
     @include media($breakpoint-sm) {
       padding: 20px 0;
     }
@@ -135,7 +143,7 @@
   }
 }
 
-.cta {
+.cta_sticky {
   &__container {
     display: flex;
     position: fixed;
@@ -149,6 +157,9 @@
     z-index: 100;
     background: white;
     box-shadow: var(--shadow-sm);
+    @include media($breakpoint-md) {
+      display: none;
+    }
   }
   &__price_container {
     display: flex;
@@ -175,9 +186,48 @@
     margin-left: 10px;
     white-space: nowrap;
   }
-  &__total {
+}
+
+.cta_box {
+  &__container {
     display: none;
-    margin-top: 5px;
+    width: 360px;
+    height: 320px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 16px;
+    grid-area: cta;
+    margin-right: 20px;
+    margin-left: 40px;
+    padding: 50px 40px;
+    @include media($breakpoint-md) {
+      display: block;
+    }
+  }
+  &__price_container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    white-space: nowrap;
+  }
+  &__price {
+    white-space: nowrap;
+  }
+  &__currency {
+    margin-left: 5px;
+    white-space: nowrap;
+    margin-top: 16px;
+  }
+  &__action_container {
+    display: flex;
+  }
+  &__button_container {
+    width: 100%;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  &__total {
+    margin-top: 10px;
+    margin-left: 92px;
     white-space: nowrap;
     color: var(--light-grey);
   }
