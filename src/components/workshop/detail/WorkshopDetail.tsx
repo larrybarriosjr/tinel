@@ -33,11 +33,18 @@ const WorkshopDetail = ({ item, user, quantity }: WorkshopDetailProps) => {
           role="img"
           aria-label="workshop-category"
           name={category}
-          containerClassName={styles.detail__category_container}
+          containerClassName={styles.detail__graphics_category}
         />
       </div>
-      <div>
+      <div className={styles.detail__details_container}>
         <div className={styles.detail__datetime_container}>
+          <CategoryIcon
+            category={category}
+            role="img"
+            aria-label="workshop-category"
+            name={category}
+            containerClassName={styles.detail__details_category}
+          />
           <CalendarIcon className={styles.detail__datetime_icon} height="24" width="24" />
           <h6 className={styles.detail__date} aria-label="workshop-date" aria-details={date}>
             {displayDate(date)}

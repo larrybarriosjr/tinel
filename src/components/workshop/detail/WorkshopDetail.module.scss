@@ -7,6 +7,22 @@
     flex-direction: column;
     padding: 20px;
     padding-bottom: 17px;
+    @include media($breakpoint-sm) {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    @include media($breakpoint-md) {
+      padding-left: 25px;
+    }
+    @include media($breakpoint-lg) {
+      display: grid;
+      align-items: flex-start;
+      grid-template-rows: repeat(2, auto);
+      grid-template-columns: minmax(auto, 380px) 1040px;
+      grid-template-areas:
+        "back image"
+        ". details";
+    }
   }
   &__back_button {
     display: flex;
@@ -15,11 +31,28 @@
     gap: 5px;
     color: inherit;
     padding-right: 5px;
+    grid-area: back;
+    @include media($breakpoint-lg) {
+      padding-top: 5px;
+    }
   }
   &__graphics_container {
     position: relative;
     height: 250px;
     margin: 20px 0;
+    grid-area: image;
+    @include media($breakpoint-sm) {
+      height: 300px;
+      margin-bottom: 40px;
+    }
+    @include media($breakpoint-md) {
+      height: 350px;
+    }
+    @include media($breakpoint-lg) {
+      height: 382px;
+      margin: 0;
+      margin-bottom: 40px;
+    }
   }
   &__image_container {
     position: absolute;
@@ -33,36 +66,72 @@
     width: 100%;
     height: 100%;
   }
-  &__category_container {
+  &__graphics_category {
+    position: absolute;
     height: 40px;
     width: 40px;
     right: 12px;
     bottom: -20px;
+    @include media($breakpoint-sm) {
+      display: none;
+    }
+  }
+  &__details_container {
+    grid-area: details;
   }
   &__datetime_container {
     display: flex;
     padding: 0 20px 10px;
     align-items: center;
     white-space: nowrap;
+    @include media($breakpoint-sm) {
+      padding: 0;
+    }
+  }
+  &__details_category {
+    display: none;
+    height: 40px;
+    width: 40px;
+    @include media($breakpoint-sm) {
+      display: flex;
+      margin-right: 20px;
+    }
   }
   &__datetime_icon {
     margin-right: 3px;
+    @include media($breakpoint-sm) {
+      margin-right: 5px;
+    }
   }
   &__date {
     margin-right: 10px;
+    @include media($breakpoint-sm) {
+      margin-right: 20px;
+    }
   }
   &__title {
     color: var(--blue);
     padding-bottom: 10px;
+    max-width: 580px;
+    @include media($breakpoint-sm) {
+      padding: 20px 0;
+    }
   }
   &__user_container {
     display: flex;
     align-items: center;
     gap: 5px;
     padding: 0 20px;
+    @include media($breakpoint-sm) {
+      padding: 0;
+    }
   }
   &__description {
     padding: 20px;
+    max-width: 580px;
+    @include media($breakpoint-sm) {
+      padding: 40px 0;
+    }
   }
 }
 
@@ -126,9 +195,9 @@
       padding: 80px 20px;
       grid-template-rows: repeat(2, auto);
       grid-template-columns: minmax(auto, 380px) 1040px;
-    grid-template-areas:
-      ". title"
-      ". list";
+      grid-template-areas:
+        ". title"
+        ". list";
     }
   }
   &__title {
