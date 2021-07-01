@@ -1,0 +1,38 @@
+@import "./base";
+@import "./texts";
+
+:root {
+  // FONTS
+  --normal: 500;
+  --semibold: 600;
+  --bold: 700;
+
+  // COLORS
+  --yellow: #ffc80c;
+  --light-yellow: #ffce25;
+  --blue: #0097cc;
+  --light-blue: #00aae4;
+  --red: #ff392e;
+  --black: #0d0d0d;
+  --white: #ffffff;
+  --light-grey: #7f7f7f;
+  --lighter-grey: #f2f2f2;
+  --darker-grey: #1d1d1b;
+
+  // SHADOWS
+  --shadow-sm: -1px -2px 4px rgba(127, 127, 127, 0.25);
+  --shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
+  --shadow-lg: 1px 2px 16px rgba(127, 127, 127, 0.25);
+  --shadow-cart: -1px -2px 16px rgba(127, 127, 127, 0.25);
+  --shadow-hover: 1px 2px 16px rgba(127, 127, 127, 0.35);
+}
+
+.DayPicker {
+  position: absolute;
+  z-index: 100;
+  margin-top: 80px;
+  background: white;
+  border: 1px solid var(--lighter-grey);
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+}

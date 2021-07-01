@@ -1,0 +1,47 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  padding-top: 25px;
+  &__loading {
+    margin-top: 100px;
+  }
+  &__empty {
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+  }
+  @include media($breakpoint-md) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  @include media($breakpoint-lg) {
+    flex-direction: column;
+  }
+  @include media($breakpoint-xl) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  &__loading {
+    margin-top: 100px;
+  }
+  &__empty_container {
+    margin-top: 100px;
+    text-align: center;
+  }
+  &__empty_button {
+    margin-top: 20px;
+    height: 60px;
+    padding: 0 40px;
+  }
+}

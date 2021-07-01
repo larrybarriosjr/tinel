@@ -1,0 +1,84 @@
+@import "./mixins";
+@import "./variables";
+
+h1 {
+  font-weight: var(--bold);
+  font-size: 36px;
+  line-height: 120%;
+  @include media($breakpoint-sm) {
+    font-size: 60px;
+  }
+}
+
+h2 {
+  font-weight: var(--bold);
+  font-size: 32px;
+  line-height: 125%;
+  @include media($breakpoint-sm) {
+    font-size: 40px;
+  }
+}
+
+h3 {
+  font-weight: var(--bold);
+  font-size: 20.3px;
+  line-height: 125%;
+  &.cart {
+    font-size: 20.3px;
+    line-height: 125%;
+  }
+  @include media($breakpoint-sm) {
+    font-size: 29px;
+  }
+}
+
+h4 {
+  font-weight: var(--bold);
+  font-size: 18.9px;
+  line-height: 125%;
+  &.cart {
+    font-size: 18.9px;
+    line-height: 125%;
+  }
+  @include media($breakpoint-sm) {
+    font-size: 27px;
+  }
+}
+
+h5 {
+  font-weight: var(--bold);
+  font-size: 18.4px;
+  line-height: 125%;
+  @include media($breakpoint-sm) {
+    font-size: 23px;
+  }
+}
+
+h6 {
+  font-weight: var(--bold);
+  font-size: 13.5px;
+  line-height: 125%;
+  &.semi {
+    font-weight: var(--semibold);
+  }
+  &.cart {
+    font-size: 13.5px;
+    line-height: 125%;
+  }
+  @include media($breakpoint-sm) {
+    font-size: 15px;
+  }
+}
+
+p {
+  font-weight: var(--normal);
+  font-size: 14.4px;
+  line-height: 150%;
+  &.bold {
+    font-weight: var(--bold);
+    line-height: 125%;
+  }
+  @include media($breakpoint-sm) {
+    font-size: 18px;
+  }
+}

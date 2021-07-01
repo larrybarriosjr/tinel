@@ -1,0 +1,136 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.input {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 30px;
+    width: 100%;
+    @include media($breakpoint-sm) {
+      margin-top: 35px;
+    }
+  }
+  &__label_container {
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+  }
+  &__error {
+    text-align: right;
+    color: var(--red);
+  }
+  &__element {
+    height: 54px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--light-grey);
+    font-weight: 500;
+    font-size: 18.4px;
+    line-height: 23px;
+    color: var(--darker-grey);
+    &::placeholder {
+      color: var(--light-grey);
+    }
+    &:focus {
+      background: var(--lighter-grey);
+      border-bottom: 2px solid var(--blue);
+    }
+    &:not(:placeholder-shown) {
+      padding-left: 20px;
+    }
+  }
+}
+
+.error {
+  border-bottom: 2px solid var(--red);
+}
+
+.number {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.date {
+  &__container {
+    width: 100%;
+  }
+  &__input_container {
+    position: relative;
+    height: 54px;
+  }
+  &__input {
+    padding-left: 29px !important;
+  }
+  &__calendar {
+    position: absolute;
+    height: 100%;
+    z-index: 100;
+  }
+  &__datepicker_wrapper {
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.select {
+  &__placeholder {
+    padding-left: 0;
+    color: #bababa;
+  }
+  &__empty {
+    padding-left: 0 !important;
+    color: #bababa;
+  }
+  &__option {
+    color: var(--darker-grey);
+  }
+}
+
+.checkbox {
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    @include media($breakpoint-sm) {
+      margin-top: 35px;
+    }
+  }
+  &__input_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__element {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 32px;
+    width: 32px;
+    border: 2px solid var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__true {
+    border: none;
+    background: var(--blue);
+  }
+  &__error {
+    width: 150px;
+    margin-left: auto;
+    color: var(--red);
+    text-align: right;
+    @include media($breakpoint-sm) {
+      width: 100%;
+    }
+  }
+  &__label {
+    cursor: default;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,13 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.category {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--darker-grey);
+    border-radius: 6px;
+    z-index: 1;
+  }
+}
