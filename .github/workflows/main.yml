@@ -16,6 +16,9 @@ jobs:
       - name: Install Dependencies
         run: yarn ci
 
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v1
+
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
