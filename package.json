@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "server": "json-server db.json -p 4000",
     "cy": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "ci": "rm -rf node_modules && yarn install --frozen-lockfile"
   },
   "eslintConfig": {
     "extends": "react-app"
