@@ -16,17 +16,9 @@ jobs:
       - name: Install Dependencies
         run: yarn ci
 
-      - name: Install Doppler CLI
-        run: |
-          sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
-          curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | sudo apt-key add -
-          echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | sudo tee /etc/apt/sources.list.d/doppler-cli.list
-          sudo apt-get update && sudo apt-get install doppler
-
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
-          build: yarn test:build
           start: yarn server, yarn start
           wait-on: http://localhost:4000, http://localhost:3000
 
