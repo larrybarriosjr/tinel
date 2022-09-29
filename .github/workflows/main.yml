@@ -19,7 +19,7 @@ jobs:
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
-          build: react-scripts build
+          build: yarn test:build
           start: yarn server, yarn start
           wait-on: http://localhost:4000, http://localhost:3000
 
