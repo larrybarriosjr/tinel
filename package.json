@@ -20,13 +20,14 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "doppler run -- vercel dev",
+    "build": "doppler run -- react-scripts build && npx serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server db.json",
+    "server": "json-server db.json -p 4000",
     "cy": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "ci": "rm -rf node_modules && yarn install --frozen-lockfile"
   },
   "eslintConfig": {
     "extends": "react-app"
