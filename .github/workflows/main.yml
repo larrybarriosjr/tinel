@@ -22,6 +22,7 @@ jobs:
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
           REACT_APP_CATEGORIES_URL: ${{ secrets.REACT_APP_CATEGORIES_URL }}
           REACT_APP_ORDERS_URL: ${{ secrets.REACT_APP_ORDERS_URL }}
