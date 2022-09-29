@@ -21,6 +21,14 @@ jobs:
 
       - name: Cypress Test
         uses: cypress-io/github-action@v2
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+          REACT_APP_CATEGORIES_URL: ${{ secrets.REACT_APP_CATEGORIES_URL }}
+          REACT_APP_ORDERS_URL: ${{ secrets.REACT_APP_ORDERS_URL }}
+          REACT_APP_USERS_URL: ${{ secrets.REACT_APP_USERS_URL }}
+          REACT_APP_WORKSHOPS_LIMIT: ${{ secrets.REACT_APP_WORKSHOPS_LIMIT }}
+          REACT_APP_WORKSHOPS_URL: ${{ secrets.REACT_APP_WORKSHOPS_URL }}
         with:
           start: yarn server, yarn start
           wait-on: http://localhost:4000, http://localhost:3000
